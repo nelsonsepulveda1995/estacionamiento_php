@@ -37,7 +37,8 @@
                     </div>
                     <br>
                     <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="login">Ingresar</button>
-                </form><br>
+                </form>
+                <br>
             </div>
         </div>
     </div>
