@@ -12,14 +12,17 @@
     $cantidad = $query->fetchColumn(); //toma la cantidad de columnas devueltas (probar)
 
     if(!isset($_SESSION)){
-        session_start();
-    
+        session_start(); //se crea una sesion vacia para el usuario
 
         if($cantidad > 0 && $cantidad < 2){ //si existe el usuario deberiamos cargar la sesion con los 4 datos que tenemos
             $row=$query->fetch();
             if($row['TIPO']==1){ //si es gerente
 
-                $_SESSION['tipo_usuario']=$row['TIPO'];
+                $_SESSION['tipo_usuario']=$row['TIPO'];   //se cargan 4 datos a la sesion (se pueden crear mas sin problemas)
+                $_SESSION['nombre_usuario']=$row['NOMBRE'];
+                $_SESSION['password']=$password;
+                $_SESSION['usuario']=$usuario;
+
                 header("Location:./home-gerente.php");
             }
             if($row['TIPO'] == 2){ //si es empleado

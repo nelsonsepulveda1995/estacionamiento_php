@@ -11,6 +11,18 @@
                         </button>
                     </div>';
         endif;
+
+        //si ya existe una sesion activa redirige automaticamente (o deberia :P )
+        if (isset($_SESSION)):
+            if(!isset($_SESSION['tipo_usuario'])):
+                if($_SESSION['tipo_usuario']==1){
+                    header("Location:./home-gerente.php");
+                }
+                if($_SESSION['tipo_usuario']==1){
+                    header("Location:./home-empleado.php");
+                }
+            endif;
+        endif;
     ?>
         <div class="card card-signin my-5">
             <div class="card-body">

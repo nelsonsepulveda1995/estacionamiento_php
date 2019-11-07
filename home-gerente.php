@@ -1,3 +1,17 @@
+<?php
+    if(!isset($_SESSION)){
+        header("Location:./login.php");
+    }
+    else{
+        if($_SESSION['tipo_usuario'] == 2){
+            header("Location:./home-empleado.php");
+        }
+        else{
+            header("Location:./login.php");
+        }
+    }
+?>
+
 <div class="row">
     <div class="col-md-8 mx-auto text-center">
         <div class="card card-signin my-5">
