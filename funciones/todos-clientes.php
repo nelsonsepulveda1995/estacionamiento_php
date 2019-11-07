@@ -1,4 +1,6 @@
 <?php
+    //relizar comprobacion de seseion aca antes ejecutar todo
+
     require("included/connect.php");
     $query=$conn->prepare('SELECT * FROM cliente');
     $query->execute();
