@@ -1,6 +1,7 @@
 <?php
     //requiere probar si funciona
-    require("incuded/connect.php");
+    echo("entrando al login");
+    require("./incuded/connect.php");
 
     $usuario  = $_POST["usuario"];
     $password = $_POST["password"];
