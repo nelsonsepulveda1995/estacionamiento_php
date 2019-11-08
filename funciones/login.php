@@ -10,7 +10,7 @@
     $query->bindParam(':USUARIO',$usuario);
     $query->bindParam(':PASSWORD',$password);
     $resultado = $query->execute(); //el resultado de la consulta se guarda dentro de la variable
-    $cantidad = count($query->columnCount()); //cuenta la cantidad de filas que se obtuvo
+    $cantidad = $resultado; //cuenta la cantidad de filas que se obtuvo
 
     if(!isset($_SESSION)){
         session_start(); //se crea una sesion vacia para el usuario
