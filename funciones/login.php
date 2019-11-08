@@ -9,8 +9,8 @@
     $query = $conn->prepare('SELECT NOMBRE , ID FROM USUARIOS WHERE USUARIO =":USUARIO" AND PASSWORD = ":PASSWORD" AND ESTADO = 1');
     $query->bindParam(':USUARIO',$usuario);
     $query->bindParam(':PASSWORD',$password);
-    $query->execute(); //el resultado de la consulta queda guardado aca
-    $cantidad = $query->columnCount(); //toma la cantidad de columnas devueltas (probar) 
+    $resultado = $query->execute(); //el resultado de la consulta se guarda dentro de la variable
+    $cantidad = count($query->columnCount()); //cuenta la cantidad de filas que se obtuvo
 
     if(!isset($_SESSION)){
         session_start(); //se crea una sesion vacia para el usuario
