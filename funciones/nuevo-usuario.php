@@ -9,7 +9,7 @@
             $id=$_POST["id"];
 
 
-            $query=$conn->prepare("INSERT INTO usuario (`nombre`,`usuario`,'password', `ID`)VALUES(  `:usuario`, `:PASSWORD`, `:ID`)");
+            $query=$conn->prepare("INSERT INTO usuario(`nombre`,`usuario`,'password', `ID`)VALUES(:nombre,:usuario,:PASSWORD,:ID)");
             $query->bindParam(':nombre',$nombre);
             $query->bindParam(':usuario',$usuario);
             $query->bindParam(':ID',$id);
@@ -18,7 +18,7 @@
             $query->execute();
         }
         else{ //redireccionar
-
+            
         }
     }
     else{

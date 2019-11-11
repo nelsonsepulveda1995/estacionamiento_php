@@ -6,11 +6,10 @@
         if($_SESSION['tipo_usuario'] == 1){
             header("Location:./home-gerente.php");
         }
-        else{
-            header("Location:./login.php");
-        }
     }
+    include "included/head.php";
 ?>
+
 <div class="row">
     <div class="col-md-8 mx-auto text-center">
         <div class="card card-signin my-5">
@@ -18,7 +17,7 @@
                 <h5 class="card-title text-center">Bienvenido al sistema, Empleado</h5>
                 <hr class="my-4">
                 <p>Seleccione una opción de lo que desea hacer:</p>
-                <a href="/empleado/cliente/ver">
+                <a href="/listaempleados.php">
                     <button type="button" class="btn  btn-info">
                         <i class="fas fa-users" aria-hidden="true"></i> Ver lista de clientes
                     </button>
@@ -47,3 +46,7 @@
         </div>
     </div>
 </div>
+
+<?php
+    include "included/fooder.php";
+?>

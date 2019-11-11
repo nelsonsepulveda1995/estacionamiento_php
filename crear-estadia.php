@@ -6,10 +6,10 @@
                     <h5 class="card-title text-center">Crear Estadia</h5>
                     <form class="form-signin" action="" method="POST">
                         <div class="form-label-group">
-                            <input type="text" id="nombre" name="estadia[PATENTE]" class="form-control" placeholder="Ingrese Patente del cliente" value="<?=$estadia['PATENTE'] ?? ''?>" required autofocus>
+                            <input type="text" id="patente" name="patente" class="form-control" placeholder="Ingrese Patente del cliente" value="<?=$estadia['PATENTE'] ?? ''?>" required autofocus>
                             <label for="nombre">Ingrese Patente del cliente</label>
                         </div>
-                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="Register account">Ingresar</button>
+                        <input class="btn btn-lg btn-primary btn-block text-uppercase" id="boton_crear_estadia" type="submit" value="Crear Estadia">
                     </form>
                 </div>
             </div>

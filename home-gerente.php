@@ -6,9 +6,6 @@
         if($_SESSION['tipo_usuario'] == 2){
             header("Location:./home-empleado.php");
         }
-        else{
-            header("Location:./login.php");
-        }
     }
 ?>
 

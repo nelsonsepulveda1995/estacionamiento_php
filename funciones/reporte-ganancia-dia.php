@@ -12,11 +12,12 @@
                 # code...
             }
         }
-        else {
+        else { //si la sesion no es la correcta
             # code...
         }
     }
-    else {
+
+    else { //si no existe la sesion
         header("Location:../login.php");
     }
 ?>

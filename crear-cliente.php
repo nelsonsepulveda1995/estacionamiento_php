@@ -18,26 +18,20 @@ if (!empty($errors)) :
         <div class="card card-signin my-5">
             <div class="card-body">
                 <h5 class="card-title text-center">Alta de cliente</h5>
-                <form class="form-signin" action="" method="POST">
-                    <!--<input type="hidden" name="cliente[DNI]" value="<?=$cliente['DNI'] ?? '' ?>">-->
+                <form class="form-signin" action="">
                     <div class="form-label-group">
-                        <input type="text" id="dni" name="cliente[DNI]" class="form-control" placeholder="Ingrese DNI del cliente" value="<?=$cliente['DNI'] ?? ''?>" required autofocus>
+                        <input type="text" id="patente" name="patente" class="form-control" placeholder="Ingrese patente del cliente" required autofocus>
                         <label for="dni">Ingrese DNI del cliente</label>
                     </div>
-                    <div class="form-group">
-                        <select name="cliente[ID]" class="form-control">
-                            <option value="0">Seleccione el tipo de cliente</option>
-                            <option value="1">Abonado</option>
-                            <option value="2">No abonado</option>
-                        </select>
-                    </div>
                     <div class="form-label-group">
-                        <input type="text" id="patente" name="cliente[PATENTE]" class="form-control" placeholder="Ingrese patente del cliente" value="<?=$cliente['PATENTE'] ?? ''?>" required autofocus>
-                        <label for="patente">Ingrese patente del cliente</label>
+                        <input type="text" id="dni" name="dni" class="form-control" placeholder="Ingrese DNI del cliente" required >
+                        <label for="dni">Ingrese DNI del cliente</label>
                     </div>
-                    <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="Register account">Agregar cliente</button>
+                    <input id="boton_crear_cliente" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="Crear usuario">
                 </form>
             </div>
         </div>
     </div>
 </form>
+
+
