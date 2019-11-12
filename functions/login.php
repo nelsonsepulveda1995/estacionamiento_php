@@ -42,7 +42,7 @@
         if(!isset($_SESSION)){
             session_start(); //se crea una sesion vacia para el usuario
 
-            if($cantidad > 0){ //si existe el usuario deberiamos cargar la sesion con los 4 datos que tenemos
+            if($cantidad > 1){ //si existe el usuario deberiamos cargar la sesion con los 4 datos que tenemos
                 $row=$resultado;
                 if($row['ID']==1){ //si es gerente
 
@@ -67,6 +67,7 @@
             }
         }
     } else {
+        echo $_POST['usuario'];
         echo 'No se pudo tomar el $_POST';
     }
 ?>

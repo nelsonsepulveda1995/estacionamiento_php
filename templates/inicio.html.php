@@ -11,7 +11,7 @@
 <div class="card card-signin my-5">
     <div class="card-body">
         <h5 class="card-title text-center">Iniciar Sesión</h5>
-        <form class="form-signin" action="functions/login.php" method="post">
+        <form class="form-signin" action="functions/login.php" method="POST">
             <div class="form-label-group">
                 <input type="text" id="email" name="usuario" class="form-control" placeholder="Ingrese nombre de usuario" required autofocus>
                 <label for="email">Ingrese nombre de usuario</label>

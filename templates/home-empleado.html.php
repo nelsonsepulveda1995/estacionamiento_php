@@ -1,12 +1,12 @@
 <?php
-    if(!isset($_SESSION)){
-        header("location: ./login.php");
-    }
-    else{
-        if($_SESSION['tipo_usuario'] == 1){
-            header("Location:./home-gerente.php");
-        }
-    }
+    //if(($_SESSION['id_usuario'])){            esta validacion no toma la sesion que esta creada
+    //   echo
+    //}
+    //else{
+    //    if($_SESSION['id_usuario'] == 1){
+    //        header("Location:   home-gerente.html.php");
+    //    }
+    //}
 ?>
 <div class="card card-signin my-5">
     <div class="card-body">
