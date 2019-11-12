@@ -1,3 +1,5 @@
+<?php session_start() ?>
+
 <?php
     //if(($_SESSION['id_usuario'])){            esta validacion no toma la sesion que esta creada
     //   echo

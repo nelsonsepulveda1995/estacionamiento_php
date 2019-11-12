@@ -1,3 +1,5 @@
+<?php session_start() ?>
+
 <div class="row">
     <div class="col-md-6 mx-auto">
     <?php

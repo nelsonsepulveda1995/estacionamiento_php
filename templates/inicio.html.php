@@ -1,3 +1,5 @@
+<?php session_start() ?>
+
 <?php
     if (isset($error)):
         echo    '<div class="alert alert-danger alert-dismissible fade show mt-5" role="alert">'

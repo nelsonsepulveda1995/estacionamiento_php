@@ -1,3 +1,5 @@
+<?php session_start() ?>
+
 <div class="container">
     <div class="row">
         <div class="md-col-8">
