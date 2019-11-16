@@ -1,19 +1,5 @@
 <?php
-    /*      es lo que estaba en el anterior login.php
-        
 
-        //si ya existe una sesion activa redirige automaticamente (o deberia :P )
-        if (isset($_SESSION)):
-            if(!isset($_SESSION['tipo_usuario'])):
-                if($_SESSION['tipo_usuario']==1){
-                    header("Location:./home-gerente.php");
-                }
-                if($_SESSION['tipo_usuario']==1){
-                    header("Location:./home-empleado.php");
-                }
-            endif;
-        endif;
-    */
     include __DIR__ . '/../includes/connect.php';
 
     //siempre inicializar las variables;

@@ -1,6 +1,17 @@
 <?php session_start() ?>
 
 <?php
+    if(isset($_SESSION)){
+        if(isset($_SESSION['cargo'])){
+            if($_SESSION['cargo']==1){
+                header("location:  ./functions/home-gerente.php");
+            }
+            if($_SESSION['cargo']==2){
+                header("location: ./functions/home-empleado.php");
+            }
+        }
+    }
+
     if (isset($_SESSION['mensaje'])):
         echo    '<div class="alert alert-danger alert-dismissible fade show mt-5 text-center" role="alert">'
                     . $_SESSION['mensaje'] .
@@ -8,6 +19,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>';
+        unset($_SESSION['mensaje']);
     endif;
 ?>
 <div class="card card-signin my-5">

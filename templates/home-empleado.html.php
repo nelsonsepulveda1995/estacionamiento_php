@@ -1,14 +1,22 @@
 <?php session_start() ?>
 
 <?php
-    //if(($_SESSION['id_usuario'])){            esta validacion no toma la sesion que esta creada
-    //   echo
-    //}
-    //else{
-    //    if($_SESSION['id_usuario'] == 1){
-    //        header("Location:   home-gerente.html.php");
-    //    }
-    //}
+    if(isset($_SESSION)){  
+        if(!isset($_SESSION['id_usuario'])){
+            header('location: ../index.php');
+        }  
+        if(!isset($_SESSION['cargo'])){
+            header('location: ../index.php');
+        }
+        if($_SESSION['cargo']==1){
+            header('location: home-gerente.php');
+        }            
+  
+    }
+    else{
+        header('location: ./index.php');
+    }
+    
 ?>
 <div class="card card-signin my-5">
     <div class="card-body">
