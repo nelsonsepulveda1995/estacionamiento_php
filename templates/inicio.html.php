@@ -1,9 +1,9 @@
 <?php session_start() ?>
 
 <?php
-    if (isset($error)):
-        echo    '<div class="alert alert-danger alert-dismissible fade show mt-5" role="alert">'
-                    . $error .
+    if (isset($_SESSION['mensaje'])):
+        echo    '<div class="alert alert-danger alert-dismissible fade show mt-5 text-center" role="alert">'
+                    . $_SESSION['mensaje'] .
                     '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -13,7 +13,7 @@
 <div class="card card-signin my-5">
     <div class="card-body">
         <h5 class="card-title text-center">Iniciar Sesión</h5>
-        <form class="form-signin" action="functions/login.php" method="POST">
+        <form id="loginForm" class="form-signin" action="./functions/login.php" method="POST">
             <div class="form-label-group">
                 <input type="text" id="email" name="usuario" class="form-control" placeholder="Ingrese nombre de usuario" required autofocus>
                 <label for="email">Ingrese nombre de usuario</label>

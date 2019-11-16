@@ -1,13 +1,6 @@
 <?php
     /*      es lo que estaba en el anterior login.php
-        if (isset($error)):
-            echo    '<div class="alert alert-danger alert-dismissible fade show mt-5" role="alert">'
-                        . $error .
-                        '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>';
-        endif;
+        
 
         //si ya existe una sesion activa redirige automaticamente (o deberia :P )
         if (isset($_SESSION)):
@@ -31,43 +24,39 @@
         $usuario  = $_POST['usuario'];
         $password = $_POST['password'];
 
-        $query = $pdo->prepare('SELECT `NOMBRE` , `ID` FROM `usuarios` WHERE `USUARIO` = :USUARIO AND `PASSWORD` = :PASSWORD AND `ESTADO` = 1');
+        $query = $pdo->prepare('SELECT `NOMBRE` , `ID`, `ID_USUARIO` FROM `usuarios` WHERE `USUARIO` = :USUARIO AND `PASSWORD` = :PASSWORD AND `ESTADO` = 1');
         $query->bindValue(':USUARIO', $usuario);
         $query->bindValue(':PASSWORD', $password);
         $query->execute();
         $resultado = $query->fetch(); //el resultado de la consulta se guarda dentro de la variable
-        $cantidad = count($resultado); //cuenta la cantidad de filas que se obtuvo
-        echo $cantidad;
+        $cantidadFilas = $query->rowCount(); //cuenta la cantidad de filas que se obtuvo
 
-        if(!isset($_SESSION)){
-            session_start(); //se crea una sesion vacia para el usuario
+        //si el usuario existe
+        if ($cantidadFilas > 0) {
+            //si no hay sesion activa
+            if(!isset($_SESSION)){
+                //se crea una sesion vacia para el usuario
+                session_start();
 
-            if($cantidad > 1){ //si existe el usuario deberiamos cargar la sesion con los 4 datos que tenemos
-                $row=$resultado;
-                if($row['ID']==1){ //si es gerente
+                //se carga en la sesion los datos
+                $_SESSION['id_usuario'] = $resultado['ID_USUARIO'];
+                $_SESSION['nombre'] = $resultado['NOMBRE'];
+                $_SESSION['cargo'] = $resultado['ID'];
+                $_SESSION['password'] = $password;
+                $_SESSION['usuario'] = $usuario;
 
-                    $_SESSION['id_usuario']=$row['ID'];   //se cargan 4 datos a la sesion (se pueden crear mas sin problemas)
-                    $_SESSION['nombre_usuario']=$row['NOMBRE'];
-                    $_SESSION['password']=$password;
-                    $_SESSION['usuario']=$usuario;
-
-                    header("location: home-gerente.php");
-                }
-                if($row['ID'] == 2){ //si es empleado
-
-                    $_SESSION['tipo_usuario'] = $row['TIPO'];
+                //se comprueba si es gerente
+                if ($resultado['ID'] == 1) { 
+                    header('location: home-gerente.php');
+                    } 
+                //sino si es empleado
+                else if ($resultado['ID'] == 2) {
                     header("location: home-empleado.php");
-                }
-                else{
-                    echo " error al tomar el tipo de usuario";
-                }
-            }
-            else{                                   //si no existe
-                echo 'El usuario no existe';
-            }
+                } 
+            } 
+        } else {          
+            session_start();            
+            $_SESSION['mensaje'] = 'Usuario/contraseña inválido';
+            header('location: ./../index.php');
         }
-    } else {
-        echo $_POST['usuario'];
-        echo 'No se pudo tomar el $_POST';
-    }
-?>
+    };

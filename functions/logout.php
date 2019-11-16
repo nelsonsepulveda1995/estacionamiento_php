@@ -1,7 +1,6 @@
 <?php
-    //requiere probar si funciona borrar sesion
-    if(isset($_SESSION)){
-        $_SESSION = array();
-        session_destroy();
-    }
+    session_start();
+    $_SESSION = [];
+    session_destroy();
+    header('location: ../index.php');
 ?>
