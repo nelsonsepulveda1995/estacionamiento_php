@@ -32,11 +32,10 @@
                 </ul>
                 <?php if(isset($_SESSION['usuario'])): ?>
                     <span class="navbar-text">
-                        <a class="nav-link" href="logout.php">Salir</a>
+                        <a class="nav-link disabled" href="logout.php"><?=$_SESSION['nombre']?></a>
                     </span>
-                <?php else: ?>
                     <span class="navbar-text">
-                        botón de login?
+                        <a class="nav-link" href="logout.php">Salir</a>
                     </span>
                 <?php endif; ?>
             </div>
