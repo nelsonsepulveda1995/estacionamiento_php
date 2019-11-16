@@ -19,17 +19,19 @@
                             <?=htmlspecialchars($empleado['NOMBRE'], ENT_QUOTES, 'UTF-8')?>
                         </td>
                         <td>
-                            <?php $_SESSION['usuario-editar'] = $empleado['ID_USUARIO']; ?>
-                            <a href="/gerente/empleados/agregar?ID_USUARIO=<?=$empleado['ID_USUARIO']?>">
-                                <button type="button" class="btn btn-info">
+                            <form action="./../functions/editar-empleado.php" method="post">
+                                <input type="hidden" name="editarEmpleado" value="<?=$empleado['ID_USUARIO']?>">
+                                <button type="submit" class="btn btn-info">
                                     <i class="fas fa-user-edit"></i> Editar
                                 </button>
-                            </a>
+                            </form>
                         </td>
                         <td>
-                            <form action="/gerente/empleados/eliminar" method="post">
-                                <input type="hidden" name="empleado[ID_USUARIO]" value="<?=$empleado['ID_USUARIO']?>">
-                                <input type="submit" value="Delete">
+                            <form action="./../functions/eliminar-empleado.php" method="post">
+                                <input type="hidden" name="eliminarEmpleado" value="<?=$empleado['ID_USUARIO']?>">
+                                <button type="submit" class="btn btn-info">
+                                    <i class="fas fa-user-times"></i> Eliminar
+                                </button>
                             </form>
                         </td>
                     </tr>

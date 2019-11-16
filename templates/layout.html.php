@@ -25,12 +25,24 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="">Link1</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="">Link2</a>
-                    </li>
+                    <?php if(isset($_SESSION['cargo'])): ?>
+                        <?php if($_SESSION['cargo'] == 1): ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="">Lista de empleados</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="">Agregar empleado</a>
+                            </li>
+                        
+                        <?php elseif ($_SESSION['cargo'] == 2): ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="">Lista de clientes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="">Agregar cliente</a>
+                            </li>
+                        <?php endif; ?>
+                    <?php endif; ?>
                 </ul>
                 <?php if(isset($_SESSION['usuario'])): ?>
                     <span class="navbar-text">
