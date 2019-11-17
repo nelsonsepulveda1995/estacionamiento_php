@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="./includes/style.css">
     <!--FontAwesome-->
     <script src="https://kit.fontawesome.com/8bca061afe.js" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
     <title><?=$titulo?></title>
 </head>
 <body>

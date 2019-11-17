@@ -24,13 +24,14 @@
         <!--La respuesta del formulario se envia al mismo script-->
         <form class="form-signin" action="" method="POST">
             <div class="form-group">
-                <select name="PATENTE" class="form-control" require>
+                <select name="PATENTE" id="patente" class="form-control" require>
                     <option value="0">Seleccione el Clinte</option>
                     <?php include "./functions/todos-cliente-option-no-abonado.php" ?>
                 </select>
             </div>
             
-            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="Crear abonado">Crear abonado</button>
+            <button id="registrar_abonado" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="Crear abonado">Crear abonado</button>
+            <pre id="res"></pre>
         </form>
     </div>
 </div>

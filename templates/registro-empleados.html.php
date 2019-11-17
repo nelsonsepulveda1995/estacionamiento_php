@@ -42,7 +42,8 @@
                 <input type="password" id="password" name="PASSWORD" class="form-control" placeholder="Ingrese contraseña" value="<?=$empleado['PASSWORD'] ?? ''?>" required>
                 <label for="password">Ingrese contraseña</label>
             </div>
-            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="Register account">Ingresar</button>
+            <button id="registro_empleado" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="Register account">Ingresar</button>
+            <pre id="res"></pre>
         </form>
     </div>
 </div>
