@@ -33,7 +33,7 @@
                 <i class="fas fa-user-plus"></i> Agregar un nuevo cliente
             </button>
         </a>
-        <a href="/gerente/empleados/agregar">
+        <a href="./../functions/ingreso-estadia.php">
             <button type="button" class="btn -lg btn-info">
                 <i class="fas fa-users" aria-hidden="true"></i> Realizar ingreso
             </button>

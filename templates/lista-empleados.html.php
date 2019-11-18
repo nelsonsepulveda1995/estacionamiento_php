@@ -7,6 +7,8 @@
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
+                        <th>Editar</th>
+                        <th>Desabilitar</th>
                     </tr>
                 </thead>
                 <tbody>

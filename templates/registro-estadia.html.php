@@ -18,7 +18,7 @@
         <h5 class="card-title text-center">Alta de estadia</h5>
         <!--La respuesta del formulario se envia al mismo script-->
         <form class="form-signin" action="" method="POST">
-            <input type="hidden" name="" value=<?php echo $_SESSION['id_usuario'] ?>>  <!-- toma el usuario activo -->
+            <input type="hidden" name="id_usuario" value=<?php echo $_SESSION['id_usuario'] ?>>  <!-- toma el usuario activo -->
             <div class="form-group">
                 <input type="text" name="PATENTE" id="PATENTE" class="form-control">
                 <label for="PATENTE">Ingrese la patente del cliente</label>
@@ -26,7 +26,7 @@
             <div class="form-group">
                 <select name="TIPO" id="tipo" class="form-control">
                     <option value="0">Seleccione el precio</option>
-                    <?php include "precios-option.php"?>
+                    <?php require "precios-option.php"?>
                 </select>
             </div>
             <button id="registro_estadia" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="Registrar Estadia">Registrar Estadia</button>
