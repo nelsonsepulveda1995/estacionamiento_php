@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    //session_start();
     //si hay algún dato en POST significa que se completó el formulario
     if (isset($_POST['NOMBRE'])) {
         include __DIR__ . '/../includes/connect.php';
