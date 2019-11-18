@@ -29,10 +29,10 @@
                     <a class="navbar-brand" href="home-gerente.php">Estacionamiento</a>
                 <?php elseif($_SESSION['cargo'] == 2): ?>
                     <a class="navbar-brand" href="home-empleado.php">Estacionamiento</a>
-                <?php else: ?>
-                    <a class="navbar-brand" href="index.php">Estacionamiento</a>
                 <?php endif; ?>
-            <?php endif; ?>
+            <?php else: ?>
+                <a class="navbar-brand" href="index.php">Estacionamiento</a>
+            <?php endif;?>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -48,10 +48,10 @@
                             </li>
                         <?php elseif ($_SESSION['cargo'] == 2): ?>
                             <li class="nav-item">
-                                <a class="nav-link" href="">Lista de clientes</a>
+                                <a class="nav-link" href="./todos-clientes.php">Lista de clientes</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="">Agregar cliente</a>
+                                <a class="nav-link" href="./registro-cliente.php">Agregar cliente</a>
                             </li>
                         <?php endif; ?>
                     <?php endif; ?>

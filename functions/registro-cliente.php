@@ -10,13 +10,13 @@
 
         $sql = "INSERT INTO `cliente`(`DNI`, `ID`, `PATENTE`) VALUES (:DNI,:ID,:PATENTE)";
         $stmt = $pdo->prepare($sql);
-        $stmt->bindValue(':DNI', $nombre);
+        $stmt->bindValue(':DNI', $dni);
         $stmt->bindValue(':ID', $id);
         $stmt->bindValue(':PATENTE', $patente);
 
         $stmt->execute();
 
-        header('location: home-empleado.php');
+        header('location: ./todos-clientes.php');
     }
     else {
         //mostrar formulario

@@ -23,12 +23,12 @@
         <h5 class="card-title text-center">Bienvenido al sistema, Empleado</h5>
         <hr class="my-4">
         <p>Seleccione una opción de lo que desea hacer:</p>
-        <a href="/listaempleados.php">
+        <a href="./../functions/todos-clientes.php">
             <button type="button" class="btn  btn-info">
                 <i class="fas fa-users" aria-hidden="true"></i> Ver lista de clientes
             </button>
         </a>
-        <a href="/empleado/cliente/agregar">
+        <a href="./../functions/registro-cliente.php">
             <button type="button" class="btn  btn-info">
                 <i class="fas fa-user-plus"></i> Agregar un nuevo cliente
             </button>
