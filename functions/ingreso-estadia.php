@@ -11,15 +11,16 @@
                 $patente=$_POST['PATENTE'];
                 $id=$_POST['ID_USUARIO'];
                 $precio=$_POST['PRECIO'];
+                echo date('Y-m-d H:i:s');
                 
-                $sql = "SELECT ID_ESTADIA FROM `estadia` WHERE patente=:PATENTE"; //revisa que no haya una estadia sin cerrar
+                $sql = "SELECT * FROM `estadia` WHERE patente=:PATENTE"; //revisa que no haya una estadia sin cerrar
                 $stmt = $pdo->prepare($sql);
                 $stmt->bindValue(':PATENTE', $patente);
                 $stmt->execute();
                 $resultado = $stmt->fetch(); //el resultado de la consulta se guarda dentro de la variable
                 $cantidadFilas = $stmt->rowCount(); //cuenta la cantidad de filas que se obtuvo
         
-                if($cantidadFilas==0){
+                if($cantidadFila <= 0){
                     $fecha=date('Y-m-d H:i:s'); //obtiene año con 4 digitos y los demas valores con ceros iniciales
                     $sql = "INSERT INTO `estadia`(`Patente`, `ID_USUARIO`, `ID_PRECIO`, `INGRESO`) VALUES (:PATENTE,:ID_USUARIO,:PRECIO,:INGRESO)";
                     $stmt = $pdo->prepare($sql);
@@ -40,7 +41,7 @@
                 }
             } catch (PDOEXCEPTION $e) {
                 //no se pudo realizar la estadia al no estar registrada la patente
-                $_SESSION['estadia_error'] = 'La patente ingresada no existe';
+                $_SESSION['estadia_error'] = 'La patente ingresada no existe ' . date('Y-m-d H:i:s');
                 header('location: ingreso-estadia.php');
             }
             

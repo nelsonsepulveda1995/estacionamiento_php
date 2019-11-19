@@ -17,6 +17,18 @@
     }
 ?>
 
+<?php
+if (isset($_SESSION['faltan_datos'])):
+    echo    '<div class="alert alert-danger alert-dismissible fade show mt-5 text-center" role="alert">'
+                . $_SESSION['faltan_datos'] .
+                '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>';
+    unset($_SESSION['faltan_datos']);
+endif;
+?>
+<pre></pre>
 <div class="card card-signin my-5">
     <div class="card-body">
         <h5 class="card-title text-center">Alta de empleado</h5>
@@ -28,7 +40,7 @@
                 <label for="nombre">Ingrese nombre de empleado</label>
             </div>
             <div class="form-group">
-                <select name="ID" class="form-control">
+                <select name="ID" id="ID" class="form-control" require>
                     <option value="0">Seleccione el cargo correspondiente</option>
                     <option value="1">Gerente</option>
                     <option value="2">Cajero</option>
