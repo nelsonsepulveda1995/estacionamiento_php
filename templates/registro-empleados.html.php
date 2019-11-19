@@ -22,9 +22,9 @@
         <h5 class="card-title text-center">Alta de empleado</h5>
         <!--La respuesta del formulario se envia al mismo script-->
         <form class="form-signin" action="" method="POST">
-            <input type="hidden" name="ID_USUARIO" value="<?php $empleado['ID_USUARIO'] ?>">
+            <input type="hidden" name="ID_USUARIO" value="<?=$empleado['ID_USUARIO'] ?? ''?>">
             <div class="form-label-group">
-                <input type="text" id="nombre" name="NOMBRE" class="form-control" placeholder="Ingrese nombre de empleado" value="" required autofocus>
+                <input type="text" id="nombre" name="NOMBRE" class="form-control" placeholder="Ingrese nombre de empleado" value="<?=$empleado['NOMBRE'] ?? ''?>" required autofocus>
                 <label for="nombre">Ingrese nombre de empleado</label>
             </div>
             <div class="form-group">
@@ -35,11 +35,11 @@
                 </select>
             </div>
             <div class="form-label-group">
-                <input type="text" id="usuario" name="USUARIO" class="form-control" placeholder="Ingrese nombre de usuario" value="" required autofocus>
+                <input type="text" id="usuario" name="USUARIO" class="form-control" placeholder="Ingrese nombre de usuario" value="<?=$empleado['USUARIO'] ?? ''?>" required autofocus>
                 <label for="usuario">Ingrese nombre de usuario</label>
             </div>
             <div class="form-label-group">
-                <input type="password" id="password" name="PASSWORD" class="form-control" placeholder="Ingrese contraseña" value="" required>
+                <input type="password" id="password" name="PASSWORD" class="form-control" placeholder="Ingrese contraseña" value="<?=$empleado['PASSWORD'] ?? ''?>" required>
                 <label for="password">Ingrese contraseña</label>
             </div>
             <button id="registro_empleado" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="Register account">Ingresar</button>

@@ -7,8 +7,9 @@
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
+                        <th>Cargo</th>
                         <th>Editar</th>
-                        <th>Desabilitar</th>
+                        <th>Deshabilitar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -19,6 +20,9 @@
                         </td>
                         <td>
                             <?=htmlspecialchars($empleado['NOMBRE'], ENT_QUOTES, 'UTF-8')?>
+                        </td>
+                        <td>
+                            <?=htmlspecialchars($empleado['CARGO'], ENT_QUOTES, 'UTF-8')?>
                         </td>
                         <td>
                             <form action="./../functions/editar-empleado.php" method="post">

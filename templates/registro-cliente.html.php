@@ -4,18 +4,18 @@
         <!--La respuesta del formulario se envia al mismo script-->
         <form class="form-signin" action="" method="POST">
             <div class="form-label-group">
-                <input type="text" name="PATENTE" id="PATENTE" class="form-control"  placeholder="Ingrese la patente del cliente">
+                <input type="text" name="PATENTE" id="PATENTE" class="form-control" value="<?=$cliente['PATENTE'] ?? ''?>" placeholder="Ingrese la patente del cliente">
                 <label for="PATENTE">Ingrese la patente del cliente</label>
             </div>
             <div class="form-label-group">
-                <input type="text" id="DNI" name="DNI" placeholder="Ingrese número de documento" min=8 max=10 class="form-control">
+                <input type="text" id="DNI" name="DNI" placeholder="Ingrese número de documento" value="<?=$cliente['DNI'] ?? ''?>" min=8 max=10 class="form-control">
                 <label for="DNI">Ingrese número de documento</label>
             </div>
             <div class="form-label-group">
                 <select name="TIPO" id="tipo" class="form-control">
                     <option value="0">Seleccione un tipo de cliente</option>
-                    <option value="1">Abonado</option>
-                    <option value="2">No abonado</option>
+                    <option value="2">Abonado</option>
+                    <option value="1">No abonado</option>
                 </select>
             </div>
             <button id="registro_cliente" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="Crear abonado">Crear cliente</button>

@@ -3,7 +3,7 @@
 
     include __DIR__ . '/../includes/connect.php';
 
-    $sql = 'SELECT DNI, ID, PATENTE FROM cliente';
+    $sql = 'SELECT PATENTE, DNI, DESCRIPCION FROM cliente INNER JOIN tipo WHERE cliente.ID = tipo.ID';
 
     $stmt = $pdo->prepare($sql);
     $stmt->execute();

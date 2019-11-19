@@ -26,14 +26,14 @@
         $sql = 'UPDATE cliente SET
                     DNI = :id,
                     PATENTE = :patente,
-                    ID = :tipo,
+                    ID = :tipo
                 WHERE DNI = :dni
                 ';
         
         $stmt = $pdo->prepare($sql);
         $stmt->bindValue(':id', $_POST['DNI']);
         $stmt->bindValue(':patente', $_POST['PATENTE']);
-        $stmt->bindValue(':tipo', $_POST['ID']);
+        $stmt->bindValue(':tipo', $_POST['TIPO']);
         $stmt->bindValue(':dni', $id);
 
         $stmt->execute();

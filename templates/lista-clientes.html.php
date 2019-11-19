@@ -7,7 +7,8 @@
                     <tr>
                         <th>DNI</th>
                         <th>PATENTE</th>
-                        <th>ID</th>
+                        <th>Tipo</th>
+                        <th>Editar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -20,21 +21,13 @@
                             <?=htmlspecialchars($cliente['PATENTE'], ENT_QUOTES, 'UTF-8')?>
                         </td>
                         <td>
-                            <?=htmlspecialchars($cliente['ID'], ENT_QUOTES, 'UTF-8')?>
+                            <?=htmlspecialchars($cliente['DESCRIPCION'], ENT_QUOTES, 'UTF-8')?>
                         </td>
                         <td>
                             <form action="./../functions/editar-cliente.php" method="post">
                                 <input type="hidden" name="editarCliente" value="<?=$cliente['DNI']?>">
                                 <button type="submit" class="btn btn-info">
                                     <i class="fas fa-user-edit"></i> Editar
-                                </button>
-                            </form>
-                        </td>
-                        <td>
-                            <form action="./../functions/eliminar-empleado.php" method="post">
-                                <input type="hidden" name="eliminarEmpleado" value="<?=$empleado['ID_USUARIO']?>">
-                                <button type="submit" class="btn btn-info">
-                                    <i class="fas fa-user-times"></i> Eliminar
                                 </button>
                             </form>
                         </td>

@@ -3,7 +3,7 @@
 
     include __DIR__ . '/../includes/connect.php';
 
-    $sql = 'SELECT ID_USUARIO, ID, NOMBRE, USUARIO, PASSWORD FROM usuarios WHERE ESTADO = 1';
+    $sql = 'SELECT ID_USUARIO, DESCRIPCION AS CARGO, NOMBRE, USUARIO, PASSWORD FROM usuarios INNER JOIN puesto WHERE ESTADO = 1 AND usuarios.ID = puesto.ID';
 
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
