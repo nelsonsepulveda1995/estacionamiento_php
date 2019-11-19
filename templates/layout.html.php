@@ -22,7 +22,7 @@
 </head>
 <body>
     <!--Navbar-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
             <?php if(isset($_SESSION['cargo'])): ?>
                 <?php if($_SESSION['cargo'] == 1): ?>
