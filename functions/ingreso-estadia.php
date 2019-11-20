@@ -13,7 +13,7 @@
                 $precio=$_POST['PRECIO'];
                 echo date('Y-m-d H:i:s');
                 
-                $sql = "SELECT * FROM `estadia` WHERE patente=:PATENTE"; //revisa que no haya una estadia sin cerrar
+                $sql = "SELECT * FROM `estadia` WHERE patente=:PATENTE AND EGRESO IS NULL"; //revisa que no haya una estadia sin cerrar
                 $stmt = $pdo->prepare($sql);
                 $stmt->bindValue(':PATENTE', $patente);
                 $stmt->execute();

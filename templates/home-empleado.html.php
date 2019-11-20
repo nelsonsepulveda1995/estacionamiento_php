@@ -38,24 +38,14 @@
                 <i class="fas fa-users" aria-hidden="true"></i> Realizar ingreso
             </button>
         </a>
-        <a href="/gerente/reportes">
+        <a href="./../functions/egreso-estadia.php">
             <button type="button" class="btn -lg btn-info">
                 <i class="fas fa-users" aria-hidden="true"></i> Realizar egreso
             </button>
         </a>
-        <a href="./../functions/todas-estadia.php">
+        <a href="/gerente/reportes">
             <button type="button" class="btn -lg btn-info">
                 <i class="fas fa-users" aria-hidden="true"></i> Ver estadias
-            </button>
-        </a>
-        <a href="./../functions/registrar_abonado.php">
-            <button type="button" class="btn -lg btn-info">
-                <i class="fas fa-users" aria-hidden="true"></i> Registrar Abonado
-            </button>
-        </a>
-        <a href="./../functions/registrar_abonado.php">
-            <button type="button" class="btn -lg btn-info">
-                <i class="fas fa-users" aria-hidden="true"></i> Registrar Pago de Abonado
             </button>
         </a>
     </div>

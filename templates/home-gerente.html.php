@@ -33,7 +33,7 @@
                 <i class="fas fa-user-plus"></i> Agregar un nuevo empleado
             </button>
         </a>
-        <a href="./../functions/todas-estadisticas.php">
+        <a href="/gerente/reportes">
             <button type="button" class="btn -lg btn-info">
                 <i class="far fa-list-alt"></i> Ver reportes
             </button>
