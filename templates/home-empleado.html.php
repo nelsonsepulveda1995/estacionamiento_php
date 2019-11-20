@@ -43,7 +43,7 @@
                 <i class="fas fa-users" aria-hidden="true"></i> Realizar egreso
             </button>
         </a>
-        <a href="./../functions/listas-estadia.php">
+        <a href="./../functions/todas-estadia.php">
             <button type="button" class="btn -lg btn-info">
                 <i class="fas fa-users" aria-hidden="true"></i> Ver estadias
             </button>
