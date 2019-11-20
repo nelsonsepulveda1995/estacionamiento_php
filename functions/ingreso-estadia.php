@@ -19,10 +19,9 @@
                 $stmt->execute();
                 $resultado = $stmt->fetch(); //el resultado de la consulta se guarda dentro de la variable
                 $cantidadFilas = $stmt->rowCount(); //cuenta la cantidad de filas que se obtuvo
-        
-                if($cantidadFila <= 0){
+                if($cantidadFilas <= 0){
                     $fecha=date('Y-m-d H:i:s'); //obtiene año con 4 digitos y los demas valores con ceros iniciales
-                    $sql = "INSERT INTO `estadia`(`Patente`, `ID_USUARIO`, `ID_PRECIO`, `INGRESO`) VALUES (:PATENTE,:ID_USUARIO,:PRECIO,:INGRESO)";
+                    $sql = "INSERT INTO `estadia`(`PATENTE`, `ID_USUARIO`, `ID_PRECIO`, `INGRESO`) VALUES (:PATENTE,:ID_USUARIO,:PRECIO,:INGRESO)";
                     $stmt = $pdo->prepare($sql);
                     $stmt->bindValue(':ID_USUARIO', $id);
                     $stmt->bindValue(':PRECIO', $precio);
@@ -32,7 +31,7 @@
                     $stmt->execute();
                     
                     //MOSTRAR POR AJAX O REDIRECCINAR?
-                    //header('location: home-empleado.php');
+                    header('location: home-empleado.php');
                 }
                 else{
                     //cargar un dato en la sesion para el error
@@ -41,7 +40,7 @@
                 }
             } catch (PDOEXCEPTION $e) {
                 //no se pudo realizar la estadia al no estar registrada la patente
-                $_SESSION['estadia_error'] = 'La patente ingresada no existe ' . date('Y-m-d H:i:s');
+                $_SESSION['estadia_error'] = 'La patente ' . $patente . ' no existe ';
                 header('location: ingreso-estadia.php');
             }
             

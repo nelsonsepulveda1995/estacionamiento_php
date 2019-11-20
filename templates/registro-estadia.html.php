@@ -31,8 +31,8 @@ endif;
         <form class="form-signin" action="" method="POST">
             <input type="hidden" id="ID_USUARIO" name="ID_USUARIO" value="<?=$_SESSION['id_usuario']?>">  <!-- toma el usuario activo -->
             <div class="form-label-group">
-                <input type="text" name="PATENTE" id="PATENTE" placeholder="Ingrese la patente del cliente" id="PATENTE" class="form-control" required>
-                <label for="PATENTE">Ingrese la patente del cliente</label>
+                <input type="text" name="PATENTE" id="patente" placeholder="Ingrese la patente del cliente" id="PATENTE" class="form-control" required>
+                <label for="patente">Ingrese la patente del cliente</label>
             </div>
             <div class="form-label-group">
                 <select name="PRECIO" id="PRECIO" class="form-control" required>

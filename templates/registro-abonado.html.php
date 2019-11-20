@@ -25,7 +25,7 @@
         <form class="form-signin" action="" method="POST">
             <div class="form-group">
                 <select name="PATENTE" id="patente" class="form-control" require>
-                    <option value="0">Seleccione el Clinte</option>
+                    <option value="0">Seleccione el Cliente</option>
                     <?php include "./functions/todos-cliente-option-no-abonado.php" ?>
                 </select>
             </div>

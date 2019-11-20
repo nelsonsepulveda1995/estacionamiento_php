@@ -23,11 +23,11 @@
         <form class="form-signin" action="" method="POST">
             <div class="form-label-group">
                 <input type="text" name="PATENTE" id="patente" class="form-control" value="<?=$cliente['PATENTE'] ?? ''?>" placeholder="Ingrese la patente del cliente">
-                <label for="PATENTE">Ingrese la patente del cliente</label>
+                <label for="patente">Ingrese la patente del cliente</label>
             </div>
             <div class="form-label-group">
                 <input type="text" id="dni" name="DNI" placeholder="Ingrese número de documento" value="<?=$cliente['DNI'] ?? ''?>" min=8 max=10 class="form-control">
-                <label for="DNI">Ingrese número de documento</label>
+                <label for="dni">Ingrese número de documento</label>
             </div>
             <div class="form-label-group">
                 <select name="TIPO" id="tipo" class="form-control">
