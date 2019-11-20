@@ -65,6 +65,7 @@ function registrar_abonado(){
     }
 }
 function registrar_estadia(){
+    console.log("se esta registrando la estadia")
     var precio=$('#PRECIO option:selected').val();
     var patente=$('#PATENTE').val();
     var id_usuario=$('#ID_USUARIO').val();
@@ -72,7 +73,7 @@ function registrar_estadia(){
         $('#res').text("error al ingresar datos");
         return false
     }
-    if(precio <= 0 || precio >3){
+    if(precio <= 0 || precio >3 || precio==2){
         $('#res').text("error al ingresar el precio (recarge la pagina)");
         return false
     }

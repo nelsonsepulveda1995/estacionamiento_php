@@ -39,7 +39,6 @@ endif;
                     <option value="0">Seleccione el precio</option>
                     <!--Cargar por AJAX las opciones, por ahora están hardcodeadas-->
                     <option value="1">Hora</option>
-                    <option value="2">Día</option>
                     <option value="3">Abonado</option>
                 </select>
             </div>
