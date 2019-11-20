@@ -1,5 +1,3 @@
-<?php session_start() ?>
-
 <?php
     if(isset($_SESSION)){  
         if(!isset($_SESSION['id_usuario'])){
@@ -26,10 +24,10 @@
             <div class="form-group">
                 <select name="PATENTE" id="patente" class="form-control" require>
                     <option value="0">Seleccione el Cliente</option>
-                    <?php include "./functions/todos-cliente-option-no-abonado.php" ?>
+                    <?php include "../functions/todos-cliente-option-no-abonado.php" ?>
+                    
                 </select>
             </div>
-            
             <button id="registrar_abonado" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="Crear abonado">Crear abonado</button>
             <pre id="res"></pre>
         </form>
