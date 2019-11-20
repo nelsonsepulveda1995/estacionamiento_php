@@ -1,7 +1,7 @@
 
 INSERT INTO `precio`(`PRECIO`, `DESCRIPCION`) VALUES (100,"hora");
-INSERT INTO `precio`(`PRECIO`, `DESCRIPCION`) VALUES (100,"abonado");
-INSERT INTO `precio`(`PRECIO`, `DESCRIPCION`) VALUES (100,"abonado");
+INSERT INTO `precio`(`PRECIO`, `DESCRIPCION`) VALUES (5000,"abonado");
+INSERT INTO `precio`(`PRECIO`, `DESCRIPCION`) VALUES (0,"estadia para abonado");
 
 INSERT INTO `lugares`(`CANTIDAD`) VALUES (50)
 
