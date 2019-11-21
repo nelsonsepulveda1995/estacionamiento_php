@@ -27,14 +27,13 @@
                     DNI = :id,
                     PATENTE = :patente,
                     ID = :tipo
-                WHERE DNI = :dni
+                WHERE PATENTE = :patente
                 ';
         
         $stmt = $pdo->prepare($sql);
         $stmt->bindValue(':id', $_POST['DNI']);
         $stmt->bindValue(':patente', $_POST['PATENTE']);
         $stmt->bindValue(':tipo', $_POST['TIPO']);
-        $stmt->bindValue(':dni', $id);
 
         $stmt->execute();
 

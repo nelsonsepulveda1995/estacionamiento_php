@@ -24,7 +24,16 @@ if (isset($_SESSION['estadia_error'])):
 endif;
 ?>
 
+
+
 <div class="card card-signin my-5">
+    <br>
+    <div class="row" style="margin:3px">
+        <div class ="col">
+            <a href="/estacionamiento_php/functions/home-empleado.php" class="float-left btn btn-primary btn-lg active" role="button" aria-pressed="true">Regresar</a>
+        </div>
+    </div>
+
     <div class="card-body">
         <h5 class="card-title text-center">Alta de estadia</h5>
         <!--La respuesta del formulario se envia al mismo script-->

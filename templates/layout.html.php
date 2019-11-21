@@ -17,7 +17,19 @@
     <?php endif; ?>
     <!--FontAwesome-->
     <script src="https://kit.fontawesome.com/8bca061afe.js" crossorigin="anonymous"></script>
-    <script src="script.js"></script>
+
+    <script src="js/jquery.tablesorter.js"></script>
+    <script src="js/jquery.tablesorter.widgets.js"></script>
+    <!-- pager plugin -->
+    <link rel="stylesheet" href="css/jquery.tablesorter.pager.css">
+    <script src="js/jquery.tablesorter.pager.js"></script>
+    <style>
+    .tablesorter-pager .btn-group-sm .btn {
+    font-size: 1.2em; /* make pager arrows more visible */
+    }
+    </style>
+    <script src="./../functions/script.js"></script>
+
     <title><?=$titulo?></title>
 </head>
 <body>

@@ -6,7 +6,7 @@
 
         $patente = $_POST['PATENTE'];
 
-        $sql = 'UPDATE `cliente` SET `ID`== 1 WHERE `PATENTE`=:PATENTE';
+        $sql = 'UPDATE `cliente` SET `ID`= 1 WHERE `PATENTE`=:PATENTE';
         $stmt = $pdo->prepare($sql);
         $stmt->bindValue(':PATENTE', $patente);
         $stmt->execute();

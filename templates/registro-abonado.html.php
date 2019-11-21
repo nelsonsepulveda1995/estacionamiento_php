@@ -17,6 +17,7 @@
 ?>
 
 <div class="card card-signin my-5">
+    
     <div class="card-body">
         <h5 class="card-title text-center">Alta de abonado</h5>
         <!--La respuesta del formulario se envia al mismo script-->
