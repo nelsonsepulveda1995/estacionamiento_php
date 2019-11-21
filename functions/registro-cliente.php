@@ -29,9 +29,8 @@
             header('location: ./todos-clientes.php');
         }
         else{
-            else{
-                $_SESSION["faltan_datos"]="ya existe un cliente con esta patente";
-                header('location: registro-cliente.php');
+            $_SESSION["faltan_datos"]="ya existe un cliente con esta patente";
+            header('location: registro-cliente.php');
         }
     }
     else {
