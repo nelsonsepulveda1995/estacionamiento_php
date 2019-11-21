@@ -16,6 +16,18 @@
     }
 ?>
 
+<?php
+if (isset($_SESSION['faltan_datos'])):
+    echo    '<div class="alert alert-danger alert-dismissible fade show mt-5 text-center" role="alert">'
+                . $_SESSION['faltan_datos'] .
+                '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>';
+    unset($_SESSION['faltan_datos']);
+endif;
+?>
+
 <div class="card card-signin my-5">
     <br>
     <div class="row" style="margin:3px">

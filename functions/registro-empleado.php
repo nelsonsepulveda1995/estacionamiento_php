@@ -4,19 +4,23 @@
     if (isset($_POST['ID'])) {
         if( $_POST['ID']>0 || $_POST['ID']<3 ){
             if($_POST['NOMBRE'] !="" && $_POST['USUARIO'] !="" && $_POST['PASSWORD'] != ""){
+
                 include __DIR__ . '/../includes/connect.php';
+
                 $id = $_POST['ID'];
                 $nombre = $_POST['NOMBRE'];
                 $estado = 1;
                 $usuario = $_POST['USUARIO'];
                 $password = $_POST['PASSWORD'];
                 echo "<pre> $id $nombre $usuario $password </pre>";
+
                 $sql='SELECT `ID_USUARIO` FROM `usuarios` WHERE `USUARIO`=:usuario ';
                 $stmt = $pdo->prepare($sql);
                 $stmt->bindValue(':usuario', $usuario);
                 $stmt->execute();
                 $resultado = $query->fetch(); //el resultado de la consulta se guarda dentro de la variable
                 $cantidadFilas = $query->rowCount(); //cuenta la cantidad de filas que se obtuvo
+
                 //si el usuario no existe
                 if ($cantidadFilas <= 0) {
                     $sql = 'INSERT INTO usuarios SET 
@@ -36,7 +40,7 @@
                     header('location: ./todos-usuarios.php');
                 }
                 else{
-                    $_SESSION["faltan_datos"]="ya existe este usuario usuario";
+                    $_SESSION["faltan_datos"]="ya existe un empleado con este nombre de usuario";
                     header('location: registro-empleado.php');
                 }
             }
