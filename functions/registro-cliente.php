@@ -1,5 +1,8 @@
 <?php
     session_start();
+    if (isset($_POST['key'])) {
+        $url = $_POST['key'];
+    }
     //si hay algún dato en POST significa que se completó el formulario
     if (isset($_POST['PATENTE'])) {
         include __DIR__ . '/../includes/connect.php';
@@ -12,8 +15,8 @@
         $stmt = $pdo->prepare($sql);
         $stmt->bindValue(':PATENTE', $patente);
         $stmt->execute();
-        $resultado = $query->fetch(); //el resultado de la consulta se guarda dentro de la variable
-        $cantidadFilas = $query->rowCount(); //cuenta la cantidad de filas que se obtuvo
+        $resultado = $stmt->fetch(); //el resultado de la consulta se guarda dentro de la variable
+        $cantidadFilas = $stmt->rowCount(); //cuenta la cantidad de filas que se obtuvo
                 
         //si el usuario no existe
         if ($cantidadFilas <= 0) {
@@ -25,12 +28,18 @@
             $stmt->bindValue(':PATENTE', $patente);
 
             $stmt->execute();
-
-            header('location: ./todos-clientes.php');
+            $_SESSION["success"]="Creado perfectamente";
+            ob_start();
+            include __DIR__ . '/../templates/registro-cliente.html.php';
+            $contenido = ob_get_clean();
+            print_r($contenido);
         }
         else{
             $_SESSION["faltan_datos"]="ya existe un cliente con esta patente";
-            header('location: registro-cliente.php');
+            ob_start();
+            include __DIR__ . '/../templates/registro-cliente.html.php';
+            $contenido = ob_get_clean();
+            print_r($contenido);
         }
     }
     else {
@@ -39,6 +48,6 @@
         ob_start();
         include __DIR__ . '/../templates/registro-cliente.html.php';
         $contenido = ob_get_clean();
-        include __DIR__ . '/../templates/layout.html.php';
+        print_r($contenido);
     }
     

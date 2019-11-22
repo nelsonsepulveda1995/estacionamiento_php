@@ -1,5 +1,10 @@
 <?php
-    session_start();
+    if (!isset($_SESSION)) {
+        session_start();
+    }
+    if (isset($_POST['key'])) {
+        $url = $_POST['key'];
+    }
     //CREAR ESTADIA RECIBE 3 DATOS EL CLIENTE, EL USUARIUO QUE CREA LA ESTADIA Y EL PRECIO QUE USUARA
 
     if(isset($_SESSION)){
@@ -11,7 +16,6 @@
                 $patente=$_POST['PATENTE'];
                 $id=$_POST['ID_USUARIO'];
                 $precio=$_POST['PRECIO'];
-                echo date('Y-m-d H:i:s');
                 
                 $sql = "SELECT * FROM `estadia` WHERE patente=:PATENTE AND EGRESO IS NULL"; //revisa que no haya una estadia sin cerrar
                 $stmt = $pdo->prepare($sql);
@@ -30,18 +34,29 @@
         
                     $stmt->execute();
                     
+                    
                     //MOSTRAR POR AJAX O REDIRECCINAR?
-                    header('location: home-empleado.php');
+                    $_SESSION['estadia_success']="Se ha registrado correctamente la patente nº " . $patente;
+                    ob_start();
+                    include __DIR__ . '/../templates/registro-estadia.html.php';
+                    $contenido = ob_get_clean();
+                    print_r($contenido);
                 }
                 else{
                     //cargar un dato en la sesion para el error
                     $_SESSION['estadia_error']="Ya existe una estadia sin cerrar para este cliente: " . $patente;
-                    header('location: ingreso-estadia.php');
+                    ob_start();
+                    include __DIR__ . '/../templates/registro-estadia.html.php';
+                    $contenido = ob_get_clean();
+                    print_r($contenido);
                 }
             } catch (PDOEXCEPTION $e) {
                 //no se pudo realizar la estadia al no estar registrada la patente
                 $_SESSION['estadia_error'] = 'La patente ' . $patente . ' no existe ';
-                header('location: ingreso-estadia.php');
+                ob_start();
+                include __DIR__ . '/../templates/registro-estadia.html.php';
+                $contenido = ob_get_clean();
+                print_r($contenido);
             }
             
             
@@ -52,7 +67,7 @@
             ob_start();
             include __DIR__ . '/../templates/registro-estadia.html.php';
             $contenido = ob_get_clean();
-            include __DIR__ . '/../templates/layout.html.php';
+            print_r($contenido);
         }
     }
     else{

@@ -1,5 +1,8 @@
 <?php 
     session_start();
+    if (isset($_POST['key'])) {
+        $url = $_POST['key'];
+    }
     //si editarCliente existe significa que se quiere editar al empleado
     if(isset($_POST['editarCliente'])) {
         include __DIR__ . '/../includes/connect.php';
@@ -17,7 +20,7 @@
         ob_start();
         include __DIR__ . '/../templates/registro-cliente.html.php';
         $contenido = ob_get_clean();
-        include __DIR__ . '/../templates/layout.html.php';
+        print_r($contenido);
 
         
     } else {
@@ -36,6 +39,8 @@
         $stmt->bindValue(':tipo', $_POST['TIPO']);
 
         $stmt->execute();
-
-        header('location: ./todos-clientes.php');
+        ob_start();
+        include __DIR__ . '/../functions/todos-clientes.php';
+        $contenido = ob_get_clean();
+        print_r($contenido);
     }

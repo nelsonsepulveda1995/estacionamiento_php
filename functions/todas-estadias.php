@@ -17,4 +17,4 @@
     ob_start();
     include __DIR__ . '/../templates/lista-estadias.html.php';
     $contenido = ob_get_clean();
-    include __DIR__ . '/../templates/layout.html.php';
+    print_r($contenido);

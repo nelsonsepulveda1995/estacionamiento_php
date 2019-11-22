@@ -1,15 +1,8 @@
 <?php
-session_start() 
-
-
 if(isset($_SESSION)){  
-    if(!isset($_SESSION['id_usuario'])){
+    if(!isset($_SESSION['id_usuario']) || !isset($_SESSION['cargo'])){
         header('location: ../index.php');
-    }  
-    if(!isset($_SESSION['cargo'])){
-        header('location: ../index.php');
-    }
-    if($_SESSION['cargo']==1){
+    }else if($_SESSION['cargo']==1){
         header('location: home-gerente.php');
     }            
 }
@@ -41,13 +34,14 @@ endif;
 <div class="card card-signin my-5">
     <div class="row" style="margin:3px">
         <div class ="col">
-            <a href="/estacionamiento_php/functions/home-empleado.php" class="float-left btn btn-primary btn-lg active" role="button" aria-pressed="true">Regresar</a>
+            <a href="../functions/home-empleado.php" class="float-left btn btn-primary btn-lg active" role="button" aria-pressed="true">Regresar</a>
         </div>
     </div>
     <div class="card-body">
         <h5 class="card-title text-center">Egreso de estadia</h5>
         <!--La respuesta del formulario se envia al mismo script-->
         <form class="form-signin" action="" method="POST">
+        <input type="hidden" name="key" value="<?= $url ?? ''?>">
             <div class="form-label-group">
                 <input type="text" name="PATENTE" id="patente" placeholder="Ingrese la patente del cliente" id="PATENTE" class="form-control" required>
                 <label for="patente">Ingrese la patente del cliente</label>
@@ -57,3 +51,18 @@ endif;
         </form>
     </div>
 </div>
+<script>
+    $('form').submit(function (e) { 
+        e.preventDefault();
+        var dataForm = $(this).serialize();
+        $.ajax({
+            type: "POST",
+            url: "<?php echo $url ?>",
+            data: dataForm,
+            success: function (response) {
+                $('#body').html(response);
+                activateTablesorter();
+            }
+        });
+    });
+</script>

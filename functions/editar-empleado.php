@@ -1,10 +1,13 @@
 <?php 
+    if (isset($_POST['key'])) {
+        $url = $_POST['key'];
+    }
     //si editarEmpleado existe significa que se quiere editar al empleado
     if(isset($_POST['editarEmpleado'])) {
         include __DIR__ . '/../includes/connect.php';
         $id = $_POST['editarEmpleado'];
 
-        $sql = 'SELECT ID_USUARIO, NOMBRE, USUARIO, PASSWORD FROM usuarios WHERE ID_USUARIO = :id';
+        $sql = 'SELECT ID_USUARIO, ID, NOMBRE, USUARIO, PASSWORD FROM usuarios WHERE ID_USUARIO = :id';
         $stmt = $pdo->prepare($sql);
         $stmt->bindValue(':id', $id);
         $stmt->execute();
@@ -16,7 +19,7 @@
         ob_start();
         include __DIR__ . '/../templates/registro-empleados.html.php';
         $contenido = ob_get_clean();
-        include __DIR__ . '/../templates/layout.html.php';
+        print_r($contenido);
 
         
     } else {

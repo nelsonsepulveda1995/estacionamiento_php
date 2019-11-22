@@ -22,7 +22,7 @@
     <br>
     <div class="row" style="margin:3px">
         <div class ="col">
-            <a href="/estacionamiento_php/functions/home-empleado.php" class="float-left btn btn-primary btn-lg active" role="button" aria-pressed="true">Regresar</a>
+            <a href="../functions/home-empleado.php" class="float-left btn btn-primary btn-lg active" role="button" aria-pressed="true">Regresar</a>
         </div>
     </div>
     <div class="card-body">

@@ -3,6 +3,10 @@
     --input-padding-y: .75rem;
 }
 
+.lighted{
+    background-color: dodgerblue;
+}
+
 .card-signin {
     border: 0;
     border-radius: 1rem;

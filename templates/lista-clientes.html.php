@@ -19,7 +19,7 @@
 <div class="card card-signin my-5">
     <div class="row" style="margin:3px">
         <div class ="col">
-            <a href="/estacionamiento_php/functions/home-empleado.php" class="float-left btn btn-primary btn-lg active" role="button" aria-pressed="true">Regresar</a>
+            <a href="../functions/home-empleado.php" class="float-left btn btn-primary btn-lg active" role="button" aria-pressed="true">Regresar</a>
         </div>
     </div>
     <div class="card-body">
@@ -48,6 +48,7 @@
                         </td>
                         <td>
                             <form action="./../functions/editar-cliente.php" method="post">
+                            <input type="hidden" name="key" value="./../functions/editar-cliente.php">
                                 <input type="hidden" name="editarCliente" value="<?=$cliente['DNI']?>">
                                 <button type="submit" class="btn btn-info">
                                     <i class="fas fa-user-edit"></i> Editar
@@ -85,3 +86,19 @@
         </div>
     </div>
 </div>
+<script>
+    $('form').submit(function (e) { 
+        e.preventDefault();
+        var dataForm = $(this).serialize();
+        var url = $(this).attr('action');
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: dataForm,
+            success: function (response) {
+                $('#body').html(response);
+                activateTablesorter();
+            }
+        });
+    });
+</script>

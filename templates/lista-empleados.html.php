@@ -1,12 +1,8 @@
 <?php
     if(isset($_SESSION)){    
-        if(!isset($_SESSION['id_usuario'])){
+        if(!isset($_SESSION['id_usuario']) || !isset($_SESSION['cargo'])){
             header('location: ../index.php');
-        }  
-        if(!isset($_SESSION['cargo'])){
-            header('location: ../index.php');
-        }
-        if($_SESSION['cargo']==2){
+        }else if($_SESSION['cargo']==2){
             header('location: home-empleado.php');
         }  
     }
@@ -21,7 +17,7 @@
     <br>
     <div class="row" style="margin:3px">
         <div class ="col">
-            <a href="/estacionamiento_php/functions/home-gerente.php" class="float-left btn btn-primary btn-lg active" role="button" aria-pressed="true">Regresar</a>
+            <a href="../functions/home-gerente.php" class="float-left btn btn-primary btn-lg active" role="button" aria-pressed="true">Regresar</a>
         </div>
     </div>
     <div class="card-body">
@@ -97,3 +93,19 @@
         </div>
     </div>
 </div>
+<script>
+    $('form').submit(function (e) { 
+        e.preventDefault();
+        var dataForm = $(this).serialize();
+        var url = $(this).attr('action');
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: dataForm,
+            success: function (response) {
+                $('#body').html(response);
+                activateTablesorter();
+            }
+        });
+    });
+</script>

@@ -18,8 +18,8 @@
                 $stmt = $pdo->prepare($sql);
                 $stmt->bindValue(':usuario', $usuario);
                 $stmt->execute();
-                $resultado = $query->fetch(); //el resultado de la consulta se guarda dentro de la variable
-                $cantidadFilas = $query->rowCount(); //cuenta la cantidad de filas que se obtuvo
+                $resultado = $stmt->fetch(); //el resultado de la consulta se guarda dentro de la variable
+                $cantidadFilas = $stmt->rowCount(); //cuenta la cantidad de filas que se obtuvo
 
                 //si el usuario no existe
                 if ($cantidadFilas <= 0) {
@@ -62,5 +62,5 @@
         ob_start();
         include __DIR__ . '/../templates/registro-empleados.html.php';
         $contenido = ob_get_clean();
-        include __DIR__ . '/../templates/layout.html.php';
+        print_r($contenido);
     }
