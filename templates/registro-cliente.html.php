@@ -53,15 +53,15 @@ endif;
         <form class="form-signin" action="<?= $url ?? ''?>" method="POST">
         <input type="hidden" name="key" value="<?= $url ?? ''?>">
             <div class="form-label-group">
-                <input type="text" name="PATENTE" id="patente" class="form-control" value="<?=$cliente['PATENTE'] ?? ''?>" placeholder="Ingrese la patente del cliente">
+                <input type="text" name="PATENTE" id="patente" class="form-control" value="<?=$cliente['PATENTE'] ?? ''?>" required placeholder="Ingrese la patente del cliente">
                 <label for="patente">Ingrese la patente del cliente</label>
             </div>
             <div class="form-label-group">
-                <input type="text" id="dni" name="DNI" placeholder="Ingrese número de documento" value="<?=$cliente['DNI'] ?? ''?>" min=8 max=10 class="form-control">
+                <input type="text" id="dni" name="DNI" placeholder="Ingrese número de documento" value="<?=$cliente['DNI'] ?? ''?>" required min=8 max=10 class="form-control">
                 <label for="dni">Ingrese número de documento</label>
             </div>
             <div class="form-label-group">
-                <select name="TIPO" id="tipo" class="form-control">
+                <select name="TIPO" id="tipo" class="form-control" required>
                     <option value="0" <?= isset($cliente) ? $cliente['ID'] == 0 ? "selected" : '' : ''?>>Seleccione un tipo de cliente</option>
                     <option value="1" <?= isset($cliente) ? $cliente['ID'] == 1 ? "selected" : '' : ''?>>No Abonado</option>
                     <option value="2" <?= isset($cliente) ? $cliente['ID'] == 2 ? "selected" : '' : ''?>>Abonado</option>

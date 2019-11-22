@@ -44,7 +44,7 @@ endif;
         <form class="form-signin" action="" method="POST">
         <input type="hidden" name="key" value="<?= $url ?? ''?>">
             <div class="form-group">
-                <select name="PATENTE" id="patente" class="form-control" require>
+                <select name="PATENTE" id="patente" class="form-control" required>
                     <option value="0">Seleccione el Cliente</option>
                     <?php include "../functions/todos-cliente-option.php" ?>
                     

@@ -25,7 +25,7 @@
         <!--La respuesta del formulario se envia al mismo script-->
         <form class="form-signin" action="" method="POST">
             <div class="form-group">
-                <select name="PATENTE" id="patente" class="form-control" require>
+                <select name="PATENTE" id="patente" class="form-control" required>
                     <option value="0">Seleccione el Cliente</option>
                     <?php include "../functions/todos-cliente-option-no-abonado.php" ?>
                     
