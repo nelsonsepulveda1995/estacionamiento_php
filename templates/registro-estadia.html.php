@@ -33,8 +33,8 @@ if (isset($_SESSION['estadia_success'])):
 endif;
 ?>
 
-<div id="res"></div>
 
+<div id="res"></div>
 <div class="card card-signin my-5">
     <br>
     <div class="row" style="margin:3px">

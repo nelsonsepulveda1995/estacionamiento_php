@@ -1,5 +1,10 @@
 <?php
-    //session_start();
+    if (isset($_POST['key'])) {
+        $url = $_POST['key'];
+    }
+    if (!isset($_SESSION)) {
+        session_start();
+    }
     //si hay algún dato en POST significa que se completó el formulario
     if (isset($_POST['ID'])) {
         if( $_POST['ID']>0 || $_POST['ID']<3 ){
@@ -12,8 +17,6 @@
                 $estado = 1;
                 $usuario = $_POST['USUARIO'];
                 $password = $_POST['PASSWORD'];
-                echo "<pre> $id $nombre $usuario $password </pre>";
-
                 $sql='SELECT `ID_USUARIO` FROM `usuarios` WHERE `USUARIO`=:usuario ';
                 $stmt = $pdo->prepare($sql);
                 $stmt->bindValue(':usuario', $usuario);
@@ -37,22 +40,35 @@
                     $stmt->bindValue(':usuario', $usuario);
                     $stmt->bindValue(':password', $password);
                     $stmt->execute();
-                    header('location: ./todos-usuarios.php');
+                    $_SESSION['success']="Usuario creado correctamente.";
+                    ob_start();
+                    include __DIR__ . '/../templates/registro-empleados.html.php';
+                    $contenido = ob_get_clean();
+                    print_r($contenido);
                 }
                 else{
-                    $_SESSION["faltan_datos"]="ya existe un empleado con este nombre de usuario";
-                    header('location: registro-empleado.php');
+                    $_SESSION['faltan_datos']="ya existe un empleado con este nombre de usuario";
+                    ob_start();
+                    include __DIR__ . '/../templates/registro-empleados.html.php';
+                    $contenido = ob_get_clean();
+                    print_r($contenido);
                 }
             }
             else {
-                $_SESSION["faltan_datos"]="Error al querer tomar los datos";
-                header('location: registro-empleado.php');
+                $_SESSION['faltan_datos']="Error al querer tomar los datos";
+                ob_start();
+                include __DIR__ . '/../templates/registro-empleados.html.php';
+                $contenido = ob_get_clean();
+                print_r($contenido);
             }
             
         }
         else {
-            $_SESSION["faltan_datos"]="Error al querer tomar los datos";
-            header('location: registro-empleado.php'); //mandar mensaje?
+            $_SESSION['faltan_datos']="Error al querer tomar los datos";
+            ob_start();
+            include __DIR__ . '/../templates/registro-empleados.html.php';
+            $contenido = ob_get_clean();
+            print_r($contenido);
         }
         
     }

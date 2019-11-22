@@ -1,7 +1,6 @@
 <?php
 
     include __DIR__ . '/../includes/connect.php';
-
     //siempre inicializar las variables;
     $usuario = '';
     $password = '';

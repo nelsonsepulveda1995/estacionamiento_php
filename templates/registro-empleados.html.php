@@ -1,11 +1,6 @@
-﻿<?php session_start() ?>
-
-<?php
+﻿<?php
     if(isset($_SESSION)){    
-        if(!isset($_SESSION['id_usuario'])){
-            header('location: ../index.php');
-        }  
-        if(!isset($_SESSION['cargo'])){
+        if(!isset($_SESSION['id_usuario']) || !isset($_SESSION['cargo'])){
             header('location: ../index.php');
         }
         if($_SESSION['cargo']==2){
@@ -37,9 +32,7 @@ if (isset($_SESSION['success'])):
     unset($_SESSION['success']);
 endif;
 ?>
-
 <div id="res"></div>
-
 <div class="card card-signin my-5">
     <br>
     <div class="row" style="margin:3px">
@@ -50,9 +43,9 @@ endif;
     <div class="card-body">
         <h5 class="card-title text-center">Alta de empleado</h5>
         <!--La respuesta del formulario se envia al mismo script-->
-        <form class="form-signin" action="" method="POST">
-            <input type="hidden" name="ID_USUARIO" value="<?=$empleado['ID_USUARIO'] ?? ''?>">
+        <form class="form-signin" action="<?= $url ?? ''?>" method="POST">
             <input type="hidden" name="key" value="<?= $url ?? ''?>">
+            <input type="hidden" name="ID_USUARIO" value="<?=$empleado['ID_USUARIO'] ?? ''?>">
             <div class="form-label-group">
                 <input type="text" id="nombre" name="NOMBRE" class="form-control" placeholder="Ingrese nombre de empleado" value="<?=$empleado['NOMBRE'] ?? ''?>" required autofocus>
                 <label for="nombre">Ingrese nombre de empleado</label>
@@ -81,9 +74,11 @@ endif;
     $('form').submit(function (e) { 
         e.preventDefault();
         var dataForm = $(this).serialize();
+        var url = $(this).attr('action');
+        
         $.ajax({
             type: "POST",
-            url: "<?php echo $url ?>",
+            url: url,
             data: dataForm,
             success: function (response) {
                 $('#body').html(response);

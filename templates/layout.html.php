@@ -16,16 +16,16 @@
     </script>
     <!--CSS-->
     <?php if(isset($_SESSION['cargo'])): ?>
-    <link rel="stylesheet" href="../includes/style.css">
+        <link rel="stylesheet" href="../includes/style.css">
     <?php else: ?>
-    <link rel="stylesheet" href="./includes/style.css">
+        <link rel="stylesheet" href="./includes/style.css">
     <?php endif; ?>
     <!--FontAwesome-->
     <script src="https://kit.fontawesome.com/8bca061afe.js" crossorigin="anonymous"></script>
-    <!-- tablesorter -->
+
     <script src="js/jquery.tablesorter.js"></script>
     <script src="js/jquery.tablesorter.widgets.js"></script>
-    
+    <!-- pager plugin -->
     <link rel="stylesheet" href="css/jquery.tablesorter.pager.css">
     <script src="js/jquery.tablesorter.pager.js"></script>
     <style>
@@ -37,7 +37,6 @@
     <!-- select 2 -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
-
     <script src="./../functions/script.js"></script>
 
     <title><?=$titulo?></title>
@@ -48,13 +47,13 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
             <?php if(isset($_SESSION['cargo'])): ?>
-            <?php if($_SESSION['cargo'] == 1): ?>
-            <a class="navbar-brand" href="home-gerente.php">Estacionamiento</a>
-            <?php elseif($_SESSION['cargo'] == 2): ?>
-            <a class="navbar-brand" href="home-empleado.php">Estacionamiento</a>
-            <?php endif; ?>
+                <?php if($_SESSION['cargo'] == 1): ?>
+                    <a class="navbar-brand" href="home-gerente.php">Estacionamiento</a>
+                <?php elseif($_SESSION['cargo'] == 2): ?>
+                    <a class="navbar-brand" href="home-empleado.php">Estacionamiento</a>
+                <?php endif; ?>
             <?php else: ?>
-            <a class="navbar-brand" href="index.php">Estacionamiento</a>
+                <a class="navbar-brand" href="index.php">Estacionamiento</a>
             <?php endif;?>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation" id="buttonNavbar">
@@ -63,54 +62,62 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav mr-auto">
                     <?php if(isset($_SESSION['cargo'])): ?>
-                    <?php if($_SESSION['cargo'] == 2): ?>
-                    <li class="nav-item">
-                        <a class="nav-link navMenu" href="./../functions/todos-clientes.php">
-                                Ver lista de clientes
-                        </a>                        
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link navMenu" href="./../functions/registro-cliente.php">
-                                Agregar un nuevo cliente
-                        </a>                        
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link navMenu" href="./../functions/ingreso-estadia.php">
-                                Realizar ingreso
-                        </a>                        
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link navMenu" href="./../functions/egreso-estadia.php">
-                                Realizar egreso
-                        </a>                        
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link navMenu" href="./../functions/todas-estadias.php">
-                                Ver estadias
-                        </a>                        
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link navMenu" href="./../functions/pago_abonado.php">
-                                Registrar Pago de Abonado
-                        </a>                        
-                    </li>
-                    <?php elseif ($_SESSION['cargo'] == 1): ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./todos-clientes.php">Lista de clientes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./registro-cliente.php">Agregar cliente</a>
-                    </li>
-                    <?php endif; ?>
+                        <?php if($_SESSION['cargo'] == 2): ?>
+                            <li class="nav-item">
+                                <a class="nav-link navMenu" href="./../functions/todos-clientes.php">
+                                    Ver lista de clientes
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link navMenu" href="./../functions/registro-cliente.php">
+                                    Agregar un nuevo cliente
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link navMenu" href="./../functions/ingreso-estadia.php">
+                                    Realizar ingreso
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link navMenu" href="./../functions/egreso-estadia.php">
+                                    Realizar egreso
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link navMenu" href="./../functions/todas-estadias.php">
+                                    Ver estadias
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link navMenu" href="./../functions/pago_abonado.php">
+                                    Registrar Pago de Abonado
+                                </a>
+                            </li>
+                        <?php elseif ($_SESSION['cargo'] == 1): ?>
+                            <li class="nav-item">
+                                <a href="./../functions/todos-usuarios.php" class="nav-link navMenu">Ver lista de empleados</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="./../functions/registro-empleado.php" class="nav-link navMenu">
+                                    Agregar un nuevo empleado
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="./../functions/todas-estadisticas.php" class="nav-link navMenu">
+                                    Ver reportes
+                                </a>
+                            </li>
+
+                        <?php endif; ?>
                     <?php endif; ?>
                 </ul>
                 <?php if(isset($_SESSION['usuario'])): ?>
-                <span class="navbar-text">
-                    <a class="nav-link disabled" href="logout.php"><?=$_SESSION['nombre']?></a>
-                </span>
-                <span class="navbar-text">
-                    <a class="nav-link" href="logout.php">Salir</a>
-                </span>
+                    <span class="navbar-text">
+                        <a class="nav-link disabled" href="logout.php"><?=$_SESSION['nombre']?></a>
+                    </span>
+                    <span class="navbar-text">
+                        <a class="nav-link" href="logout.php">Salir</a>
+                    </span>
                 <?php endif; ?>
             </div>
         </div>
@@ -119,8 +126,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 mt-5 mx-auto text-center" id="body">
-            
-            <?=$contenido?>
+
+                <?=$contenido?>
             </div>
         </div>
     </div>

@@ -38,9 +38,7 @@ if (isset($_SESSION['success'])):
     unset($_SESSION['success']);
 endif;
 ?>
-
 <div id="res"></div>
-
 <div class="card card-signin my-5">
     <br>
     <div class="row" style="margin:3px">
@@ -79,43 +77,39 @@ endif;
 </div>
 
 <script>
-    $('#registro_cliente').click(registro_cliente);
     $('form').submit(function (e) { 
+        $('.alert').remove();
         e.preventDefault();
-    });
-
-    function registro_cliente() {
-    var tipo = $('#tipo option:selected').val();
-    var patente = $('#patente').val();
-    var dni = $('#dni').val();
-    if (patente == "" || dni == "") {
-        $('#res').empty();
-        $('#res').append("<div class='alert alert-warning alert-dismissible fade show' role='alert'> Debe completar todos los campos <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
-        return false
-    }
-    if (dni.length > 10) {
-        $('#res').empty();
-        $('#res').append("<div class='alert alert-warning alert-dismissible fade show' role='alert'> DNI Demasiado largo<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
-        return false
-    }
-    if (tipo == 0 || tipo > 2) {
-        $('#res').empty();
-        $('#res').append("<div class='alert alert-warning alert-dismissible fade show' role='alert'> Error en el tipo de cliente <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
-        return false
-    } else {
-        $('#res').empty();
-        var dataForm = $('form').serialize();
+        var dataForm = $(this).serialize();
         var url = $(this).attr('action');
-        
-        $.ajax({
-            type: "POST",
-            url: url,
-            data: dataForm,
-            success: function (response) {
-                $('#body').html(response);
-                activateTablesorter();
-            }
-        });
-    }
-}
+        var tipo = $('#tipo option:selected').val();
+        var patente = $('#patente').val();
+        var dni = $('#dni').val();
+        if (patente == "" || dni == "") {
+            $('#res').empty();
+            $('#res').append("<div class='alert alert-warning alert-dismissible fade show' role='alert'> Debe completar todos los campos <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+            return false
+        }
+        if (dni.length > 10) {
+            $('#res').empty();
+            $('#res').append("<div class='alert alert-warning alert-dismissible fade show' role='alert'> DNI Demasiado largo<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+            return false
+        }
+        if (tipo == 0 || tipo > 2) {
+            $('#res').empty();
+            $('#res').append("<div class='alert alert-warning alert-dismissible fade show' role='alert'> Error en el tipo de cliente <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+            return false
+        } else {
+            $('#res').empty();
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: dataForm,
+                success: function (response) {
+                    $('#body').html(response);
+                    activateTablesorter();
+                }
+            });
+        }
+    });
 </script>

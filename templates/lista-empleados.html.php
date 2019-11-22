@@ -48,6 +48,7 @@
                         </td>
                         <td>
                             <form action="./../functions/editar-empleado.php" method="post">
+                            <input type="hidden" name="key" value="./../functions/editar-empleado.php">
                                 <input type="hidden" name="editarEmpleado" value="<?=$empleado['ID_USUARIO']?>">
                                 <button type="submit" class="btn btn-info">
                                     <i class="fas fa-user-edit"></i> Editar
@@ -56,6 +57,7 @@
                         </td>
                         <td>
                             <form action="./../functions/eliminar-empleado.php" method="post">
+                            <input type="hidden" name="key" value="./../functions/eliminar-empleado.php">
                                 <input type="hidden" name="eliminarEmpleado" value="<?=$empleado['ID_USUARIO']?>">
                                 <button type="submit" class="btn btn-info">
                                     <i class="fas fa-user-times"></i> Eliminar

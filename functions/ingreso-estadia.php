@@ -12,7 +12,6 @@
         if (isset($_POST['PATENTE']) && isset($_POST['ID_USUARIO']) && isset($_POST['PRECIO']) ){
             date_default_timezone_set('America/Argentina/Buenos_Aires');
             try {
-                
                 include __DIR__ . '/../includes/connect.php';
                 $id_lugares=1;
                 $sql = "SELECT `CANTIDAD` FROM `lugares` WHERE `ID` =:ID"; 
@@ -30,10 +29,8 @@
                     $stmt = $pdo->prepare($sql);
                     $stmt->bindValue(':PATENTE', $patente);
                     $stmt->execute();
-
                     $resultado = $stmt->fetch(); //el resultado de la consulta se guarda dentro de la variable
                     $cantidadFilas = $stmt->rowCount(); //cuenta la cantidad de filas que se obtuvo
-
                     if($cantidadFilas <= 0){
                         $fecha=date('Y-m-d H:i:s'); //obtiene año con 4 digitos y los demas valores con ceros iniciales
                         $sql = "INSERT INTO `estadia`(`PATENTE`, `ID_USUARIO`, `ID_PRECIO`, `INGRESO`) VALUES (:PATENTE,:ID_USUARIO,:PRECIO,:INGRESO)";
@@ -46,7 +43,7 @@
                         $stmt->execute();
                         
                         //reduce en uno el contador de lugares
-                        $contador=($resultado['CANTIDAD'])-1;
+                        $contador=(($resultado_lugares['CANTIDAD'])-1);
                         $sql = "UPDATE `lugares` SET `CANTIDAD`=:CANTIDAD WHERE `ID`=:ID";
                         $stmt = $pdo->prepare($sql);
                         $stmt->bindValue(':ID', $id_lugares);
@@ -85,6 +82,7 @@
                 $contenido = ob_get_clean();
                 print_r($contenido);
             }
+            
             
         }
         else {

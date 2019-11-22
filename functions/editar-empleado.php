@@ -42,5 +42,8 @@
 
         $stmt->execute();
 
-        header('location: ./todos-usuarios.php');
+        ob_start();
+        include __DIR__ . '/../functions/todos-usuarios.php';
+        $contenido = ob_get_clean();
+        print_r($contenido);
     }

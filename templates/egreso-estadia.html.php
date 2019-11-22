@@ -30,6 +30,7 @@ if (isset($_SESSION['estadia_success'])):
     unset($_SESSION['estadia_success']);
 endif;
 ?>
+
 <br>
 <pre id="res"></pre>
 
@@ -49,7 +50,6 @@ endif;
                 <label for="patente">Ingrese la patente del cliente</label>
             </div>
             <button id="registro_estadia" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="Marcar salida">Marcar salida</button>
-            
         </form>
     </div>
 </div>
