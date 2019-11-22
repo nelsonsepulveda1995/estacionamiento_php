@@ -37,7 +37,7 @@
                     ob_start();
                     include __DIR__ . '/../templates/pago-abonado.html.php';
                     $contenido = ob_get_clean();
-                    print_r($intervalo->m);
+                    print_r($contenido);
                 }
             }else{
                 $sql = 'INSERT INTO `historialpagos`(`PATENTE`, `ID_PRECIO`, `FECHA_PAGO`) VALUES (:PATENTE,3,:FECHA)';

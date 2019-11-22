@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 20, 2019 at 11:22 PM
--- Server version: 10.4.8-MariaDB
--- PHP Version: 7.1.33
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 22-11-2019 a las 22:54:06
+-- Versión del servidor: 10.4.6-MariaDB
+-- Versión de PHP: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `phpweb`
+-- Base de datos: `phpweb`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cliente`
+-- Estructura de tabla para la tabla `cliente`
 --
 
 CREATE TABLE `cliente` (
@@ -35,18 +35,17 @@ CREATE TABLE `cliente` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `cliente`
+-- Volcado de datos para la tabla `cliente`
 --
 
 INSERT INTO `cliente` (`PATENTE`, `ID`, `DNI`) VALUES
-('1111', 2, '11223355'),
-('asd123', 1, '12345678'),
-('qwe123', 1, '87654321');
+('1', 1, 'hola'),
+('2', 2, 'hola');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `estadia`
+-- Estructura de tabla para la tabla `estadia`
 --
 
 CREATE TABLE `estadia` (
@@ -60,16 +59,16 @@ CREATE TABLE `estadia` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `estadia`
+-- Volcado de datos para la tabla `estadia`
 --
 
 INSERT INTO `estadia` (`ID_ESTADIA`, `PATENTE`, `ID_USUARIO`, `ID_PRECIO`, `INGRESO`, `EGRESO`, `TOTAL`) VALUES
-(2, '1111', 3, 1, '2019-11-20 22:47:27', '2019-11-20 23:03:37', 100);
+(46, '2', 4, 2, '2019-11-22 18:14:10', '2019-11-22 18:14:49', 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `historialpagos`
+-- Estructura de tabla para la tabla `historialpagos`
 --
 
 CREATE TABLE `historialpagos` (
@@ -80,16 +79,17 @@ CREATE TABLE `historialpagos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `historialpagos`
+-- Volcado de datos para la tabla `historialpagos`
 --
 
 INSERT INTO `historialpagos` (`ID_PAGOMENSUAL`, `PATENTE`, `ID_PRECIO`, `FECHA_PAGO`) VALUES
-(1, 'asd123', 2, '2019-11-21 02:19:43');
+(17, '2', 3, '2019-10-22 01:14:04'),
+(18, '2', 3, '2019-11-23 01:47:17');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `lugares`
+-- Estructura de tabla para la tabla `lugares`
 --
 
 CREATE TABLE `lugares` (
@@ -98,16 +98,16 @@ CREATE TABLE `lugares` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `lugares`
+-- Volcado de datos para la tabla `lugares`
 --
 
 INSERT INTO `lugares` (`ID`, `CANTIDAD`) VALUES
-(1, 50);
+(1, 49);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `permiso`
+-- Estructura de tabla para la tabla `permiso`
 --
 
 CREATE TABLE `permiso` (
@@ -116,7 +116,7 @@ CREATE TABLE `permiso` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `permiso`
+-- Volcado de datos para la tabla `permiso`
 --
 
 INSERT INTO `permiso` (`ID_PERMISO`, `DESCRIPCION_PERMISO`) VALUES
@@ -131,7 +131,7 @@ INSERT INTO `permiso` (`ID_PERMISO`, `DESCRIPCION_PERMISO`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `precio`
+-- Estructura de tabla para la tabla `precio`
 --
 
 CREATE TABLE `precio` (
@@ -141,18 +141,18 @@ CREATE TABLE `precio` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `precio`
+-- Volcado de datos para la tabla `precio`
 --
 
 INSERT INTO `precio` (`ID_PRECIO`, `PRECIO`, `DESCRIPCION`) VALUES
-(1, '100.00', 'hora'),
-(2, '5000.00', 'abonado'),
-(3, '0.00', 'estadia para abonado');
+(1, '100.00', 'Hora'),
+(2, '0.00', 'Estadía para Abonado'),
+(3, '5000.00', 'Abonado');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `puesto`
+-- Estructura de tabla para la tabla `puesto`
 --
 
 CREATE TABLE `puesto` (
@@ -161,19 +161,17 @@ CREATE TABLE `puesto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `puesto`
+-- Volcado de datos para la tabla `puesto`
 --
 
 INSERT INTO `puesto` (`ID`, `DESCRIPCION`) VALUES
 (1, 'Gerente'),
-(2, 'Empleado'),
-(3, 'gerente'),
-(4, 'empleado');
+(2, 'Empleado');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `puesto_permiso`
+-- Estructura de tabla para la tabla `puesto_permiso`
 --
 
 CREATE TABLE `puesto_permiso` (
@@ -183,7 +181,7 @@ CREATE TABLE `puesto_permiso` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `puesto_permiso`
+-- Volcado de datos para la tabla `puesto_permiso`
 --
 
 INSERT INTO `puesto_permiso` (`ID_PUESTO_PERMISO`, `ID_PUESTO`, `ID_PERMISO`) VALUES
@@ -198,7 +196,7 @@ INSERT INTO `puesto_permiso` (`ID_PUESTO_PERMISO`, `ID_PUESTO`, `ID_PERMISO`) VA
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tipo`
+-- Estructura de tabla para la tabla `tipo`
 --
 
 CREATE TABLE `tipo` (
@@ -207,17 +205,17 @@ CREATE TABLE `tipo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tipo`
+-- Volcado de datos para la tabla `tipo`
 --
 
 INSERT INTO `tipo` (`ID`, `DESCRIPCION`) VALUES
-(1, 'abonado'),
-(2, 'no abonado');
+(1, 'No Abonado'),
+(2, 'Abonado');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuarios`
+-- Estructura de tabla para la tabla `usuarios`
 --
 
 CREATE TABLE `usuarios` (
@@ -230,27 +228,26 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `usuarios`
+-- Volcado de datos para la tabla `usuarios`
 --
 
 INSERT INTO `usuarios` (`ID_USUARIO`, `ID`, `NOMBRE`, `ESTADO`, `USUARIO`, `PASSWORD`) VALUES
 (1, 1, 'admin', 1, 'admin', 'admin'),
-(2, 1, 'alejandro', 0, 'gerente', 'gerente'),
-(3, 2, 'gabriel', 1, 'empleado', 'empleado');
+(4, 2, 'Nahuel', 1, 'cajero', 'cajero');
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `cliente`
+-- Indices de la tabla `cliente`
 --
 ALTER TABLE `cliente`
   ADD PRIMARY KEY (`PATENTE`),
   ADD KEY `ID` (`ID`);
 
 --
--- Indexes for table `estadia`
+-- Indices de la tabla `estadia`
 --
 ALTER TABLE `estadia`
   ADD PRIMARY KEY (`ID_ESTADIA`),
@@ -259,7 +256,7 @@ ALTER TABLE `estadia`
   ADD KEY `ID_PRECIO` (`ID_PRECIO`);
 
 --
--- Indexes for table `historialpagos`
+-- Indices de la tabla `historialpagos`
 --
 ALTER TABLE `historialpagos`
   ADD PRIMARY KEY (`ID_PAGOMENSUAL`),
@@ -267,31 +264,31 @@ ALTER TABLE `historialpagos`
   ADD KEY `ID_PRECIO` (`ID_PRECIO`);
 
 --
--- Indexes for table `lugares`
+-- Indices de la tabla `lugares`
 --
 ALTER TABLE `lugares`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `permiso`
+-- Indices de la tabla `permiso`
 --
 ALTER TABLE `permiso`
   ADD PRIMARY KEY (`ID_PERMISO`);
 
 --
--- Indexes for table `precio`
+-- Indices de la tabla `precio`
 --
 ALTER TABLE `precio`
   ADD PRIMARY KEY (`ID_PRECIO`);
 
 --
--- Indexes for table `puesto`
+-- Indices de la tabla `puesto`
 --
 ALTER TABLE `puesto`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `puesto_permiso`
+-- Indices de la tabla `puesto_permiso`
 --
 ALTER TABLE `puesto_permiso`
   ADD PRIMARY KEY (`ID_PUESTO_PERMISO`),
@@ -299,88 +296,88 @@ ALTER TABLE `puesto_permiso`
   ADD KEY `ID_PERMISO` (`ID_PERMISO`);
 
 --
--- Indexes for table `tipo`
+-- Indices de la tabla `tipo`
 --
 ALTER TABLE `tipo`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `usuarios`
+-- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`ID_USUARIO`),
   ADD KEY `ID` (`ID`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `estadia`
+-- AUTO_INCREMENT de la tabla `estadia`
 --
 ALTER TABLE `estadia`
-  MODIFY `ID_ESTADIA` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID_ESTADIA` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
--- AUTO_INCREMENT for table `historialpagos`
+-- AUTO_INCREMENT de la tabla `historialpagos`
 --
 ALTER TABLE `historialpagos`
-  MODIFY `ID_PAGOMENSUAL` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID_PAGOMENSUAL` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
--- AUTO_INCREMENT for table `lugares`
+-- AUTO_INCREMENT de la tabla `lugares`
 --
 ALTER TABLE `lugares`
   MODIFY `ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `permiso`
+-- AUTO_INCREMENT de la tabla `permiso`
 --
 ALTER TABLE `permiso`
   MODIFY `ID_PERMISO` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `precio`
+-- AUTO_INCREMENT de la tabla `precio`
 --
 ALTER TABLE `precio`
   MODIFY `ID_PRECIO` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `puesto`
+-- AUTO_INCREMENT de la tabla `puesto`
 --
 ALTER TABLE `puesto`
   MODIFY `ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `puesto_permiso`
+-- AUTO_INCREMENT de la tabla `puesto_permiso`
 --
 ALTER TABLE `puesto_permiso`
   MODIFY `ID_PUESTO_PERMISO` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `tipo`
+-- AUTO_INCREMENT de la tabla `tipo`
 --
 ALTER TABLE `tipo`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `usuarios`
+-- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `ID_USUARIO` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID_USUARIO` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- Constraints for dumped tables
+-- Restricciones para tablas volcadas
 --
 
 --
--- Constraints for table `cliente`
+-- Filtros para la tabla `cliente`
 --
 ALTER TABLE `cliente`
   ADD CONSTRAINT `cliente_ibfk_1` FOREIGN KEY (`ID`) REFERENCES `tipo` (`ID`);
 
 --
--- Constraints for table `estadia`
+-- Filtros para la tabla `estadia`
 --
 ALTER TABLE `estadia`
   ADD CONSTRAINT `estadia_ibfk_1` FOREIGN KEY (`PATENTE`) REFERENCES `cliente` (`PATENTE`),
@@ -388,21 +385,21 @@ ALTER TABLE `estadia`
   ADD CONSTRAINT `estadia_ibfk_3` FOREIGN KEY (`ID_PRECIO`) REFERENCES `precio` (`ID_PRECIO`);
 
 --
--- Constraints for table `historialpagos`
+-- Filtros para la tabla `historialpagos`
 --
 ALTER TABLE `historialpagos`
   ADD CONSTRAINT `historialpagos_ibfk_1` FOREIGN KEY (`PATENTE`) REFERENCES `cliente` (`PATENTE`),
   ADD CONSTRAINT `historialpagos_ibfk_2` FOREIGN KEY (`ID_PRECIO`) REFERENCES `precio` (`ID_PRECIO`);
 
 --
--- Constraints for table `puesto_permiso`
+-- Filtros para la tabla `puesto_permiso`
 --
 ALTER TABLE `puesto_permiso`
   ADD CONSTRAINT `puesto_permiso_ibfk_1` FOREIGN KEY (`ID_PUESTO`) REFERENCES `puesto` (`ID`),
   ADD CONSTRAINT `puesto_permiso_ibfk_2` FOREIGN KEY (`ID_PERMISO`) REFERENCES `permiso` (`ID_PERMISO`);
 
 --
--- Constraints for table `usuarios`
+-- Filtros para la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`ID`) REFERENCES `puesto` (`ID`);
