@@ -131,6 +131,7 @@ function activateTablesorter() {
             'form-control',
             'form-control', // select needs custom class names :(
             'form-control',
+            'form-control',
             'form-control'
           ]
         }

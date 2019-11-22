@@ -37,7 +37,9 @@ if (isset($_SESSION['success'])):
     unset($_SESSION['success']);
 endif;
 ?>
-<pre></pre>
+
+<div id="res"></div>
+
 <div class="card card-signin my-5">
     <br>
     <div class="row" style="margin:3px">
@@ -71,7 +73,7 @@ endif;
                 <label for="password">Ingrese contraseña</label>
             </div>
             <button id="registro_empleado" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="Register account">Ingresar</button>
-            <pre id="res"></pre>
+            
         </form>
     </div>
 </div>

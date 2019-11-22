@@ -16,6 +16,8 @@
     }
 ?>
 
+<div id="res"></div>
+
 <div class="card card-signin my-5">
     
     <div class="card-body">
@@ -30,7 +32,6 @@
                 </select>
             </div>
             <button id="registrar_abonado" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="Crear abonado">Crear abonado</button>
-            <pre id="res"></pre>
         </form>
     </div>
 </div>

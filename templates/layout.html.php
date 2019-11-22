@@ -22,10 +22,10 @@
     <?php endif; ?>
     <!--FontAwesome-->
     <script src="https://kit.fontawesome.com/8bca061afe.js" crossorigin="anonymous"></script>
-
+    <!-- tablesorter -->
     <script src="js/jquery.tablesorter.js"></script>
     <script src="js/jquery.tablesorter.widgets.js"></script>
-    <!-- pager plugin -->
+    
     <link rel="stylesheet" href="css/jquery.tablesorter.pager.css">
     <script src="js/jquery.tablesorter.pager.js"></script>
     <style>
@@ -34,6 +34,10 @@
             /* make pager arrows more visible */
         }
     </style>
+    <!-- select 2 -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
+
     <script src="./../functions/script.js"></script>
 
     <title><?=$titulo?></title>

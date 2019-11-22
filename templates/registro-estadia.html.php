@@ -33,7 +33,7 @@ if (isset($_SESSION['estadia_success'])):
 endif;
 ?>
 
-
+<div id="res"></div>
 
 <div class="card card-signin my-5">
     <br>
@@ -63,7 +63,6 @@ endif;
                 </select>
             </div>
             <button id="registro_estadia" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="Registrar Estadia">Registrar Estadia</button>
-            <pre id="res"></pre>
         </form>
     </div>
 </div>

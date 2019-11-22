@@ -10,41 +10,68 @@
     if(isset($_SESSION)){
 
         if (isset($_POST['PATENTE']) && isset($_POST['ID_USUARIO']) && isset($_POST['PRECIO']) ){
-
+            date_default_timezone_set('America/Argentina/Buenos_Aires');
             try {
-                include __DIR__ . '/../includes/connect.php';
-                $patente=$_POST['PATENTE'];
-                $id=$_POST['ID_USUARIO'];
-                $precio=$_POST['PRECIO'];
                 
-                $sql = "SELECT * FROM `estadia` WHERE patente=:PATENTE AND EGRESO IS NULL"; //revisa que no haya una estadia sin cerrar
+                include __DIR__ . '/../includes/connect.php';
+                $id_lugares=1;
+                $sql = "SELECT `CANTIDAD` FROM `lugares` WHERE `ID` =:ID"; 
                 $stmt = $pdo->prepare($sql);
-                $stmt->bindValue(':PATENTE', $patente);
+                $stmt->bindValue(':ID', $id_lugares);            
                 $stmt->execute();
-                $resultado = $stmt->fetch(); //el resultado de la consulta se guarda dentro de la variable
-                $cantidadFilas = $stmt->rowCount(); //cuenta la cantidad de filas que se obtuvo
-                if($cantidadFilas <= 0){
-                    $fecha=date('Y-m-d H:i:s'); //obtiene año con 4 digitos y los demas valores con ceros iniciales
-                    $sql = "INSERT INTO `estadia`(`PATENTE`, `ID_USUARIO`, `ID_PRECIO`, `INGRESO`) VALUES (:PATENTE,:ID_USUARIO,:PRECIO,:INGRESO)";
+                $resultado_lugares = $stmt->fetch(); //el resultado de la consulta se guarda dentro de la variable
+                if($resultado_lugares['CANTIDAD'] > 0){ //revisa que haya lugar en el estacionamiento
+                    
+                    $patente=$_POST['PATENTE'];
+                    $id=$_POST['ID_USUARIO'];
+                    $precio=$_POST['PRECIO'];
+                    
+                    $sql = "SELECT * FROM `estadia` WHERE patente=:PATENTE AND EGRESO IS NULL"; //revisa que no haya una estadia sin cerrar
                     $stmt = $pdo->prepare($sql);
-                    $stmt->bindValue(':ID_USUARIO', $id);
-                    $stmt->bindValue(':PRECIO', $precio);
                     $stmt->bindValue(':PATENTE', $patente);
-                    $stmt->bindValue(':INGRESO', $fecha);
-        
                     $stmt->execute();
-                    
-                    
-                    //MOSTRAR POR AJAX O REDIRECCINAR?
-                    $_SESSION['estadia_success']="Se ha registrado correctamente la patente nº " . $patente;
-                    ob_start();
-                    include __DIR__ . '/../templates/registro-estadia.html.php';
-                    $contenido = ob_get_clean();
-                    print_r($contenido);
+
+                    $resultado = $stmt->fetch(); //el resultado de la consulta se guarda dentro de la variable
+                    $cantidadFilas = $stmt->rowCount(); //cuenta la cantidad de filas que se obtuvo
+
+                    if($cantidadFilas <= 0){
+                        $fecha=date('Y-m-d H:i:s'); //obtiene año con 4 digitos y los demas valores con ceros iniciales
+                        $sql = "INSERT INTO `estadia`(`PATENTE`, `ID_USUARIO`, `ID_PRECIO`, `INGRESO`) VALUES (:PATENTE,:ID_USUARIO,:PRECIO,:INGRESO)";
+                        $stmt = $pdo->prepare($sql);
+                        $stmt->bindValue(':ID_USUARIO', $id);
+                        $stmt->bindValue(':PRECIO', $precio);
+                        $stmt->bindValue(':PATENTE', $patente);
+                        $stmt->bindValue(':INGRESO', $fecha);
+            
+                        $stmt->execute();
+                        
+                        //reduce en uno el contador de lugares
+                        $contador=($resultado['CANTIDAD'])-1;
+                        $sql = "UPDATE `lugares` SET `CANTIDAD`=:CANTIDAD WHERE `ID`=:ID";
+                        $stmt = $pdo->prepare($sql);
+                        $stmt->bindValue(':ID', $id_lugares);
+                        $stmt->bindValue(':CANTIDAD', $contador);
+                        $stmt->execute();
+                        
+                        //MOSTRAR POR AJAX O REDIRECCINAR?
+                        $_SESSION['estadia_success']="Se ha registrado correctamente la patente nº " . $patente;
+                        ob_start();
+                        include __DIR__ . '/../templates/registro-estadia.html.php';
+                        $contenido = ob_get_clean();
+                        print_r($contenido);
+                    }
+                    else{
+                        //cargar un dato en la sesion para el error
+                        $_SESSION['estadia_error']="Ya existe una estadia sin cerrar para este cliente: " . $patente;
+                        ob_start();
+                        include __DIR__ . '/../templates/registro-estadia.html.php';
+                        $contenido = ob_get_clean();
+                        print_r($contenido);
+                    }
                 }
                 else{
                     //cargar un dato en la sesion para el error
-                    $_SESSION['estadia_error']="Ya existe una estadia sin cerrar para este cliente: " . $patente;
+                    $_SESSION['estadia_error']="No hay mas lugar en el estacionamiento";
                     ob_start();
                     include __DIR__ . '/../templates/registro-estadia.html.php';
                     $contenido = ob_get_clean();
@@ -58,7 +85,6 @@
                 $contenido = ob_get_clean();
                 print_r($contenido);
             }
-            
             
         }
         else {
