@@ -50,18 +50,35 @@ endif;
         <input type="hidden" name="key" value="<?= $url ?? ''?>">
             <input type="hidden" id="ID_USUARIO" name="ID_USUARIO" value="<?=$_SESSION['id_usuario'] ?? ''?>">  <!-- toma el usuario activo -->
             <div class="form-label-group">
-                <input type="text" name="PATENTE" id="patente" placeholder="Ingrese la patente del cliente" id="PATENTE" class="form-control" required>
-                <label for="patente">Ingrese la patente del cliente</label>
+            <p>Seleccione una patente: </p>
+                <select name="PATENTE" id="patente" class="form-control select2" required>
+                <?php include '../functions/todos-cliente-option-general.php'; ?>
+                </select>
             </div>
             <div class="form-label-group">
+            <p>Precio de la estadía: </p>
                 <select name="PRECIO" id="PRECIO" class="form-control" required>
                 </select>
+                <p id="PRE"></p>
             </div>
             <button id="registro_estadia" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="Registrar Estadia">Registrar Estadia</button>
         </form>
     </div>
 </div>
 <script>
+    $('.select2').select2();
+    $('#patente').change(function(){
+        var datos = 'key='+$(this).val();
+        console.log(datos)
+        $.ajax({
+                type: "POST", 
+                url: '../functions/precios-option.php',
+                data: datos,
+                success: function (response) {
+                    $('#PRECIO').html(response);
+                }
+            });
+    })
     $('form').submit(function (e) { 
         $('.alert').remove();
         e.preventDefault();

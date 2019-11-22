@@ -46,14 +46,17 @@ endif;
         <form class="form-signin" action="" method="POST">
         <input type="hidden" name="key" value="<?= $url ?? ''?>">
             <div class="form-label-group">
-                <input type="text" name="PATENTE" id="patente" placeholder="Ingrese la patente del cliente" id="PATENTE" class="form-control" required>
-                <label for="patente">Ingrese la patente del cliente</label>
+            <p>Seleccione una patente: </p>
+            <select name="PATENTE" id="patente" class="form-control select2" required>
+                <?php include '../functions/todos-cliente-option-general.php'; ?>
+                </select>
             </div>
             <button id="registro_estadia" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="Marcar salida">Marcar salida</button>
         </form>
     </div>
 </div>
 <script>
+    $('.select2').select2();
     $('form').submit(function (e) { 
         e.preventDefault();
         var dataForm = $(this).serialize();

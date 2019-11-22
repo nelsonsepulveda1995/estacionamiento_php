@@ -32,30 +32,83 @@
                     $resultado = $stmt->fetch(); //el resultado de la consulta se guarda dentro de la variable
                     $cantidadFilas = $stmt->rowCount(); //cuenta la cantidad de filas que se obtuvo
                     if($cantidadFilas <= 0){
-                        $fecha=date('Y-m-d H:i:s'); //obtiene año con 4 digitos y los demas valores con ceros iniciales
-                        $sql = "INSERT INTO `estadia`(`PATENTE`, `ID_USUARIO`, `ID_PRECIO`, `INGRESO`) VALUES (:PATENTE,:ID_USUARIO,:PRECIO,:INGRESO)";
-                        $stmt = $pdo->prepare($sql);
-                        $stmt->bindValue(':ID_USUARIO', $id);
-                        $stmt->bindValue(':PRECIO', $precio);
-                        $stmt->bindValue(':PATENTE', $patente);
-                        $stmt->bindValue(':INGRESO', $fecha);
-            
-                        $stmt->execute();
-                        
-                        //reduce en uno el contador de lugares
-                        $contador=(($resultado_lugares['CANTIDAD'])-1);
-                        $sql = "UPDATE `lugares` SET `CANTIDAD`=:CANTIDAD WHERE `ID`=:ID";
-                        $stmt = $pdo->prepare($sql);
-                        $stmt->bindValue(':ID', $id_lugares);
-                        $stmt->bindValue(':CANTIDAD', $contador);
-                        $stmt->execute();
-                        
-                        //MOSTRAR POR AJAX O REDIRECCINAR?
-                        $_SESSION['estadia_success']="Se ha registrado correctamente la patente nº " . $patente;
-                        ob_start();
-                        include __DIR__ . '/../templates/registro-estadia.html.php';
-                        $contenido = ob_get_clean();
-                        print_r($contenido);
+                        $ingreso = "SELECT FECHA_PAGO FROM `historialpagos` WHERE patente=:PATENTE"; //revisa que no haya una estadia sin cerrar
+                        $func = $pdo->prepare($ingreso);
+                        $func->bindValue(':PATENTE', $patente);
+                        $func->execute();
+                        $resultadoIngreso = $func->fetch();
+                        if ($resultadoIngreso != '' && $precio==2) {
+                            foreach ($resultadoIngreso as $key => $value) {
+                                $resIngreso = new DateTime($value);
+                            }
+                            //convierto las fechas de ingreso y egreso a DateTime para poder compararlas y obtener el tiempo que estuvo
+                            $fechaEgr=date('Y-m-d H:i:s'); //obtiene año con 4 digitos y los demas valores con ceros iniciales
+                            $fEgr = new DateTime($fechaEgr);
+                            $intervalo = $resIngreso->diff($fEgr);
+                            if (isset($intervalo) && $intervalo->m >0) {
+                                $_SESSION['estadia_error']="La patente nº " . $patente. " ya ha superado el més de abono. Debe registrar un nuevo pago de abonado.";
+                                ob_start();
+                                include __DIR__ . '/../templates/registro-estadia.html.php';
+                                $contenido = ob_get_clean();
+                                print_r($contenido);
+                            }else{
+                                $fecha=date('Y-m-d H:i:s'); //obtiene año con 4 digitos y los demas valores con ceros iniciales
+                                $sql = "INSERT INTO `estadia`(`PATENTE`, `ID_USUARIO`, `ID_PRECIO`, `INGRESO`) VALUES (:PATENTE,:ID_USUARIO,:PRECIO,:INGRESO)";
+                                $stmt = $pdo->prepare($sql);
+                                $stmt->bindValue(':ID_USUARIO', $id);
+                                $stmt->bindValue(':PRECIO', $precio);
+                                $stmt->bindValue(':PATENTE', $patente);
+                                $stmt->bindValue(':INGRESO', $fecha);
+                                
+                                $stmt->execute();
+                                
+                                //reduce en uno el contador de lugares
+                                $contador=(($resultado_lugares['CANTIDAD'])-1);
+                                $sql = "UPDATE `lugares` SET `CANTIDAD`=:CANTIDAD WHERE `ID`=:ID";
+                                $stmt = $pdo->prepare($sql);
+                                $stmt->bindValue(':ID', $id_lugares);
+                                $stmt->bindValue(':CANTIDAD', $contador);
+                                $stmt->execute();
+                                
+                                //MOSTRAR POR AJAX O REDIRECCINAR?
+                                $_SESSION['estadia_success']="Se ha registrado correctamente la patente nº " . $patente;
+                                ob_start();
+                                include __DIR__ . '/../templates/registro-estadia.html.php';
+                                $contenido = ob_get_clean();
+                                print_r($contenido);
+                            }
+                        }else if ($precio==2) {
+                            $_SESSION['estadia_error']="La patente nº " . $patente. " no ha pagado el mes de abono.";
+                            ob_start();
+                            include __DIR__ . '/../templates/registro-estadia.html.php';
+                            $contenido = ob_get_clean();
+                            print_r($contenido);
+                        }else{
+                            $fecha=date('Y-m-d H:i:s'); //obtiene año con 4 digitos y los demas valores con ceros iniciales
+                            $sql = "INSERT INTO `estadia`(`PATENTE`, `ID_USUARIO`, `ID_PRECIO`, `INGRESO`) VALUES (:PATENTE,:ID_USUARIO,:PRECIO,:INGRESO)";
+                            $stmt = $pdo->prepare($sql);
+                            $stmt->bindValue(':ID_USUARIO', $id);
+                            $stmt->bindValue(':PRECIO', $precio);
+                            $stmt->bindValue(':PATENTE', $patente);
+                            $stmt->bindValue(':INGRESO', $fecha);
+                            
+                            $stmt->execute();
+                            
+                            //reduce en uno el contador de lugares
+                            $contador=(($resultado_lugares['CANTIDAD'])-1);
+                            $sql = "UPDATE `lugares` SET `CANTIDAD`=:CANTIDAD WHERE `ID`=:ID";
+                            $stmt = $pdo->prepare($sql);
+                            $stmt->bindValue(':ID', $id_lugares);
+                            $stmt->bindValue(':CANTIDAD', $contador);
+                            $stmt->execute();
+                            
+                            //MOSTRAR POR AJAX O REDIRECCINAR?
+                            $_SESSION['estadia_success']="Se ha registrado correctamente la patente nº " . $patente;
+                            ob_start();
+                            include __DIR__ . '/../templates/registro-estadia.html.php';
+                            $contenido = ob_get_clean();
+                            print_r($contenido);
+                        }
                     }
                     else{
                         //cargar un dato en la sesion para el error

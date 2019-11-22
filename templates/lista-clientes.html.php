@@ -48,7 +48,7 @@
                         </td>
                         <td>
                             <form action="./../functions/editar-cliente.php" method="post">
-                            <input type="hidden" name="key" value="./../functions/editar-cliente.php">
+                                <input type="hidden" name="key" value="./../functions/editar-cliente.php">
                                 <input type="hidden" name="editarCliente" value="<?=$cliente['DNI']?>">
                                 <button type="submit" class="btn btn-info">
                                     <i class="fas fa-user-edit"></i> Editar

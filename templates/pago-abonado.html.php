@@ -44,10 +44,8 @@ endif;
         <form class="form-signin" action="" method="POST">
         <input type="hidden" name="key" value="<?= $url ?? ''?>">
             <div class="form-group">
-                <select name="PATENTE" id="patente" class="form-control" required>
-                    <option value="0">Seleccione el Cliente</option>
+                <select name="PATENTE" id="patente" class="form-control select2" required>
                     <?php include "../functions/todos-cliente-option.php" ?>
-                    
                 </select>
             </div>
             <button id="registrar_abonado" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="Crear abonado">Registrar Pago</button>
@@ -56,6 +54,7 @@ endif;
     </div>
 </div>
 <script>
+    $('.select2').select2();
     $('form').submit(function (e) { 
         e.preventDefault();
         var dataForm = $(this).serialize();

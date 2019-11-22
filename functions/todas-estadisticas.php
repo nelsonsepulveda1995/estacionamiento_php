@@ -1,52 +1,15 @@
 <?php
     session_start();
 
-    //GANACIA POR DIA
-    
     include __DIR__ . '/../includes/connect.php';
     $diario=date("Y-m-d");
 
-    $sql = 'SELECT SUM(TOTAL) as `TOTAL POR DIA` FROM estadia WHERE  LEFT(INGRESO,10) = :DIA';
+    $sql = 'SELECT SUM(TOTAL) as TOTAL FROM estadia WHERE  LEFT(INGRESO,10) = :DIA';
     $stmt = $pdo->prepare($sql);
     $stmt->bindValue(':DIA', $diario);
     $stmt->execute();
 
     $pordia = $stmt->fetchAll();
-
-    //GANANCIA POR MES
-
-    $mes=date("Y-m");
-
-    $sql = 'SELECT SUM(TOTAL) as `TOTAL POR MES` FROM estadia WHERE  LEFT(INGRESO,7) = :MES';
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindValue(':MES', $mes);
-    $stmt->execute();
-
-    $pormes = $stmt->fetchAll();
-
-    //GANANCIA POR AÑO
-
-    $year=date("Y");
-
-    $sql = 'SELECT SUM(TOTAL) as `TOTAL POR AÑO` FROM estadia WHERE  LEFT(INGRESO,4) = :YEAR';
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindValue(':YEAR', $year);
-    $stmt->execute();
-
-    $foryear = $stmt->fetchAll();
-
-    //LUGARES DISPONIBLES
-
-    $sql = 'SELECT `CANTIDAD` FROM `lugares` ';
-    $stmt = $pdo->query($sql);
-    $stmt->execute();
-
-    $lugares_disponibles = $stmt->fetchAll();
-
-
-
-
-    // --------------- CARGA DE PANTALLA ------------------------
 
     $titulo = 'Estadisticas';
     ob_start();
