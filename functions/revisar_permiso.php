@@ -1,5 +1,5 @@
 <?php 
-    require("included/connect.php");
+    require("includes/connect.php");
 
     function crear_usuario($cargo,$permiso){
 
