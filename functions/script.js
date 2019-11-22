@@ -1,10 +1,4 @@
 $(document).ready(function () {
-    $('#ingresar').click(validarlogin);
-    $('#registro_empleado').click(validarempleado);
-    $('#registro_cliente').click(registro_cliente);
-    $('#registrar_abonado').click(registrar_abonado);
-    $('#registro_estadia').click(registrar_estadia);
-
     //llamada a menu por ajax
     menuAjax();
 });
@@ -14,10 +8,12 @@ function validarlogin() {
     var user = $('#email').val();
     var pass = $('#password').val();
     if (pass == "" || user == "") {
-        $('#res').text("error al ingresar datos");
+        $('#res').empty();
+        $('#res').append("<div class='alert alert-warning alert-dismissible fade show' role='alert'> Debe completar todos los campos. <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
         return false;
     } else {
         $('#res').empty();
+        return true;
     }
 }
 
@@ -28,42 +24,42 @@ function validarempleado() {
     var pass = $('#password').val();
     console.log("id: " + id)
     if (pass == "" || usuario == "" || nombre == "") {
-        $('#res').text("error al ingresar datos");
+        $('#res').empty();
+        $('#res').append("<div class='alert alert-warning alert-dismissible fade show' role='alert'> Debe completar todos los campos.. <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
         return false
     }
     if (id == 0 || id > 2) {
-        $('#res').text("error al ingresar datos");
+        $('#res').empty();
+        $('#res').append("<div class='alert alert-warning alert-dismissible fade show' role='alert'> La opción seleccionada en 'Cargo' no es correcta. <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
         return false
     } else {
         $('#res').empty();
+        return true;
     }
 }
 
 function registro_cliente() {
+    console.log("llamo a la funcion")
     var tipo = $('#tipo option:selected').val();
     var patente = $('#patente').val();
     var dni = $('#dni').val();
     if (patente == "" || dni == "") {
-        $('#res').text("error al ingresar datos");
+        $('#res').empty();
+        $('#res').append("<div class='alert alert-warning alert-dismissible fade show' role='alert'> Debe completar todos los campos. <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
         return false
     }
     if (dni.length > 10) {
-        $('#res').text("dni maximo de 10 digitos");
+        $('#res').empty();
+        $('#res').append("<div class='alert alert-warning alert-dismissible fade show' role='alert'> DNI Demasiado largo<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
         return false
     }
     if (tipo == 0 || tipo > 2) {
-        $('#res').text("error al ingresar datos");
+        $('#res').empty();
+        $('#res').append("<div class='alert alert-warning alert-dismissible fade show' role='alert'> Error en el tipo de cliente <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
         return false
     } else {
         $('#res').empty();
-    }
-}
-
-function registrar_abonado() {
-    var tipo = $('#patente option:selected').val();
-    if (tipo == 0) {
-        $('#res').text("error al ingresar datos");
-        return false
+        return true;
     }
 }
 
@@ -72,14 +68,17 @@ function registrar_estadia() {
     var patente = $('#PATENTE').val();
     var id_usuario = $('#ID_USUARIO').val();
     if (patente == "" || id_usuario == "") {
-        $('#res').text("error al ingresar datos");
+        $('#res').empty();
+        $('#res').append("<div class='alert alert-warning alert-dismissible fade show' role='alert'> Debe completar todos los campos. <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
         return false
     }
     if (precio <= 0 || precio > 3) {
-        $('#res').text("error al ingresar el precio (recarge la pagina)");
+        $('#res').empty();
+        $('#res').append("<div class='alert alert-warning alert-dismissible fade show' role='alert'> La opción seleccionada en el campo 'precio' es incorrecta. <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
         return false
     } else {
         $('#res').empty();
+        return true;
     }
 }
 

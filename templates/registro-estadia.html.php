@@ -55,11 +55,6 @@ endif;
             </div>
             <div class="form-label-group">
                 <select name="PRECIO" id="PRECIO" class="form-control" required>
-                    <option value="0">Seleccione el precio</option>
-                    <!--Cargar por AJAX las opciones, por ahora están hardcodeadas-->
-                    <option value="1">Hora</option>
-                    <option value="2">Día</option>
-                    <option value="3">Abonado</option>
                 </select>
             </div>
             <button id="registro_estadia" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="Registrar Estadia">Registrar Estadia</button>
@@ -68,17 +63,20 @@ endif;
 </div>
 <script>
     $('form').submit(function (e) { 
+        $('.alert').remove();
         e.preventDefault();
         var dataForm = $(this).serialize();
         var url = $(this).attr('action');
-        $.ajax({
-            type: "POST",
-            url: url,
-            data: dataForm,
-            success: function (response) {
-                $('#body').html(response);
-                activateTablesorter();
-            }
-        });
+        if (registrar_estadia()){
+            $.ajax({
+                type: "POST", 
+                url: url,
+                data: dataForm,
+                success: function (response) {
+                    $('#body').html(response);
+                    activateTablesorter();
+                }
+            });
+        }
     });
 </script>

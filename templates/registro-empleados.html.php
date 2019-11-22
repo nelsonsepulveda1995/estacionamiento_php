@@ -72,18 +72,20 @@ endif;
 </div>
 <script>
     $('form').submit(function (e) { 
+        $('.alert').remove();
         e.preventDefault();
         var dataForm = $(this).serialize();
         var url = $(this).attr('action');
-        
-        $.ajax({
-            type: "POST",
-            url: url,
-            data: dataForm,
-            success: function (response) {
-                $('#body').html(response);
-                activateTablesorter();
-            }
-        });
+        if (validarempleado()){
+            $.ajax({
+                type: "POST", 
+                url: url,
+                data: dataForm,
+                success: function (response) {
+                    $('#body').html(response);
+                    activateTablesorter();
+                }
+            });
+        }
     });
 </script>
