@@ -38,7 +38,7 @@
                 <?php foreach ($pordia as $pordias): ?>
                     <tr>
                         <td>
-                            <?=htmlspecialchars($pordias['TOTAL'], ENT_QUOTES, 'UTF-8')?>
+                            <?=htmlspecialchars($pordias['TOTAL POR DIA'], ENT_QUOTES, 'UTF-8')?>
                         </td>
                     </tr>
                 <?php endforeach; ?>
