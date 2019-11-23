@@ -1,21 +1,15 @@
 <?php session_start() ?>
 
 <?php
-    if(isset($_SESSION)){    
-        if(!isset($_SESSION['id_usuario'])){
-            header('location: ../index.php');
-        }  
-        if(!isset($_SESSION['cargo'])){
-            header('location: ../index.php');
-        }
-        if($_SESSION['cargo']==2){
-            header('location: home-empleado.php');
-        }  
+    if (isset($_SESSION['error'])){
+        echo    '<div class="alert alert-danger alert-dismissible fade show mt-5 text-center" role="alert">'
+                    . $_SESSION['error'] .
+                    '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>';
+        unset($_SESSION['error']);
     }
-    else{
-        header('location: /../index.php');
-    }
-    
 ?>
 
 <div class="card card-signin my-5">

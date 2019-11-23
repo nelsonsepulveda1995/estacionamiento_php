@@ -1,9 +1,8 @@
 <?php 
-    require("includes/connect.php");
+    function consultar_permiso($cargo,$permiso){
+        include __DIR__ . '/../includes/connect.php';
 
-    function crear_usuario($cargo,$permiso){
-
-        $query = $pdo->prepare('SELECT `ID_PERMISO`FROM `puesto_permiso`WHERE puesto_permiso.ID_PERMISO=:PERMISO AND ID_PUESTO=:CARGO');
+        $query = $pdo->prepare('SELECT ID_PUESTO_PERMISO FROM puesto_permiso WHERE ID_PUESTO=:CARGO AND ID_PERMISO=:PERMISO');
         $query->bindValue(':CARGO', $cargo);
         $query->bindValue(':PERMISO', $permiso);
         $query->execute();

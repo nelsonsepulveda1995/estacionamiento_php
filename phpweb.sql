@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-11-2019 a las 22:54:06
--- Versión del servidor: 10.4.6-MariaDB
--- Versión de PHP: 7.3.9
+-- Tiempo de generación: 23-11-2019 a las 19:04:54
+-- Versión del servidor: 10.4.8-MariaDB
+-- Versión de PHP: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -39,8 +39,9 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`PATENTE`, `ID`, `DNI`) VALUES
-('1', 1, 'hola'),
-('2', 2, 'hola');
+('1111', 2, '11223355'),
+('asd123', 1, '12345678'),
+('qwe123', 1, '87654321');
 
 -- --------------------------------------------------------
 
@@ -63,7 +64,7 @@ CREATE TABLE `estadia` (
 --
 
 INSERT INTO `estadia` (`ID_ESTADIA`, `PATENTE`, `ID_USUARIO`, `ID_PRECIO`, `INGRESO`, `EGRESO`, `TOTAL`) VALUES
-(46, '2', 4, 2, '2019-11-22 18:14:10', '2019-11-22 18:14:49', 0);
+(2, '1111', 3, 1, '2019-11-20 22:47:27', '2019-11-20 23:03:37', 100);
 
 -- --------------------------------------------------------
 
@@ -83,8 +84,7 @@ CREATE TABLE `historialpagos` (
 --
 
 INSERT INTO `historialpagos` (`ID_PAGOMENSUAL`, `PATENTE`, `ID_PRECIO`, `FECHA_PAGO`) VALUES
-(17, '2', 3, '2019-10-22 01:14:04'),
-(18, '2', 3, '2019-11-23 01:47:17');
+(1, 'asd123', 2, '2019-11-21 02:19:43');
 
 -- --------------------------------------------------------
 
@@ -102,7 +102,7 @@ CREATE TABLE `lugares` (
 --
 
 INSERT INTO `lugares` (`ID`, `CANTIDAD`) VALUES
-(1, 49);
+(1, 50);
 
 -- --------------------------------------------------------
 
@@ -126,7 +126,16 @@ INSERT INTO `permiso` (`ID_PERMISO`, `DESCRIPCION_PERMISO`) VALUES
 (4, 'registrar_estadia'),
 (5, 'cerrar_estadia'),
 (6, 'ver_usuarios'),
-(7, 'ver_estadisticas');
+(7, 'ver_estadisticas'),
+(8, 'editar_cliente'),
+(9, 'editar_empleado'),
+(10, 'pago_abonado'),
+(11, 'registrar_abonado'),
+(12, 'reporte_ganancia_dia'),
+(13, 'todas_estadias'),
+(14, 'todos_clientes'),
+(15, 'xxxxxx'),
+(16, 'xxxxxx');
 
 -- --------------------------------------------------------
 
@@ -145,9 +154,9 @@ CREATE TABLE `precio` (
 --
 
 INSERT INTO `precio` (`ID_PRECIO`, `PRECIO`, `DESCRIPCION`) VALUES
-(1, '100.00', 'Hora'),
-(2, '0.00', 'Estadía para Abonado'),
-(3, '5000.00', 'Abonado');
+(1, '100.00', 'hora'),
+(2, '5000.00', 'abonado'),
+(3, '0.00', 'estadia para abonado');
 
 -- --------------------------------------------------------
 
@@ -191,7 +200,14 @@ INSERT INTO `puesto_permiso` (`ID_PUESTO_PERMISO`, `ID_PUESTO`, `ID_PERMISO`) VA
 (4, 2, 4),
 (5, 2, 5),
 (6, 1, 6),
-(7, 1, 7);
+(7, 1, 7),
+(8, 2, 8),
+(9, 1, 9),
+(10, 2, 10),
+(11, 2, 11),
+(12, 1, 12),
+(13, 2, 13),
+(14, 2, 14);
 
 -- --------------------------------------------------------
 
@@ -209,8 +225,8 @@ CREATE TABLE `tipo` (
 --
 
 INSERT INTO `tipo` (`ID`, `DESCRIPCION`) VALUES
-(1, 'No Abonado'),
-(2, 'Abonado');
+(1, 'abonado'),
+(2, 'no abonado');
 
 -- --------------------------------------------------------
 
@@ -233,7 +249,8 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`ID_USUARIO`, `ID`, `NOMBRE`, `ESTADO`, `USUARIO`, `PASSWORD`) VALUES
 (1, 1, 'admin', 1, 'admin', 'admin'),
-(4, 2, 'Nahuel', 1, 'cajero', 'cajero');
+(2, 1, 'alejandro', 0, 'gerente', 'gerente'),
+(3, 2, 'gabriel', 1, 'empleado', 'empleado');
 
 --
 -- Índices para tablas volcadas
@@ -316,13 +333,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `estadia`
 --
 ALTER TABLE `estadia`
-  MODIFY `ID_ESTADIA` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `ID_ESTADIA` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `historialpagos`
 --
 ALTER TABLE `historialpagos`
-  MODIFY `ID_PAGOMENSUAL` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `ID_PAGOMENSUAL` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `lugares`
@@ -334,7 +351,7 @@ ALTER TABLE `lugares`
 -- AUTO_INCREMENT de la tabla `permiso`
 --
 ALTER TABLE `permiso`
-  MODIFY `ID_PERMISO` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID_PERMISO` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `precio`
@@ -352,19 +369,19 @@ ALTER TABLE `puesto`
 -- AUTO_INCREMENT de la tabla `puesto_permiso`
 --
 ALTER TABLE `puesto_permiso`
-  MODIFY `ID_PUESTO_PERMISO` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID_PUESTO_PERMISO` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo`
 --
 ALTER TABLE `tipo`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `ID_USUARIO` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `ID_USUARIO` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
