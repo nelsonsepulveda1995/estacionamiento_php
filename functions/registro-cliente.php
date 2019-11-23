@@ -10,6 +10,7 @@
         $id = $_POST['TIPO'];
         $dni = $_POST['DNI'];
         $patente = $_POST['PATENTE'];
+        $patente = strtoupper($patente);
 
         $sql='SELECT `PATENTE` FROM `cliente` WHERE  `PATENTE`=:PATENTE ';
         $stmt = $pdo->prepare($sql);

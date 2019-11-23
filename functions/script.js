@@ -22,19 +22,38 @@ function validarempleado() {
     var id = $('#ID option:selected').val();
     var usuario = $('#usuario').val();
     var pass = $('#password').val();
+    var regex_nombre=/([a-záéíóúñ]{2,})(\s)(([a-záéíóúñ]{2,})(\s?)){1,}/ig
+    var regex_usuario=/^(?=.*[a-z])(?=.*\d?)(?=.*[$@$!_\-%*#?&]?)[a-z\d$@$_\-!%*#?&]{5,}$/ig
+    var regex_pass = /^(?=.*[a-z]?)(?=.*\d?)(?=.*[$@$!_\-%*#?&]?)[a-z\d$@$_\-!%*#?&]{8,}$/ig
     console.log("id: " + id)
     if (pass == "" || usuario == "" || nombre == "") {
         $('#res').empty();
         $('#res').append("<div class='alert alert-warning alert-dismissible fade show' role='alert'> Debe completar todos los campos.. <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
         return false
-    }
-    if (id == 0 || id > 2) {
-        $('#res').empty();
-        $('#res').append("<div class='alert alert-warning alert-dismissible fade show' role='alert'> La opción seleccionada en 'Cargo' no es correcta. <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
-        return false
-    } else {
-        $('#res').empty();
-        return true;
+    }else{
+        if (!regex_nombre.match(nombre)) {
+            $('#res').empty();
+            $('#res').append("<div class='alert alert-warning alert-dismissible fade show' role='alert'> Formato de nombre incorrecto. Deben ser 2 (dos) palabras como minimo<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+            return false
+        }
+        if (!regex_usuario.match(usuario)) {
+            $('#res').empty();
+            $('#res').append("<div class='alert alert-warning alert-dismissible fade show' role='alert'> Formato de nombre de usuario incorrecto. Debe tener 5 caracteres como minimo<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+            return false
+        }
+        if (!regex_pass.match(pass)) {
+            $('#res').empty();
+            $('#res').append("<div class='alert alert-warning alert-dismissible fade show' role='alert'> Formato de contraseña incorrecto. Debe tener 8 caracteres como minimo, sin espacios<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+            return false
+        }
+        if (id <= 0 || id > 2) {
+            $('#res').empty();
+            $('#res').append("<div class='alert alert-warning alert-dismissible fade show' role='alert'> La opción seleccionada en 'Cargo' no es correcta. <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+            return false
+        } else {
+            $('#res').empty();
+            return true;
+        }
     }
 }
 
@@ -43,36 +62,56 @@ function registro_cliente() {
     var tipo = $('#tipo option:selected').val();
     var patente = $('#patente').val();
     var dni = $('#dni').val();
+    var regex_patenteN = /([a-z]{2})(\d{3})([a-z]{2})/ig;
+    var regex_patenteV = /([a-z]{3})(\d{3})/ig;
+    var regex_dni = /(\d{8,10})/ig
     if (patente == "" || dni == "") {
         $('#res').empty();
         $('#res').append("<div class='alert alert-warning alert-dismissible fade show' role='alert'> Debe completar todos los campos. <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
         return false
-    }
-    if (dni.length > 10) {
-        $('#res').empty();
-        $('#res').append("<div class='alert alert-warning alert-dismissible fade show' role='alert'> DNI Demasiado largo<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
-        return false
-    }
-    if (tipo == 0 || tipo > 2) {
-        $('#res').empty();
-        $('#res').append("<div class='alert alert-warning alert-dismissible fade show' role='alert'> Error en el tipo de cliente <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
-        return false
-    } else {
-        $('#res').empty();
-        return true;
+    }else{
+        if (!patente.match(regex_patenteN) && !patente.match(regex_patenteV)) {
+            $('#res').empty();
+            $('#res').append("<div class='alert alert-warning alert-dismissible fade show' role='alert'>El formato de patente es incorrecto. Las patentes admitidas deben ser AA000AA o AAA000<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+            return false;
+        }
+        if (dni.length > 10) {
+            $('#res').empty();
+            $('#res').append("<div class='alert alert-warning alert-dismissible fade show' role='alert'> DNI Demasiado largo<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+            return false
+        }
+        if (!dni.match(regex_dni)){
+            $('#res').empty();
+            $('#res').append("<div class='alert alert-warning alert-dismissible fade show' role='alert'>El formato de DNI es incorrecto. Los DNI admitidos deben ser entre 8 y 10 caracteres numéricos.<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+            return false;
+        }
+        if (tipo == 0 || tipo > 2) {
+            $('#res').empty();
+            $('#res').append("<div class='alert alert-warning alert-dismissible fade show' role='alert'> Error en el tipo de cliente <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+            return false
+        } else {
+            $('#res').empty();
+            return true;
+        }
     }
 }
 
 function registrar_estadia() {
     var precio = $('#PRECIO option:selected').val();
-    var patente = $('#PATENTE').val();
+    var patente = $('#patente').val();
     var id_usuario = $('#ID_USUARIO').val();
-    if (patente == "" || id_usuario == "") {
+    var regex_patenteN = /([a-z]{2})(\d{3})([a-z]{2})/ig;
+    var regex_patenteV = /([a-z]{3})(\d{3})/ig;
+    if (patente == "" || patente=="0" || id_usuario == "" ) {
         $('#res').empty();
         $('#res').append("<div class='alert alert-warning alert-dismissible fade show' role='alert'> Debe completar todos los campos. <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
         return false
+    }else if (!patente.match(regex_patenteV) && !patente.match(regex_patenteN)) {
+        $('#res').empty();
+        $('#res').append("<div class='alert alert-warning alert-dismissible fade show' role='alert'>El formato de patente es incorrecto. Las patentes admitidas deben ser AA000AA o AAA000<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+        return false;
     }
-    if (precio <= 0 || precio > 3) {
+    if (precio <= 0 || precio > 3 || precio=='') {
         $('#res').empty();
         $('#res').append("<div class='alert alert-warning alert-dismissible fade show' role='alert'> La opción seleccionada en el campo 'precio' es incorrecta. <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
         return false
@@ -81,6 +120,26 @@ function registrar_estadia() {
         return true;
     }
 }
+
+function egreso_estadia() {
+    var patente = $('#patente').val();
+    var id_usuario = $('#ID_USUARIO').val();
+    var regex_patenteN = /([a-z]{2})(\d{3})([a-z]{2})/ig;
+    var regex_patenteV = /([a-z]{3})(\d{3})/ig;
+    if (patente == "" || patente=="0" || id_usuario == "" ) {
+        $('#res').empty();
+        $('#res').append("<div class='alert alert-warning alert-dismissible fade show' role='alert'> Debe completar todos los campos. <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+        return false
+    }else if (!patente.match(regex_patenteV) && !patente.match(regex_patenteN)) {
+        $('#res').empty();
+        $('#res').append("<div class='alert alert-warning alert-dismissible fade show' role='alert'>El formato de patente es incorrecto. Las patentes admitidas deben ser AA000AA o AAA000<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+        return false;
+    } else {
+        $('#res').empty();
+        return true;
+    }
+}
+
 
 //------------------------------------------NAVBAR POR AJAX----------------------------------------
 function menuAjax() {

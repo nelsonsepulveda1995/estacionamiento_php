@@ -50,8 +50,8 @@ endif;
         <input type="hidden" name="key" value="<?= $url ?? ''?>">
             <input type="hidden" id="ID_USUARIO" name="ID_USUARIO" value="<?=$_SESSION['id_usuario'] ?? ''?>">  <!-- toma el usuario activo -->
             <div class="form-label-group">
-            <p>Seleccione una patente: </p>
                 <select name="PATENTE" id="patente" class="form-control select2" required>
+                    <option value="0">Seleccione una patente</option>
                 <?php include '../functions/todos-cliente-option-general.php'; ?>
                 </select>
             </div>
@@ -59,7 +59,6 @@ endif;
             <p>Precio de la estadía: </p>
                 <select name="PRECIO" id="PRECIO" class="form-control" required>
                 </select>
-                <p id="PRE"></p>
             </div>
             <button id="registro_estadia" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="Registrar Estadia">Registrar Estadia</button>
         </form>

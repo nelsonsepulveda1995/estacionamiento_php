@@ -48,7 +48,7 @@ endif;
             <input type="hidden" name="key" value="<?= $url ?? ''?>">
             <input type="hidden" name="ID_USUARIO" value="<?=$empleado['ID_USUARIO'] ?? ''?>">
             <div class="form-label-group">
-                <input type="text" id="nombre" name="NOMBRE" class="form-control" placeholder="Ingrese nombre de empleado" value="<?=$empleado['NOMBRE'] ?? ''?>" required autofocus>
+                <input type="text" id="nombre" name="NOMBRE" class="form-control" pattern="([a-zA-ZÁáÉéÍíÓóÚúÑñ]{2,})(\s)(([a-zA-ZÁáÉéÍíÓóÚúÑñ]{2,})(\s?)){1,}" title="Debe contener 2 (dos) palabras como mínimo." placeholder="Ingrese nombre de empleado" value="<?=$empleado['NOMBRE'] ?? ''?>" required autofocus>
                 <label for="nombre">Ingrese nombre de empleado</label>
             </div>
             <div class="form-group">
@@ -59,11 +59,11 @@ endif;
                 </select>
             </div>
             <div class="form-label-group">
-                <input type="text" id="usuario" name="USUARIO" class="form-control" placeholder="Ingrese nombre de usuario" value="<?=$empleado['USUARIO'] ?? ''?>" required autofocus>
+                <input type="text" id="usuario" name="USUARIO" class="form-control" pattern="^(?=.*[a-zA-Z])(?=.*\d?)(?=.*[$@$!_\-%*#?&]?)[a-zA-Z\d$@$_\-!%*#?&]{5,}$" minlength="5" title="Debe contener 5 (cinco) caracteres, que incluyan una letra y sin espacios, como mínimo." placeholder="Ingrese nombre de usuario" value="<?=$empleado['USUARIO'] ?? ''?>" required autofocus>
                 <label for="usuario">Ingrese nombre de usuario</label>
             </div>
             <div class="form-label-group">
-                <input type="password" id="password" name="PASSWORD" class="form-control" placeholder="Ingrese contraseña" value="<?=$empleado['PASSWORD'] ?? ''?>" required>
+                <input type="password" id="password" name="PASSWORD" class="form-control" pattern="^(?=.*[a-zA-Z]?)(?=.*\d?)(?=.*[$@$!_\-%*#?&]?)[a-zA-Z\d$@$_\-!%*#?&]{8,}$" minlength="8" title="Debe contener 8 (ocho) caracteres, sin espacios, como mínimo" placeholder="Ingrese contraseña" value="<?=$empleado['PASSWORD'] ?? ''?>" required>
                 <label for="password">Ingrese contraseña</label>
             </div>
             <button id="registro_empleado" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="Register account">Ingresar</button>

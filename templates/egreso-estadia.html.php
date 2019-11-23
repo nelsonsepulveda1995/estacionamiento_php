@@ -60,14 +60,16 @@ endif;
     $('form').submit(function (e) { 
         e.preventDefault();
         var dataForm = $(this).serialize();
-        $.ajax({
-            type: "POST",
-            url: "<?php echo $url ?>",
-            data: dataForm,
-            success: function (response) {
-                $('#body').html(response);
-                activateTablesorter();
-            }
-        });
+        if (egreso_estadia()) {
+            $.ajax({
+                type: "POST",
+                url: "<?php echo $url ?>",
+                data: dataForm,
+                success: function (response) {
+                    $('#body').html(response);
+                    activateTablesorter();
+                }
+            });
+        }
     });
 </script>
