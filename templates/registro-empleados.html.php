@@ -8,7 +8,7 @@
         }  
     }
     else{
-        header('location: /../index.php');
+        header('location: ../index.php');
     }
 ?>
 
@@ -32,6 +32,7 @@ if (isset($_SESSION['success'])):
     unset($_SESSION['success']);
 endif;
 ?>
+
 <div id="res"></div>
 <div class="card card-signin my-5">
     <br>

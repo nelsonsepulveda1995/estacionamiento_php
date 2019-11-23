@@ -2,7 +2,7 @@
     session_start();
     include __DIR__ . '/../includes/connect.php';
 
-    if(!isset($_POST)){
+    if(!isset($_POST['fechaSort'])){
 
         //GANACIA POR DIA
         $diario=date("Y-m-d");
@@ -41,8 +41,7 @@
         include __DIR__ . '/../templates/lista-estadisticas.html.php';
         $contenido = ob_get_clean();
         print_r($contenido);
-    }
-    if(isset($_POST)){ //pasarle la fecha desde el front en un post
+    }else{ //pasarle la fecha desde el front en un post
         if(isset($_POST['fecha'])){
             //GANACIA POR DIA
             $diario=($_POST['fecha']);  //deberia tomar el año ,mes y dia
