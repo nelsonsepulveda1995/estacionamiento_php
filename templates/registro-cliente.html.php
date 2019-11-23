@@ -52,6 +52,7 @@ endif;
         <!--La respuesta del formulario se envia al mismo script-->
         <form class="form-signin" action="<?= $url ?? ''?>" method="POST">
         <input type="hidden" name="key" value="<?= $url ?? ''?>">
+        <input type="hidden" name="ID" value="<?=$id ?? ''?>">
             <div class="form-label-group">
                 <input type="text" name="PATENTE" id="patente" class="form-control" pattern="([a-zA-Z]{2})(\d{3})([a-zA-Z]{2})|([a-zA-Z]{3})(\d{3})" title="Los formatos admitidos son AA000AA y AAA000" value="<?=$cliente['PATENTE'] ?? ''?>" required placeholder="Ingrese la patente del cliente">
                 <label for="patente">Ingrese la patente del cliente</label>

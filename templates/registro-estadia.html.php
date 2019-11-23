@@ -52,7 +52,7 @@ endif;
             <div class="form-label-group">
                 <select name="PATENTE" id="patente" class="form-control select2" required>
                     <option value="0">Seleccione una patente</option>
-                <?php include '../functions/todos-cliente-option-general.php'; ?>
+                <?php include '../functions/todos-cliente-option-no-abonado.php'; ?>
                 </select>
             </div>
             <div class="form-label-group">
