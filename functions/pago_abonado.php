@@ -24,7 +24,7 @@
                         $fechaPago = new DateTime($fechaPago['FECHA_PAGO']);
                         $fechaActual = new DateTime($fecha);
                         $intervalo = $fechaPago->diff($fechaActual);
-                        if (isset($intervalo) && $intervalo->m > 0) {
+                        if (isset($intervalo) && $intervalo->m > 0 || $intervalo->y > 0) {
                             $sql = 'INSERT INTO `historialpagos`(`PATENTE`, `ID_PRECIO`, `FECHA_PAGO`) VALUES (:PATENTE,3,:FECHA)';
                             $stmt = $pdo->prepare($sql);
                             $stmt->bindValue(':PATENTE', $patente);
