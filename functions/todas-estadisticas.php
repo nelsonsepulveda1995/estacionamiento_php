@@ -6,87 +6,56 @@
     if(isset($_SESSION['cargo'])){
         if(consultar_permiso($_SESSION['cargo'], 7)){
             include __DIR__ . '/../includes/connect.php';
+            //GANACIA POR DIA
+                
+            $sql = "SELECT LEFT(`INGRESO`,10) AS FECHA , SUM(`TOTAL`) AS 'TOTAL POR DIA' FROM `estadia` GROUP BY LEFT(`INGRESO`,10)";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+            $pordia = $stmt->fetchAll();
+                
+            //GANANCIA POR MES
+            $sql = "SELECT LEFT(`INGRESO`,7) AS FECHA , SUM(`TOTAL`) AS 'TOTAL POR MES' FROM `estadia` GROUP BY LEFT(`INGRESO`,7)";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+            $pormes = $stmt->fetchAll();
+                
+            //GANANCIA POR AÑO
+            $sql = "SELECT LEFT(`INGRESO`,4) AS FECHA , SUM(`TOTAL`) AS 'TOTAL POR AÑO' FROM `estadia` GROUP BY LEFT(`INGRESO`,4)";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+            $foryear = $stmt->fetchAll();
+                
+            //LUGARES DISPONIBLES
+            $sql = "SELECT `CANTIDAD` FROM `lugares` ";
+            $stmt = $pdo->query($sql);
+            $stmt->execute();
+            $lugares_disponibles = $stmt->fetchAll();
+
+            //TIPOS DE CLIENTES
             
-            if(!isset($_POST['fechaSort'])){
+            $sql = "SELECT `tipo`.`DESCRIPCION`,SUM( cliente.`ID`) AS CANTIDAD FROM `cliente` LEFT JOIN `tipo` ON `cliente`.`ID` = `tipo`.`ID`GROUP BY cliente.ID;";
+            $stmt = $pdo->query($sql);
+            $stmt->execute();
+            $cliente = $stmt->fetchAll();
+            
+            //PROMEDIO DE CLIENTES  
+            
+            $sql = "SELECT LEFT(INGRESO,10) AS FECHA, COUNT(`ID_ESTADIA`) AS TOTAL FROM `estadia` GROUP BY LEFT(`INGRESO`,10);";
+            $stmt = $pdo->query($sql);
+            $stmt->execute();
+            $clientes_por_dia = $stmt->fetchAll();
+
+            $sql = "SELECT LEFT(INGRESO,7) AS FECHA, COUNT(`ID_ESTADIA`) AS TOTAL FROM `estadia` GROUP BY LEFT(`INGRESO`,7);";
+            $stmt = $pdo->query($sql);
+            $stmt->execute();
+            $clientes_por_mes = $stmt->fetchAll();
+            // --------------- CARGA DE PANTALLA ------------------------
                 
-                //GANACIA POR DIA
-                $diario=date("Y-m-d");
-                
-                $sql = 'SELECT SUM(TOTAL) as `TOTAL POR DIA` FROM estadia WHERE  LEFT(INGRESO,10) = :DIA';
-                $stmt = $pdo->prepare($sql);
-                $stmt->bindValue(':DIA', $diario);
-                $stmt->execute();
-                $pordia = $stmt->fetchAll();
-                
-                //GANANCIA POR MES
-                $mes=date("Y-m");
-                $sql = 'SELECT SUM(TOTAL) as `TOTAL POR MES` FROM estadia WHERE  LEFT(INGRESO,7) = :MES';
-                $stmt = $pdo->prepare($sql);
-                $stmt->bindValue(':MES', $mes);
-                $stmt->execute();
-                $pormes = $stmt->fetchAll();
-                
-                //GANANCIA POR AÑO
-                $year=date("Y");
-                $sql = 'SELECT SUM(TOTAL) as `TOTAL POR AÑO` FROM estadia WHERE  LEFT(INGRESO,4) = :YEAR';
-                $stmt = $pdo->prepare($sql);
-                $stmt->bindValue(':YEAR', $year);
-                $stmt->execute();
-                $foryear = $stmt->fetchAll();
-                
-                //LUGARES DISPONIBLES
-                $sql = 'SELECT `CANTIDAD` FROM `lugares` ';
-                $stmt = $pdo->query($sql);
-                $stmt->execute();
-                $lugares_disponibles = $stmt->fetchAll();
-                // --------------- CARGA DE PANTALLA ------------------------
-                
-                $titulo = 'Estadisticas';
-                ob_start();
-                include __DIR__ . '/../templates/lista-estadisticas.html.php';
-                $contenido = ob_get_clean();
-                print_r($contenido);
-            }else{ //pasarle la fecha desde el front en un post
-                if(isset($_POST['fecha'])){
-                    //GANACIA POR DIA
-                    $diario=($_POST['fecha']);  //deberia tomar el año ,mes y dia
-                    
-                    $sql = 'SELECT SUM(TOTAL) as `TOTAL POR DIA` FROM estadia WHERE  LEFT(INGRESO,10) = :DIA';
-                    $stmt = $pdo->prepare($sql);
-                    $stmt->bindValue(':DIA', $diario);
-                    $stmt->execute();
-                    $pordia = $stmt->fetchAll();
-                    
-                    //GANANCIA POR MES
-                    $mes=substr($_POST['fecha'],0,6); //deberia tomar el año y mes 
-                    $sql = 'SELECT SUM(TOTAL) as `TOTAL POR MES` FROM estadia WHERE  LEFT(INGRESO,7) = :MES';
-                    $stmt = $pdo->prepare($sql);
-                    $stmt->bindValue(':MES', $mes);
-                    $stmt->execute();
-                    $pormes = $stmt->fetchAll();
-                    
-                    //GANANCIA POR AÑO
-                    $year=substr($_POST['fecha'],0,3);
-                    $sql = 'SELECT SUM(TOTAL) as `TOTAL POR AÑO` FROM estadia WHERE  LEFT(INGRESO,4) = :YEAR';
-                    $stmt = $pdo->prepare($sql);
-                    $stmt->bindValue(':YEAR', $year);
-                    $stmt->execute();
-                    $foryear = $stmt->fetchAll();
-                    
-                    //LUGARES DISPONIBLES
-                    $sql = 'SELECT `CANTIDAD` FROM `lugares` ';
-                    $stmt = $pdo->query($sql);
-                    $stmt->execute();
-                    $lugares_disponibles = $stmt->fetchAll();
-                    // --------------- CARGA DE PANTALLA ------------------------
-                    
-                    $titulo = 'Estadisticas';
-                    ob_start();
-                    include __DIR__ . '/../templates/lista-estadisticas.html.php';
-                    $contenido = ob_get_clean();
-                    print_r($contenido);
-                }
-            }
+            $titulo = 'Estadisticas';
+            ob_start();
+            include __DIR__ . '/../templates/lista-estadisticas.html.php';
+            $contenido = ob_get_clean();
+            print_r($contenido);
         }
         else {
             $_SESSION['error'] = 'No posee permisos para realizar esa acción';
