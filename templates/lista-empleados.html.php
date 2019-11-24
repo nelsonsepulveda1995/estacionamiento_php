@@ -40,8 +40,6 @@ endif;
                         <th>ID</th>
                         <th>Nombre</th>
                         <th>Cargo</th>
-                        <th>Editar</th>
-                        <th>Deshabilitar</th>
                     </tr>
                 </thead>
                 <tbody>

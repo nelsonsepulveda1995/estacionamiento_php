@@ -7,7 +7,7 @@
         if(consultar_permiso($_SESSION['cargo'], 14)){
             include __DIR__ . '/../includes/connect.php';
             
-            $sql = 'SELECT PATENTE, DNI, DESCRIPCION FROM cliente INNER JOIN tipo WHERE cliente.ID = tipo.ID';
+            $sql = 'SELECT PATENTE, DNI, DESCRIPCION, NOMBRE_CLIENTE, EMAIL FROM cliente INNER JOIN tipo WHERE cliente.ID = tipo.ID';
             
             $stmt = $pdo->prepare($sql);
             $stmt->execute();

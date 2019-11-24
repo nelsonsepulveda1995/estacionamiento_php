@@ -55,7 +55,15 @@ endif;
         <input type="hidden" name="ID" value="<?=$id ?? ''?>">
         <input type="hidden" name="clientePrev" value="<?=$cliente['ID'] ?? ''?>">
             <div class="form-label-group">
-                <input type="text" name="PATENTE" id="patente" class="form-control" pattern="([a-zA-Z]{2})(\d{3})([a-zA-Z]{2})|([a-zA-Z]{3})(\d{3})" title="Los formatos admitidos son AA000AA y AAA000" value="<?=$cliente['PATENTE'] ?? ''?>" required placeholder="Ingrese la patente del cliente">
+                <input type="text" name="NOMBRE_CLIENTE" id="nombre_cliente" class="form-control" pattern="([a-zA-ZÁáÉéÍíÓóÚúÑñ]{2,})(\s)(([a-zA-ZÁáÉéÍíÓóÚúÑñ]{2,})(\s?)){1,}" title="Debe contener 2 (dos) palabras como mínimo." value="<?=$cliente['NOMBRE_CLIENTE'] ?? ''?>" required placeholder="Ingrese el nombre del cliente">
+                <label for="nombre_cliente">Ingrese el nombre del cliente</label>
+            </div>
+            <div class="form-label-group">
+                <input type="text" name="EMAIL" id="email" class="form-control" pattern="[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}" title="El formato de Email debe ser 'nombre@dominio'" value="<?=$cliente['EMAIL'] ?? ''?>" required placeholder="Ingrese el email del cliente">
+                <label for="email">Ingrese el email del cliente</label>
+            </div>
+            <div class="form-label-group">
+                <input type="text" name="PATENTE" id="patente" class="form-control" pattern="([a-zA-Z]{2})(\d{3})([a-zA-Z]{2})|([a-zA-Z]{3})(\d{3})" title="Los formatos admitidos son 'AA000AA' y 'AAA000'" value="<?=$cliente['PATENTE'] ?? ''?>" required placeholder="Ingrese la patente del cliente">
                 <label for="patente">Ingrese la patente del cliente</label>
             </div>
             <div class="form-label-group">

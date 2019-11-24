@@ -62,17 +62,31 @@ function registro_cliente() {
     var tipo = $('#tipo option:selected').val();
     var patente = $('#patente').val();
     var dni = $('#dni').val();
+    var nombre_cliente = $('#nombre_cliente').val();
+    var email = $('#email').val();
     var regex_patenteN = /([a-z]{2})(\d{3})([a-z]{2})/ig;
     var regex_patenteV = /([a-z]{3})(\d{3})/ig;
-    var regex_dni = /(\d{8,10})/ig
-    if (patente == "" || dni == "") {
+    var regex_nombre_cliente = /([a-záéíóúñ]{2,})(\s)(([a-záéíóúñ]{2,})(\s?)){1,}/ig;
+    var regex_email = /[-0-9a-z.+_]+@[-0-9a-z.+_]+.[a-z]{2,4}/ig;
+    var regex_dni = /(\d{8,10})/ig;
+    if (patente == "" || dni == "" || nombre_cliente == "" || email == "") {
         $('#res').empty();
         $('#res').append("<div class='alert alert-warning alert-dismissible fade show' role='alert'> Debe completar todos los campos. <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
         return false
     }else{
         if (!patente.match(regex_patenteN) && !patente.match(regex_patenteV)) {
             $('#res').empty();
-            $('#res').append("<div class='alert alert-warning alert-dismissible fade show' role='alert'>El formato de patente es incorrecto. Las patentes admitidas deben ser AA000AA o AAA000<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+            $('#res').append("<div class='alert alert-warning alert-dismissible fade show' role='alert'>El formato de patente es incorrecto. Las patentes admitidas deben ser 'AA000AA' o 'AAA000'<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+            return false;
+        }
+        if (!nombre_cliente.match(regex_nombre_cliente)) {
+            $('#res').empty();
+            $('#res').append("<div class='alert alert-warning alert-dismissible fade show' role='alert'>El formato del nombre es incorrecto. Debe contener al menos 2 (dos) palabras.<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+            return false;
+        }
+        if (!email.match(regex_email)) {
+            $('#res').empty();
+            $('#res').append("<div class='alert alert-warning alert-dismissible fade show' role='alert'>El formato de email es incorrecto. El formato aceptado es 'nombre@dominio'<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
             return false;
         }
         if (dni.length > 10) {

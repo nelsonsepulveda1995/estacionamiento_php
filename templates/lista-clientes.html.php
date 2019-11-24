@@ -28,15 +28,22 @@
             <table class="table table-hover table-striped">
                 <thead class="thead-dark">
                     <tr>
-                        <th>DNI</th>
+                        <th>NOMBRE</th>
+                        <th>EMAIL</th>
                         <th>PATENTE</th>
-                        <th>Tipo</th>
-                        <th>Editar</th>
+                        <th>DNI</th>
+                        <th>TIPO</th>
                     </tr>
                 </thead>
                 <tbody>
                 <?php foreach ($clientes as $cliente): ?>
                     <tr>
+                        <td>
+                            <?=htmlspecialchars($cliente['NOMBRE_CLIENTE'], ENT_QUOTES, 'UTF-8')?>
+                        </td>
+                        <td>
+                            <?=htmlspecialchars($cliente['EMAIL'], ENT_QUOTES, 'UTF-8')?>
+                        </td>
                         <td>
                             <?=htmlspecialchars($cliente['DNI'], ENT_QUOTES, 'UTF-8')?>
                         </td>

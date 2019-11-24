@@ -11,8 +11,12 @@
                 include __DIR__ . '/../includes/connect.php';
                 $regex_patenteN = '/([a-z]{2})(\d{3})([a-z]{2})/i';
                 $regex_patenteV = '/([a-z]{3})(\d{3})/i';
+                $regex_nombre_cliente = '/([a-záéíóúñ]{2,})(\s)(([a-záéíóúñ]{2,})(\s?)){1,}/i';
+                $regex_email = '/[-0-9a-z.+_]+@[-0-9a-z.+_]+.[a-z]{2,4}/i';
                 $regex_dni = '/(\d{8,10})/i';
-                if (isset($_POST['DNI']) && isset($_POST['TIPO']) && preg_match_all($regex_dni,$_POST['DNI']) && (preg_match_all($regex_patenteN,$_POST['PATENTE']) xor preg_match_all($regex_patenteV,$_POST['PATENTE']))) {
+                if (isset($_POST['DNI']) && isset($_POST['TIPO']) && isset($_POST['NOMBRE_CLIENTE']) && isset($_POST['EMAIL']) && preg_match_all($regex_nombre_cliente,$_POST['NOMBRE_CLIENTE']) && preg_match_all($regex_email,$_POST['EMAIL']) && preg_match_all($regex_dni,$_POST['DNI']) && (preg_match_all($regex_patenteN,$_POST['PATENTE']) xor preg_match_all($regex_patenteV,$_POST['PATENTE']))) {
+                    $nombre = $_POST['NOMBRE_CLIENTE'];
+                    $email = $_POST['EMAIL'];
                     $id = $_POST['TIPO'];
                     $dni = $_POST['DNI'];
                     $patente = $_POST['PATENTE'];
@@ -27,8 +31,10 @@
                     
                     //si el usuario no existe
                     if ($cantidadFilas <= 0) {            
-                        $sql = "INSERT INTO `cliente`(`DNI`, `ID`, `PATENTE`) VALUES (:DNI,:ID,:PATENTE)";
+                        $sql = "INSERT INTO `cliente`(`NOMBRE_CLIENTE`,`EMAIL`,`DNI`, `ID`, `PATENTE`) VALUES (:NOMBRE,:EMAIL,:DNI,:ID,:PATENTE)";
                         $stmt = $pdo->prepare($sql);
+                        $stmt->bindValue(':NOMBRE', $nombre);
+                        $stmt->bindValue(':EMAIL', $email);
                         $stmt->bindValue(':DNI', $dni);
                         $stmt->bindValue(':ID', $id);
                         $stmt->bindValue(':PATENTE', $patente);
