@@ -18,3 +18,24 @@
     
         }
     }
+
+    function estadisticas_dia(){
+        include __DIR__ . '/../includes/connect.php';
+        $sql = "SELECT LEFT(INGRESO,10) AS FECHA, COUNT(`ID_ESTADIA`) AS TOTAL FROM `estadia` GROUP BY LEFT(`INGRESO`,10);";
+        $stmt = $pdo->query($sql);
+        $stmt->execute();
+    }
+
+    function estadisticas_mes(){
+        include __DIR__ . '/../includes/connect.php';
+        $sql = "SELECT LEFT(INGRESO,7) AS FECHA, COUNT(`ID_ESTADIA`) AS TOTAL FROM `estadia` GROUP BY LEFT(`INGRESO`,7);";
+        $stmt = $pdo->query($sql);
+        $stmt->execute();
+    }   
+
+    function estadisticas_año(){
+        include __DIR__ . '/../includes/connect.php';
+        $sql = "SELECT LEFT(INGRESO,4) AS FECHA, COUNT(`ID_ESTADIA`) AS TOTAL FROM `estadia` GROUP BY LEFT(`INGRESO`,4);";
+        $stmt = $pdo->query($sql);
+        $stmt->execute();
+    }
