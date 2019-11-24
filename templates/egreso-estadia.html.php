@@ -56,7 +56,9 @@ endif;
     </div>
 </div>
 <script>
-    $('.select2').select2();
+    $('.select2').select2({
+        width: '100%'
+    });
     $('form').submit(function (e) { 
         e.preventDefault();
         var dataForm = $(this).serialize();
