@@ -142,7 +142,7 @@
                                     <?=htmlspecialchars($foryears['FECHA'], ENT_QUOTES, 'UTF-8')?>
                                 </td>
                                 <td>
-                                    <?=htmlspecialchars($foryears['TOTAL POR AÑO'], ENT_QUOTES, 'UTF-8')?>
+                                    <?=htmlspecialchars("$" .$foryears['TOTAL POR AÑO'], ENT_QUOTES, 'UTF-8')?>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -174,6 +174,22 @@
                     </table>
                 </div>
             </div>
+            <div class="col-md-6 col-lg-12 col-xs-6">
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Ganancias Totales</th>
+                            </tr>
+                        <?php foreach ($lugares_disponibles as $lugar): ?>
+                                <td>
+                                    <?=htmlspecialchars("$" .$gananciasTotales, ENT_QUOTES, 'UTF-8')?>
+                                </td>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>  
         </div>
     </div>
 </div>
@@ -190,8 +206,7 @@
                                 <th>Tipo de Cliente</th>
                                 <th>Cantidad</th>
                             </tr>
-                        </thead>
-                        <tbody>
+
                         <?php foreach ($cliente as $clientes): ?>
                             <tr>
                                 <td>
@@ -207,8 +222,7 @@
                 </div>
             </div>
             <br>
-            <br>
-            <div class="col-md-6 col-lg-6 col-xs-6">
+            <div class="col-4">
                 <div class="table-responsive">
                     <table class="table table-hover table-striped">
                         <thead class="thead-dark">
@@ -231,32 +245,16 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th colspan="7" class="ts-pager">
-                                    <div class="form-inline">
-                                    <div class="btn-group btn-group-sm mx-1" role="group">
-                                        <button type="button" class="btn btn-secondary first" title="first">⇤</button>
-                                        <button type="button" class="btn btn-secondary prev" title="previous">←</button>
-                                    </div>
-                                    <span class="pagedisplay"></span>
-                                    <div class="btn-group btn-group-sm mx-1" role="group">
-                                        <button type="button" class="btn btn-secondary next" title="next">→</button>
-                                        <button type="button" class="btn btn-secondary last" title="last">⇥</button>
-                                    </div>
-                                    <select class="form-control-sm custom-select px-1 pagesize" title="Select page size">
-                                        <option selected="selected" value="10">10</option>
-                                        <option value="20">20</option>
-                                        <option value="30">30</option>
-                                        <option value="all">All Rows</option>
-                                    </select>
-                                    <select class="form-control-sm custom-select px-4 mx-1 pagenum" title="Select page number"></select>
-                                    </div>
-                                </th>   
+                                <td>PROMEDIO: </td>
+                                <td>
+                                    <?=htmlspecialchars($totalDia, ENT_QUOTES, 'UTF-8')?>
+                                </td>
                             </tr>
                         </tfoot>
                     </table>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-6 col-xs-6">
+            <div class="col-4">
                 <div class="table-responsive">
                     <table class="table table-hover table-striped">
                         <thead class="thead-dark">
@@ -277,26 +275,40 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th colspan="7" class="ts-pager">
-                                    <div class="form-inline">
-                                    <div class="btn-group btn-group-sm mx-1" role="group">
-                                        <button type="button" class="btn btn-secondary first" title="first">⇤</button>
-                                        <button type="button" class="btn btn-secondary prev" title="previous">←</button>
-                                    </div>
-                                    <span class="pagedisplay"></span>
-                                    <div class="btn-group btn-group-sm mx-1" role="group">
-                                        <button type="button" class="btn btn-secondary next" title="next">→</button>
-                                        <button type="button" class="btn btn-secondary last" title="last">⇥</button>
-                                    </div>
-                                    <select class="form-control-sm custom-select px-1 pagesize" title="Select page size">
-                                        <option selected="selected" value="10">10</option>
-                                        <option value="20">20</option>
-                                        <option value="30">30</option>
-                                        <option value="all">All Rows</option>
-                                    </select>
-                                    <select class="form-control-sm custom-select px-4 mx-1 pagenum" title="Select page number"></select>
-                                    </div>
-                                </th>   
+                                <td>PROMEDIO: </td>
+                                <td>
+                                    <?=htmlspecialchars($totalMes, ENT_QUOTES, 'UTF-8')?>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped">
+                        <thead class="thead-dark">
+                            <th>Fecha</th>
+                            <th>Pomedio Clientes por Año</th>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($clientes_por_year as $clientes_por_years): ?>
+                            <tr>
+                                <td>
+                                    <?=htmlspecialchars($clientes_por_years['FECHA'], ENT_QUOTES, 'UTF-8')?>
+                                </td>
+                                <td>
+                                    <?=htmlspecialchars($clientes_por_years['TOTAL'], ENT_QUOTES, 'UTF-8')?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td>PROMEDIO: </td>
+                                <td>
+                                    <?=htmlspecialchars($totalYear, ENT_QUOTES, 'UTF-8')?>
+                                </td>
                             </tr>
                         </tfoot>
                     </table>

@@ -45,7 +45,7 @@
 
 <body>
     <!--Navbar-->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
         <div class="container">
             <?php if(isset($_SESSION['cargo'])): ?>
                 <?php if($_SESSION['cargo'] == 1): ?>

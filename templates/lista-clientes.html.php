@@ -32,17 +32,10 @@
                         <th>EMAIL</th>
                         <th>PATENTE</th>
                         <th>DNI</th>
-                        <th>TIPO</th>
+                        <th class="filter-select filter-exact" data-placeholder="Tipo de cliente">TIPO</th>
                     </tr>
                 </thead>
                 <tfoot>
-                    <tr>
-                        <th>NOMBRE</th>
-                        <th>EMAIL</th>
-                        <th>PATENTE</th>
-                        <th>DNI</th>
-                        <th>TIPO</th>
-                    </tr>
                     <tr>
                         <th colspan="7" class="ts-pager">
                             <div class="form-inline">
@@ -76,10 +69,10 @@
                             <?=htmlspecialchars($cliente['EMAIL'], ENT_QUOTES, 'UTF-8')?>
                         </td>
                         <td>
-                            <?=htmlspecialchars($cliente['DNI'], ENT_QUOTES, 'UTF-8')?>
+                            <?=htmlspecialchars($cliente['PATENTE'], ENT_QUOTES, 'UTF-8')?>
                         </td>
                         <td>
-                            <?=htmlspecialchars($cliente['PATENTE'], ENT_QUOTES, 'UTF-8')?>
+                            <?=htmlspecialchars($cliente['DNI'], ENT_QUOTES, 'UTF-8')?>
                         </td>
                         <td>
                             <?=htmlspecialchars($cliente['DESCRIPCION'], ENT_QUOTES, 'UTF-8')?>

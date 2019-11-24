@@ -44,11 +44,6 @@ endif;
                 </thead>
                 <tfoot>
                     <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Cargo</th>
-                    </tr>
-                    <tr>
                         <th colspan="7" class="ts-pager">
                             <div class="form-inline">
                             <div class="btn-group btn-group-sm mx-1" role="group">

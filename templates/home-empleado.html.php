@@ -19,5 +19,6 @@ endif;
 <div class="card card-signin my-5">
     <div class="card-body">
         <h5 class="card-title text-center">Bienvenido al sistema, Empleado</h5>
+        <hr class="my-4">
     </div>
 </div>
