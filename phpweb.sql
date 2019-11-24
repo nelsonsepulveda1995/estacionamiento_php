@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-11-2019 a las 19:04:54
--- Versión del servidor: 10.4.8-MariaDB
--- Versión de PHP: 7.3.11
+-- Tiempo de generación: 24-11-2019 a las 01:37:16
+-- Versión del servidor: 10.4.6-MariaDB
+-- Versión de PHP: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -34,15 +34,6 @@ CREATE TABLE `cliente` (
   `DNI` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `cliente`
---
-
-INSERT INTO `cliente` (`PATENTE`, `ID`, `DNI`) VALUES
-('1111', 2, '11223355'),
-('asd123', 1, '12345678'),
-('qwe123', 1, '87654321');
-
 -- --------------------------------------------------------
 
 --
@@ -59,13 +50,6 @@ CREATE TABLE `estadia` (
   `TOTAL` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `estadia`
---
-
-INSERT INTO `estadia` (`ID_ESTADIA`, `PATENTE`, `ID_USUARIO`, `ID_PRECIO`, `INGRESO`, `EGRESO`, `TOTAL`) VALUES
-(2, '1111', 3, 1, '2019-11-20 22:47:27', '2019-11-20 23:03:37', 100);
-
 -- --------------------------------------------------------
 
 --
@@ -78,13 +62,6 @@ CREATE TABLE `historialpagos` (
   `ID_PRECIO` bigint(20) NOT NULL,
   `FECHA_PAGO` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `historialpagos`
---
-
-INSERT INTO `historialpagos` (`ID_PAGOMENSUAL`, `PATENTE`, `ID_PRECIO`, `FECHA_PAGO`) VALUES
-(1, 'asd123', 2, '2019-11-21 02:19:43');
 
 -- --------------------------------------------------------
 
@@ -154,9 +131,9 @@ CREATE TABLE `precio` (
 --
 
 INSERT INTO `precio` (`ID_PRECIO`, `PRECIO`, `DESCRIPCION`) VALUES
-(1, '100.00', 'hora'),
-(2, '5000.00', 'abonado'),
-(3, '0.00', 'estadia para abonado');
+(1, '100.00', 'Hora'),
+(2, '0.00', 'Estadia de abonado'),
+(3, '5000.00', 'Abonado');
 
 -- --------------------------------------------------------
 
@@ -248,9 +225,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`ID_USUARIO`, `ID`, `NOMBRE`, `ESTADO`, `USUARIO`, `PASSWORD`) VALUES
-(1, 1, 'admin', 1, 'admin', 'admin'),
-(2, 1, 'alejandro', 0, 'gerente', 'gerente'),
-(3, 2, 'gabriel', 1, 'empleado', 'empleado');
+(1, 1, 'Gabriel Pereyra', 1, 'admin', 'admin');
 
 --
 -- Índices para tablas volcadas

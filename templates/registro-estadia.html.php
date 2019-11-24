@@ -47,12 +47,12 @@ endif;
         <h5 class="card-title text-center">Alta de estadia</h5>
         <!--La respuesta del formulario se envia al mismo script-->
         <form class="form-signin" action="<?= $url ?? '' ?>" method="POST">
-        <input type="hidden" name="key" value="<?= $url ?? ''?>">
+        <input type="hidden" name="key" pattern="(\d){1,}" value="<?= $url ?? ''?>">
             <input type="hidden" id="ID_USUARIO" name="ID_USUARIO" value="<?=$_SESSION['id_usuario'] ?? ''?>">  <!-- toma el usuario activo -->
             <div class="form-label-group">
                 <select name="PATENTE" id="patente" class="form-control select2" required>
                     <option value="0">Seleccione una patente</option>
-                <?php include '../functions/todos-cliente-option-general.php'; ?>
+                    <?php include '../functions/todos-cliente-option-no-abonado.php'; ?>
                 </select>
             </div>
             <div class="form-label-group">

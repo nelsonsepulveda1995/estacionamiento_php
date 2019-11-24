@@ -7,11 +7,11 @@
     }
     //EGRESO DE ESTADÍA RECIBE LA PATENTE DEL AUTO QUE SE INGRESA AL CREAR UNA ESTADÍA. SI ESTA EXISTE Y NO TIENE UNA FECHA DE EGRESO
     //SE CREA DICHO EGRESO CON LA FECHA ACTUAL. EN CASO CONTRARIO, SE NOTIFICA LA NO EXISTENCIA/NO EGRESO DE LA PATENTE
-
     include __DIR__ . '/revisar-permiso.php';
     if(isset($_SESSION['cargo'])){
         if(consultar_permiso($_SESSION['cargo'], 5)){
             if (isset($_POST['PATENTE'])){
+
                 date_default_timezone_set('America/Argentina/Buenos_Aires');
                 try {
                     include __DIR__ . '/../includes/connect.php';
@@ -23,7 +23,7 @@
                     $stmt = $pdo->prepare($sql);            
                     $stmt->execute();
                     $resultado_lugares = $stmt->fetch();
-    
+                    
                     $sql = "SELECT * FROM `estadia` WHERE patente=:PATENTE AND EGRESO IS NULL"; //revisa que no haya una estadia sin cerrar
                     $stmt = $pdo->prepare($sql);
                     $stmt->bindValue(':PATENTE', $patente);
@@ -51,7 +51,7 @@
                         $fechaEgr=date('Y-m-d H:i:s'); //obtiene año con 4 digitos y los demas valores con ceros iniciales
                         $fEgr = new DateTime($fechaEgr);
                         $intervalo = $resIngreso->diff($fEgr);
-    
+                        
                         //obtengo el precio que le corresponde a la estadía
                         $Precio = "SELECT precio FROM `precio` WHERE id_precio=:PRECIO"; //revisa que no haya una estadia sin cerrar
                         $func = $pdo->prepare($Precio);
@@ -68,7 +68,7 @@
                         $stmt->bindValue(':PATENTE', $patente);
                         $stmt->bindValue(':FECHA', $fechaEgr);
                         $stmt->bindValue(':TOTAL', $total);
-            
+                        
                         $stmt->execute();
                         
                         $_SESSION['estadia_success'] = 'La patente ' . $patente . ' ha egresado exitósamente'.'. Total: $'.$total;
@@ -94,6 +94,8 @@
                     $contenido = ob_get_clean();
                     print_r($contenido);
                 }
+                
+                
             }
             else {
                 //mostrar formulario
@@ -103,13 +105,20 @@
                 $contenido = ob_get_clean();
                 print_r($contenido);
             }
-        } 
+        }
         else {
             $_SESSION['error'] = 'No posee permisos para realizar esa acción';
-            header('location: ../index.php');
+            ob_start();
+            include __DIR__ . '/../templates/home-empleado.html.php';
+            $contenido = ob_get_clean();
+            print_r($contenido);
         }
     }
- 	else {
-        $_SESSION['mensaje'] = 'No se encontró una sesión para ingresar a la URL';
-        header('location: ../index.php');
+    else {
+        $_SESSION['error'] = 'No se encontró una sesión para ingresar a la URL';
+        ob_start();
+        include __DIR__ . '/../index.php';
+        $contenido = ob_get_clean();
+        print_r($contenido);
     }
+            

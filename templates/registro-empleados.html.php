@@ -46,7 +46,7 @@ endif;
         <!--La respuesta del formulario se envia al mismo script-->
         <form class="form-signin" action="<?= $url ?? ''?>" method="POST">
             <input type="hidden" name="key" value="<?= $url ?? ''?>">
-            <input type="hidden" name="ID_USUARIO" value="<?=$empleado['ID_USUARIO'] ?? ''?>">
+            <input type="hidden" name="ID_USUARIO" pattern="(\d){1,}" value="<?=$empleado['ID_USUARIO'] ?? ''?>">
             <div class="form-label-group">
                 <input type="text" id="nombre" name="NOMBRE" class="form-control" pattern="([a-zA-ZÁáÉéÍíÓóÚúÑñ]{2,})(\s)(([a-zA-ZÁáÉéÍíÓóÚúÑñ]{2,})(\s?)){1,}" title="Debe contener 2 (dos) palabras como mínimo." placeholder="Ingrese nombre de empleado" value="<?=$empleado['NOMBRE'] ?? ''?>" required autofocus>
                 <label for="nombre">Ingrese nombre de empleado</label>

@@ -5,11 +5,9 @@
     if (isset($_POST['key'])) {
         $url = $_POST['key'];
     }
-
     include __DIR__ . '/revisar-permiso.php';
     if(isset($_SESSION['cargo'])){
         if(consultar_permiso($_SESSION['cargo'], 9)){
-            //si editarEmpleado existe significa que se quiere editar al empleado
             if(isset($_POST['editarEmpleado'])) {
                 include __DIR__ . '/../includes/connect.php';
                 $id = $_POST['editarEmpleado'];
@@ -54,14 +52,19 @@
                 $contenido = ob_get_clean();
                 print_r($contenido);
             }
-        } 
+        }
         else {
             $_SESSION['error'] = 'No posee permisos para realizar esa acción';
-            header('location: ../index.php');
+            ob_start();
+            include __DIR__ . '/../templates/home-empleado.html.php';
+            $contenido = ob_get_clean();
+            print_r($contenido);
         }
     }
  	else {
-        $_SESSION['mensaje'] = 'No se encontró una sesión para ingresar a la URL';
-        header('location: ../index.php');
+        $_SESSION['error'] = 'No se encontró una sesión para ingresar a la URL';
+        ob_start();
+        include __DIR__ . '/../index.php';
+        $contenido = ob_get_clean();
+        print_r($contenido);
     }
-

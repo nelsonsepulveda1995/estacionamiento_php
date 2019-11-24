@@ -14,11 +14,11 @@ function validarlogin() {
     } else {
         $('#res').empty();
         return true;
-    }
+    } 
 }
 
 function validarempleado() {
-    var nombre = $('#NOMBRE').val();
+    var nombre = $('#nombre').val();
     var id = $('#ID option:selected').val();
     var usuario = $('#usuario').val();
     var pass = $('#password').val();
@@ -31,17 +31,17 @@ function validarempleado() {
         $('#res').append("<div class='alert alert-warning alert-dismissible fade show' role='alert'> Debe completar todos los campos.. <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
         return false
     }else{
-        if (!regex_nombre.match(nombre)) {
+        if (!nombre.match(regex_nombre)) {
             $('#res').empty();
             $('#res').append("<div class='alert alert-warning alert-dismissible fade show' role='alert'> Formato de nombre incorrecto. Deben ser 2 (dos) palabras como minimo<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
             return false
         }
-        if (!regex_usuario.match(usuario)) {
+        if (!usuario.match(regex_usuario)) {
             $('#res').empty();
             $('#res').append("<div class='alert alert-warning alert-dismissible fade show' role='alert'> Formato de nombre de usuario incorrecto. Debe tener 5 caracteres como minimo<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
             return false
         }
-        if (!regex_pass.match(pass)) {
+        if (!pass.match(regex_pass)) {
             $('#res').empty();
             $('#res').append("<div class='alert alert-warning alert-dismissible fade show' role='alert'> Formato de contraseña incorrecto. Debe tener 8 caracteres como minimo, sin espacios<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
             return false
