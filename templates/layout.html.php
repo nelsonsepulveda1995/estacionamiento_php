@@ -22,11 +22,12 @@
     <?php endif; ?>
     <!--FontAwesome-->
     <script src="https://kit.fontawesome.com/8bca061afe.js" crossorigin="anonymous"></script>
-
+    <!-- bootstrap css theme -->
+    <link rel="stylesheet" href="css/theme.bootstrap_4.min.css">
     <script src="js/jquery.tablesorter.js"></script>
     <script src="js/jquery.tablesorter.widgets.js"></script>
     <!-- pager plugin -->
-    <link rel="stylesheet" href="css/jquery.tablesorter.pager.css">
+    <link rel="stylesheet" href="css/jquery.tablesorter.pager.min.css">
     <script src="js/jquery.tablesorter.pager.js"></script>
     <style>
         .tablesorter-pager .btn-group-sm .btn {
