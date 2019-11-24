@@ -134,7 +134,8 @@
                                 <th>Fecha</th>
                                 <th>Ganancia por Año</th>
                             </tr>
-
+                        </thead>
+                        <tbody>
                         <?php foreach ($foryear as $foryears): ?>
                             <tr>
                                 <td>
@@ -189,7 +190,8 @@
                                 <th>Tipo de Cliente</th>
                                 <th>Cantidad</th>
                             </tr>
-
+                        </thead>
+                        <tbody>
                         <?php foreach ($cliente as $clientes): ?>
                             <tr>
                                 <td>
@@ -204,6 +206,7 @@
                     </table>
                 </div>
             </div>
+            <br>
             <br>
             <div class="col-md-6 col-lg-6 col-xs-6">
                 <div class="table-responsive">
@@ -226,6 +229,30 @@
                             </tr>
                         <?php endforeach; ?>
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="7" class="ts-pager">
+                                    <div class="form-inline">
+                                    <div class="btn-group btn-group-sm mx-1" role="group">
+                                        <button type="button" class="btn btn-secondary first" title="first">⇤</button>
+                                        <button type="button" class="btn btn-secondary prev" title="previous">←</button>
+                                    </div>
+                                    <span class="pagedisplay"></span>
+                                    <div class="btn-group btn-group-sm mx-1" role="group">
+                                        <button type="button" class="btn btn-secondary next" title="next">→</button>
+                                        <button type="button" class="btn btn-secondary last" title="last">⇥</button>
+                                    </div>
+                                    <select class="form-control-sm custom-select px-1 pagesize" title="Select page size">
+                                        <option selected="selected" value="10">10</option>
+                                        <option value="20">20</option>
+                                        <option value="30">30</option>
+                                        <option value="all">All Rows</option>
+                                    </select>
+                                    <select class="form-control-sm custom-select px-4 mx-1 pagenum" title="Select page number"></select>
+                                    </div>
+                                </th>   
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
@@ -248,6 +275,30 @@
                             </tr>
                         <?php endforeach; ?>
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="7" class="ts-pager">
+                                    <div class="form-inline">
+                                    <div class="btn-group btn-group-sm mx-1" role="group">
+                                        <button type="button" class="btn btn-secondary first" title="first">⇤</button>
+                                        <button type="button" class="btn btn-secondary prev" title="previous">←</button>
+                                    </div>
+                                    <span class="pagedisplay"></span>
+                                    <div class="btn-group btn-group-sm mx-1" role="group">
+                                        <button type="button" class="btn btn-secondary next" title="next">→</button>
+                                        <button type="button" class="btn btn-secondary last" title="last">⇥</button>
+                                    </div>
+                                    <select class="form-control-sm custom-select px-1 pagesize" title="Select page size">
+                                        <option selected="selected" value="10">10</option>
+                                        <option value="20">20</option>
+                                        <option value="30">30</option>
+                                        <option value="all">All Rows</option>
+                                    </select>
+                                    <select class="form-control-sm custom-select px-4 mx-1 pagenum" title="Select page number"></select>
+                                    </div>
+                                </th>   
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
