@@ -20,7 +20,6 @@
                 $stmt->execute();
             
                 $cliente = $stmt->fetch();
-            
                 //mostrar formulario
                 $titulo = 'Editar cliente';
                 ob_start();
@@ -68,50 +67,52 @@
                 $stmt->bindValue(':id', $id);
             
                 $stmt->execute();
-                while ($EdEst = $upEst->fetch()) {
-                    $sql = 'INSERT INTO estadia (
-                            PATENTE, 
-                            ID_USUARIO,
-                            ID_PRECIO,
-                            INGRESO,
-                            EGRESO,
-                            TOTAL
-                            ) VALUES (
-                            :patente,
-                            :id_usuario,
-                            :id_precio,
-                            :ingreso,
-                            :egreso,
-                            :total
-                            )
-                        ';
-                    $stmt = $pdo->prepare($sql);
-                    $stmt->bindValue(':patente', strtoupper($_POST['PATENTE']));
-                    $stmt->bindValue(':id_usuario', $EdEst['ID_USUARIO']);
-                    $stmt->bindValue(':id_precio', $EdEst['ID_PRECIO']);
-                    $stmt->bindValue(':ingreso', $EdEst['INGRESO']);
-                    $stmt->bindValue(':egreso', $EdEst['EGRESO']);
-                    $stmt->bindValue(':total', $EdEst['TOTAL']);
-            
-                    $stmt->execute();
-                }
-                while ($EdHist = $upHist->fetch()) {
-                    $sql = 'INSERT INTO historialpagos(
-                            PATENTE, 
-                            ID_PRECIO,
-                            FECHA_PAGO
-                            ) VALUES (
-                            :patente,
-                            :id_precio,
-                            :fecha_pago
-                            )
-                        ';
-                    $stmt = $pdo->prepare($sql);
-                    $stmt->bindValue(':patente', strtoupper($_POST['PATENTE']));
-                    $stmt->bindValue(':id_precio', $EdHist['ID_PRECIO']);
-                    $stmt->bindValue(':fecha_pago', $EdHist['FECHA_PAGO']);
-            
-                    $stmt->execute();
+                if ($_POST['TIPO'] == $_POST['clientePrev']) {
+                    while ($EdEst = $upEst->fetch()) {
+                        $sql = 'INSERT INTO estadia (
+                                PATENTE, 
+                                ID_USUARIO,
+                                ID_PRECIO,
+                                INGRESO,
+                                EGRESO,
+                                TOTAL
+                                ) VALUES (
+                                :patente,
+                                :id_usuario,
+                                :id_precio,
+                                :ingreso,
+                                :egreso,
+                                :total
+                                )
+                            ';
+                        $stmt = $pdo->prepare($sql);
+                        $stmt->bindValue(':patente', strtoupper($_POST['PATENTE']));
+                        $stmt->bindValue(':id_usuario', $EdEst['ID_USUARIO']);
+                        $stmt->bindValue(':id_precio', $EdEst['ID_PRECIO']);
+                        $stmt->bindValue(':ingreso', $EdEst['INGRESO']);
+                        $stmt->bindValue(':egreso', $EdEst['EGRESO']);
+                        $stmt->bindValue(':total', $EdEst['TOTAL']);
+                
+                        $stmt->execute();
+                    }
+                    while ($EdHist = $upHist->fetch()) {
+                        $sql = 'INSERT INTO historialpagos(
+                                PATENTE, 
+                                ID_PRECIO,
+                                FECHA_PAGO
+                                ) VALUES (
+                                :patente,
+                                :id_precio,
+                                :fecha_pago
+                                )
+                            ';
+                        $stmt = $pdo->prepare($sql);
+                        $stmt->bindValue(':patente', strtoupper($_POST['PATENTE']));
+                        $stmt->bindValue(':id_precio', $EdHist['ID_PRECIO']);
+                        $stmt->bindValue(':fecha_pago', $EdHist['FECHA_PAGO']);
+                
+                        $stmt->execute();
+                    }
                 }
             
                 ob_start();

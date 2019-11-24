@@ -61,7 +61,18 @@
                         foreach ($resultadoPrecio as $key => $value) {
                             $resPrecio = $value;
                         }
-                        $total = (($intervalo->h+1)*$resPrecio);
+                        $total = 0;                        
+                        $precioX5= 12;
+                        if ($resultado['ID_PRECIO']== 2) {
+                            if($intervalo->h < 1 || ($intervalo->h >= 1 && $intervalo->i >= 55)){                                
+                                $total = ($intervalo->h+1)*$resPrecio;
+                            }else if($intervalo->i < 5 && $intervalo->h >= 1){                                
+                                $total = ($intervalo->h)*$resPrecio;                            
+                            }else if($intervalo->h >= 1 && $intervalo->i >= 5){                                
+                                $recargo = floor($intervalo->i/5)*$precioX5;
+                                $total = ($intervalo->h)*$resPrecio+$recargo;                            
+                            }
+                        }
                         
                         $sql = "UPDATE `estadia` SET `EGRESO` = :FECHA , `TOTAL` = :TOTAL WHERE `PATENTE` = :PATENTE AND EGRESO IS NULL";
                         $stmt = $pdo->prepare($sql);

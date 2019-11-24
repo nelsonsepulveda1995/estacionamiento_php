@@ -36,7 +36,7 @@
                             $func->bindValue(':PATENTE', $patente);
                             $func->execute();
                             $resultadoIngreso = $func->fetch();
-                            if ($resultadoIngreso != '' && $precio==2) {
+                            if ($resultadoIngreso != '' && $precio==1) {
                                 foreach ($resultadoIngreso as $key => $value) {
                                     $resIngreso = new DateTime($value);
                                 }
@@ -76,7 +76,7 @@
                                     $contenido = ob_get_clean();
                                     print_r($contenido);
                                 }
-                            }else if ($precio==2) {
+                            }else if ($precio==1) {
                                 $_SESSION['estadia_error']="La patente nº " . $patente. " no ha pagado el mes de abono.";
                                 ob_start();
                                 include __DIR__ . '/../templates/registro-estadia.html.php';

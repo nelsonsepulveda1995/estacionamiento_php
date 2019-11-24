@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-11-2019 a las 01:37:16
+-- Tiempo de generación: 24-11-2019 a las 07:03:19
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -79,7 +79,7 @@ CREATE TABLE `lugares` (
 --
 
 INSERT INTO `lugares` (`ID`, `CANTIDAD`) VALUES
-(1, 50);
+(1, 48);
 
 -- --------------------------------------------------------
 
@@ -131,8 +131,8 @@ CREATE TABLE `precio` (
 --
 
 INSERT INTO `precio` (`ID_PRECIO`, `PRECIO`, `DESCRIPCION`) VALUES
-(1, '100.00', 'Hora'),
-(2, '0.00', 'Estadia de abonado'),
+(1, '0.00', 'Estadia de abonado'),
+(2, '100.00', 'No abonado'),
 (3, '5000.00', 'Abonado');
 
 -- --------------------------------------------------------
@@ -225,7 +225,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`ID_USUARIO`, `ID`, `NOMBRE`, `ESTADO`, `USUARIO`, `PASSWORD`) VALUES
-(1, 1, 'Gabriel Pereyra', 1, 'admin', 'admin');
+(1, 1, 'Gabriel Pereyra', 1, 'admin', 'admin'),
+(4, 2, 'Nahuel Judias', 1, 'cajero', 'cajero1234');
 
 --
 -- Índices para tablas volcadas
@@ -308,13 +309,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `estadia`
 --
 ALTER TABLE `estadia`
-  MODIFY `ID_ESTADIA` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID_ESTADIA` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT de la tabla `historialpagos`
 --
 ALTER TABLE `historialpagos`
-  MODIFY `ID_PAGOMENSUAL` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID_PAGOMENSUAL` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `lugares`
@@ -356,7 +357,7 @@ ALTER TABLE `tipo`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `ID_USUARIO` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID_USUARIO` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restricciones para tablas volcadas
