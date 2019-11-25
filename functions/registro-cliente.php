@@ -72,17 +72,11 @@
         }
         else {
             $_SESSION['error'] = 'No posee permisos para realizar esa acción';
-            ob_start();
-            include __DIR__ . '/../templates/home-empleado.html.php';
-            $contenido = ob_get_clean();
-            print_r($contenido);
+            header('location: ../index.php');
         }
     }
-    else {
-        $_SESSION['error'] = 'No se encontró una sesión para ingresar a la URL';
-        ob_start();
-        include __DIR__ . '/../index.php';
-        $contenido = ob_get_clean();
-        print_r($contenido);
+ 	else {
+        $_SESSION['mensaje'] = 'No se encontró una sesión para ingresar a la URL';
+        header('location: ../index.php');
     }
             
