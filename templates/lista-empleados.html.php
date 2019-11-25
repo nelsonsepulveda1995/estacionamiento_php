@@ -1,16 +1,4 @@
-<?php
-    if(isset($_SESSION)){    
-        if(!isset($_SESSION['id_usuario']) || !isset($_SESSION['cargo'])){
-            header('location: ../index.php');
-        }else if($_SESSION['cargo']==2){
-            header('location: home-empleado.php');
-        }  
-    }
-    else{
-        header('location: /../index.php');
-    }
-    
-?>
+
 <?php
 if (isset($_SESSION['error'])):
     echo    '<div class="alert alert-danger alert-dismissible fade show mt-5 text-center" role="alert">'
@@ -27,7 +15,7 @@ endif;
     <br>
     <div class="row" style="margin:3px">
         <div class ="col">
-            <a href="../functions/home-gerente.php" class="float-left btn btn-primary btn-lg active" role="button" aria-pressed="true">Regresar</a>
+            <a href="../functions/home-gerente.php" class="float-left btn btn-primary btn-lg active" role="button" aria-pressed="true"><i class="fas fa-arrow-left"></i></a>
         </div>
     </div>
     <div class="card-body">

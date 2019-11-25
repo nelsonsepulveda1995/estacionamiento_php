@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-11-2019 a las 16:17:39
--- Versión del servidor: 10.4.6-MariaDB
--- Versión de PHP: 7.3.9
+-- Tiempo de generación: 25-11-2019 a las 21:26:49
+-- Versión del servidor: 10.4.8-MariaDB
+-- Versión de PHP: 7.1.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -36,16 +36,6 @@ CREATE TABLE `cliente` (
   `EMAIL` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `cliente`
---
-
-INSERT INTO `cliente` (`PATENTE`, `ID`, `DNI`, `NOMBRE_CLIENTE`, `EMAIL`) VALUES
-('BU777JA', 2, '20767334', 'Horacio Cardenicio', 'horacioCar@gmail.com'),
-('KI810JU', 2, '229890101', 'Hugo Vilas', 'hugovilas@gmail.com'),
-('KK981OK', 1, '10000000', 'Gabriel Pereyra', 'gabrielpereyra1997@gmail.com'),
-('UH891KM', 1, '92893876', 'Ariel García', 'arielGar@gmail.com');
-
 -- --------------------------------------------------------
 
 --
@@ -62,27 +52,6 @@ CREATE TABLE `estadia` (
   `TOTAL` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `estadia`
---
-
-INSERT INTO `estadia` (`ID_ESTADIA`, `PATENTE`, `ID_USUARIO`, `ID_PRECIO`, `INGRESO`, `EGRESO`, `TOTAL`) VALUES
-(55, 'KK981OK', 4, 2, '2019-11-24 17:29:52', '2019-11-24 17:30:44', 100),
-(56, 'KK981OK', 4, 2, '2019-11-24 17:30:58', '2019-11-24 17:31:04', 100),
-(58, 'KK981OK', 4, 2, '2019-11-24 17:47:57', '2019-11-24 17:50:15', 100),
-(59, 'KK981OK', 4, 2, '2019-11-24 17:51:52', '2019-11-24 17:52:01', 100),
-(60, 'KK981OK', 4, 1, '2019-11-24 18:07:04', '2019-11-24 18:07:16', 0),
-(62, 'KK981OK', 4, 1, '2019-11-24 18:15:25', '2019-11-24 18:15:45', 0),
-(63, 'KK981OK', 4, 2, '2019-11-24 18:16:15', '2019-11-24 18:18:28', 100),
-(64, 'KK981OK', 4, 2, '2019-11-24 18:18:35', '2019-11-24 18:18:49', 100),
-(65, 'KK981OK', 4, 1, '2019-11-24 18:19:47', '2019-11-24 18:19:49', 0),
-(66, 'UH891KM', 4, 2, '2019-11-24 19:30:41', '2019-11-24 19:31:13', 100),
-(67, 'BU777JA', 4, 2, '2019-11-25 01:18:10', '2019-11-25 01:18:19', 100),
-(68, 'BU777JA', 4, 2, '2019-11-25 03:39:54', '2019-11-25 03:40:48', 100),
-(69, 'KK981OK', 4, 1, '2019-11-25 03:43:25', '2019-11-25 03:43:29', 0),
-(70, 'UH891KM', 4, 1, '2019-11-25 03:43:59', '2019-11-25 03:44:10', 0),
-(71, 'KI810JU', 4, 2, '2019-11-25 03:45:36', '2019-11-25 03:45:48', 100);
-
 -- --------------------------------------------------------
 
 --
@@ -95,15 +64,6 @@ CREATE TABLE `historialpagos` (
   `ID_PRECIO` bigint(20) NOT NULL,
   `FECHA_PAGO` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `historialpagos`
---
-
-INSERT INTO `historialpagos` (`ID_PAGOMENSUAL`, `PATENTE`, `ID_PRECIO`, `FECHA_PAGO`) VALUES
-(10, 'KK981OK', 3, '2019-11-25 01:18:39'),
-(11, 'UH891KM', 3, '2018-11-25 02:00:07'),
-(12, 'UH891KM', 3, '2019-11-25 02:36:42');
 
 -- --------------------------------------------------------
 
@@ -153,8 +113,8 @@ INSERT INTO `permiso` (`ID_PERMISO`, `DESCRIPCION_PERMISO`) VALUES
 (12, 'reporte_ganancia_dia'),
 (13, 'todas_estadias'),
 (14, 'todos_clientes'),
-(15, 'xxxxxx'),
-(16, 'xxxxxx');
+(15, 'home_gerente'),
+(16, 'home_empleado');
 
 -- --------------------------------------------------------
 
@@ -226,7 +186,9 @@ INSERT INTO `puesto_permiso` (`ID_PUESTO_PERMISO`, `ID_PUESTO`, `ID_PERMISO`) VA
 (11, 2, 11),
 (12, 1, 12),
 (13, 2, 13),
-(14, 2, 14);
+(14, 2, 14),
+(15, 1, 15),
+(16, 2, 16);
 
 -- --------------------------------------------------------
 
@@ -244,8 +206,8 @@ CREATE TABLE `tipo` (
 --
 
 INSERT INTO `tipo` (`ID`, `DESCRIPCION`) VALUES
-(1, 'abonado'),
-(2, 'no abonado');
+(1, 'Abonado'),
+(2, 'No abonado');
 
 -- --------------------------------------------------------
 
@@ -267,9 +229,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`ID_USUARIO`, `ID`, `NOMBRE`, `ESTADO`, `USUARIO`, `PASSWORD`) VALUES
-(1, 1, 'Gabriel Pereyra', 1, 'admin', 'admin'),
-(4, 2, 'Edgar Tonie', 1, 'cajero', 'cajero1234'),
-(5, 2, 'Nelson Sepúlveda', 1, 'elchetodelciber', 'elchetodelciber');
+(1, 1, 'Admin', 1, 'admin', 'admin');
 
 --
 -- Índices para tablas volcadas
@@ -352,13 +312,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `estadia`
 --
 ALTER TABLE `estadia`
-  MODIFY `ID_ESTADIA` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `ID_ESTADIA` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT de la tabla `historialpagos`
 --
 ALTER TABLE `historialpagos`
-  MODIFY `ID_PAGOMENSUAL` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `ID_PAGOMENSUAL` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `lugares`
@@ -388,7 +348,7 @@ ALTER TABLE `puesto`
 -- AUTO_INCREMENT de la tabla `puesto_permiso`
 --
 ALTER TABLE `puesto_permiso`
-  MODIFY `ID_PUESTO_PERMISO` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `ID_PUESTO_PERMISO` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo`

@@ -1,16 +1,4 @@
-﻿<?php
-    if(isset($_SESSION)){    
-        if(!isset($_SESSION['id_usuario']) || !isset($_SESSION['cargo'])){
-            header('location: ../index.php');
-        }
-        if($_SESSION['cargo']==2){
-            header('location: home-empleado.php');
-        }  
-    }
-    else{
-        header('location: ../index.php');
-    }
-?>
+﻿
 
 <?php
 if (isset($_SESSION['faltan_datos'])):
@@ -38,7 +26,7 @@ endif;
     <br>
     <div class="row" style="margin:3px">
         <div class ="col">
-            <a href="../functions/home-gerente.php" class="float-left btn btn-primary btn-lg active" role="button" aria-pressed="true">Regresar</a>
+            <a href="../functions/home-gerente.php" class="float-left btn btn-primary btn-lg active" role="button" aria-pressed="true"><i class="fas fa-arrow-left"></i></a>
         </div>
     </div>
     <div class="card-body">
@@ -55,7 +43,7 @@ endif;
                 <select name="ID" id="ID" class="form-control" require>
                     <option value="0" <?= isset($empleado) ? $empleado['ID'] == 0 ? "selected" : '' : ''?>>Seleccione el cargo correspondiente</option>
                     <option value="1" <?= isset($empleado) ? $empleado['ID'] == 1 ? "selected" : '' : ''?>>Gerente</option>
-                    <option value="2" <?= isset($empleado) ? $empleado['ID'] == 2 ? "selected" : '' : ''?>>Cajero</option>
+                    <option value="2" <?= isset($empleado) ? $empleado['ID'] == 2 ? "selected" : '' : ''?>>Empleado</option>
                 </select>
             </div>
             <div class="form-label-group">

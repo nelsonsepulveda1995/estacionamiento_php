@@ -22,7 +22,9 @@
             while ($promedioDia = $stmt->fetch()) {
                 $totalGanDia += $promedioDia['TOTAL'];
             }
-            $totalGanDia = round($totalGanDia/$lengthDia);
+            if ($lengthDia  > 0) {
+                $totalGanDia = round($totalGanDia/$lengthDia);
+            }
                 
             //GANANCIA POR MES
             $stmt = prom_ganancia();
@@ -39,7 +41,9 @@
             while ($promedioMes = $stmt->fetch()) {
                 $totalGanMes += $promedioMes['TOTAL'];
             }
-            $totalGanMes = round($totalGanMes/$lengthMes);
+            if ($lengthMes  > 0) {
+                $totalGanMes = round($totalGanMes/$lengthMes);
+            }
                 
             //GANANCIA POR AÑO
             $stmt = prom_ganancia();
@@ -56,7 +60,9 @@
             while ($promedioYear = $stmt->fetch()) {
                 $totalGanYear += $promedioYear['TOTAL'];
             }
-            $totalGanYear = round($totalGanYear/$lengthYear);
+            if ($lengthYear > 0) {
+                $totalGanYear= round($totalGanYear/$lengthYear);
+            }
 
             //GANANCIAS TOTALES
             $sql = "SELECT LEFT(`FECHA`,4) AS FECHA , SUM(`TOTAL POR AÑO`) AS `TOTAL` FROM ( SELECT LEFT(`INGRESO`,4) AS FECHA , SUM(`TOTAL`) AS 'TOTAL POR AÑO' FROM `estadia` GROUP BY LEFT(`INGRESO`,4) UNION ALL SELECT LEFT(`FECHA_PAGO`,4), precio.PRECIO FROM historialpagos INNER JOIN precio ON historialpagos.ID_PRECIO = precio.ID_PRECIO ) T GROUP BY LEFT(`FECHA`,4)";
@@ -101,7 +107,9 @@
             while ($promedio = $stmt->fetch()) {
                 $totalDia += $promedio['TOTAL'];
             }
-            $totalDia = floor($totalDia/$length);
+            if ($length>0) {
+                $totalDia = floor($totalDia/$length);
+            }
             
             //CANTIDAD DE CLIENTES POR MES
             $stmt = prom_clientes();
@@ -118,7 +126,9 @@
             while ($promedio = $stmt->fetch()) {
                 $totalMes += $promedio['TOTAL'];
             }
-            $totalMes = floor($totalMes/$length);
+            if ($length>0) {
+                $totalMes = floor($totalMes/$length);
+            }
 
             //CANTIDAD DE CLIENTES POR AÑO
             $stmt = prom_clientes();
@@ -135,7 +145,9 @@
             while ($promedio = $stmt->fetch()) {
                 $totalYear += $promedio['TOTAL'];
             }
-            $totalYear = floor($totalYear/$length);
+            if ($length>0) {
+                $totalYear = floor($totalYear/$length);
+            }
 
             // --------------- CARGA DE PANTALLA ------------------------
                 

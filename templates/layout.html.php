@@ -49,12 +49,12 @@
         <div class="container">
             <?php if(isset($_SESSION['cargo'])): ?>
                 <?php if($_SESSION['cargo'] == 1): ?>
-                    <a class="navbar-brand" href="home-gerente.php">Estacionamiento</a>
+                    <a class="navbar-brand" href="home-gerente.php">WebParking Ezeiza</a>
                 <?php elseif($_SESSION['cargo'] == 2): ?>
-                    <a class="navbar-brand" href="home-empleado.php">Estacionamiento</a>
+                    <a class="navbar-brand" href="home-empleado.php">WebParking Ezeiza</a>
                 <?php endif; ?>
             <?php else: ?>
-                <a class="navbar-brand" href="index.php">Estacionamiento</a>
+                <a class="navbar-brand" href="index.php">WebParking Ezeiza</a>
             <?php endif;?>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation" id="buttonNavbar">
@@ -117,7 +117,7 @@
                         <a class="nav-link disabled" href="logout.php"><?=$_SESSION['nombre']?></a>
                     </span>
                     <span class="navbar-text">
-                        <a class="nav-link" href="logout.php">Salir</a>
+                        <a class="nav-link" href="logout.php"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
                     </span>
                 <?php endif; ?>
             </div>

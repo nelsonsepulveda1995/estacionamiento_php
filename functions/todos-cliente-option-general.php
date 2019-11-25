@@ -16,5 +16,5 @@
     if ($flag == 0) {
         echo "<option value='-1'>No se encontraron patentes con salida pendiente.</option>";
     }
-    
+     
 ?>

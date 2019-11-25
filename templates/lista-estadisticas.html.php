@@ -1,20 +1,3 @@
-<?php
-    if(isset($_SESSION)){    
-        if(!isset($_SESSION['id_usuario'])){
-            header('location: ../index.php');
-        }  
-        if(!isset($_SESSION['cargo'])){
-            header('location: ../index.php');
-        }
-        if($_SESSION['cargo']==2){
-            header('location: home-empleado.php');
-        }  
-    }
-    else{
-        header('location: /../index.php');
-    }
-    
-?>
 
 
 <div class="card card-signin my-2">
@@ -22,7 +5,7 @@
          <br>
         <div class="row" style="margin:3px">
             <div class ="col">
-                <a href="../functions/home-gerente.php" class="float-left btn btn-primary btn-lg active" role="button" aria-pressed="true">Regresar</a>
+                <a href="../functions/home-gerente.php" class="float-left btn btn-primary btn-lg active" role="button" aria-pressed="true"><i class="fas fa-arrow-left"></i></a>
             </div>
         </div>
         <h1>Reportes de ganancia</h1><br>
@@ -30,7 +13,7 @@
         <div class="row">
             <div class="col-md-6 col-lg-4 col-xs-6">
                 <div class="table-responsive">
-                    <table class="table table-hover table-striped">
+                    <table class="table table-hover table-striped text-center">
                         <thead class="thead-dark">
                             <tr>
                                 <th>Fecha</th>
@@ -85,7 +68,7 @@
             </div>
             <div class="col-md-6 col-lg-4 col-xs-6">
                 <div class="table-responsive">
-                    <table class="table table-hover table-striped">
+                    <table class="table table-hover table-striped text-center">
                         <thead class="thead-dark">
                             <tr>
                                 <th>Fecha</th>
@@ -140,7 +123,7 @@
             </div>
             <div class="col-md-6 col-lg-4 col-xs-6">
                 <div class="table-responsive">
-                    <table class="table table-hover table-striped">
+                    <table class="table table-hover table-striped text-center">
                         <thead class="thead-dark">
                             <tr>
                                 <th>Fecha</th>
@@ -194,7 +177,7 @@
             </div>
             <div class="col-md-6 col-lg-12 col-xs-6">
                 <div class="table-responsive">
-                    <table class="table table-hover table-striped">
+                    <table class="table table-hover table-striped text-center">
                         <thead class="thead-dark">
                             <th class="sorter-false filter-false">Ganancias Totales</th>
                         </thead>
@@ -208,10 +191,11 @@
                     </table>
                 </div>
             </div> 
+            <hr class="my-4">
             <div class="col-md-6 col-lg-12 col-xs-6">
                 <h1>Clientes</h1><br>
                 <div class="table-responsive">
-                    <table class="table table-hover table-striped">
+                    <table class="table table-hover table-striped text-center">
                         <thead class="thead-dark">
                             <tr>
                                 <th class="filter-select filter-exact" data-placeholder="Tipo de Cliente">Tipo de Cliente</th>
@@ -244,7 +228,7 @@
             <br>
             <div class="col-md-6 col-lg-4 col-xs-6">
                 <div class="table-responsive">
-                    <table class="table table-hover table-striped">
+                    <table class="table table-hover table-striped text-center">
                         <thead class="thead-dark">
                             <tr>
                                 <th>Fecha</th>
@@ -276,7 +260,7 @@
             </div>
             <div class="col-md-6 col-lg-4 col-xs-6">
                 <div class="table-responsive">
-                    <table class="table table-hover table-striped">
+                    <table class="table table-hover table-striped text-center">
                         <thead class="thead-dark">
                             <th>Fecha</th>
                             <th>Pomedio Clientes por Mes</th>
@@ -306,7 +290,7 @@
             </div>
             <div class="col-md-6 col-lg-4 col-xs-6">
                 <div class="table-responsive">
-                    <table class="table table-hover table-striped">
+                    <table class="table table-hover table-striped text-center">
                         <thead class="thead-dark">
                             <th>Fecha</th>
                             <th>Pomedio Clientes por Año</th>
@@ -334,10 +318,11 @@
                     </table>
                 </div>
             </div>
+            <hr class="my-4">
             <div class="col-12">
                 <h1>Lugares</h1><br><br>
                 <div class="table-responsive">
-                    <table class="table table-hover table-striped">
+                    <table class="table table-hover table-striped text-center">
                         <thead class="thead-dark">
                             <th class="sorter-false filter-false">Lugares libres Actualmente</th>
                         </thead>

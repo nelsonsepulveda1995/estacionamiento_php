@@ -32,7 +32,7 @@
                 <input type="password" id="password" name="password" class="form-control" max=50 min=1 placeholder="Ingrese la contraseña" required>
                 <label for="password">Ingrese contraseña</label>
             </div>
-            <button id="ingresar" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Ingresar</button>
+            <button id="ingresar" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit"><i class="fas fa-sign-in-alt"></i> Ingresar</button>
             <pre id="res"></pre>
         </form>
     </div>

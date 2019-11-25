@@ -5,7 +5,7 @@
     $usuario = '';
     $password = '';
 
-    if (isset($_POST['usuario']) AND isset($_POST['password'])) {
+    if (isset($_POST['usuario']) && isset($_POST['password'])) {
         $usuario  = $_POST['usuario'];
         $password = $_POST['password'];
 
