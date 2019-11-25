@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-11-2019 a las 16:53:41
+-- Tiempo de generación: 25-11-2019 a las 16:17:39
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -41,7 +41,10 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`PATENTE`, `ID`, `DNI`, `NOMBRE_CLIENTE`, `EMAIL`) VALUES
-('KK981OK', 2, '10000000', 'Gabriel Pereyra', 'gabrielpereyra1997@gmail.com');
+('BU777JA', 2, '20767334', 'Horacio Cardenicio', 'horacioCar@gmail.com'),
+('KI810JU', 2, '229890101', 'Hugo Vilas', 'hugovilas@gmail.com'),
+('KK981OK', 1, '10000000', 'Gabriel Pereyra', 'gabrielpereyra1997@gmail.com'),
+('UH891KM', 1, '92893876', 'Ariel García', 'arielGar@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -59,6 +62,27 @@ CREATE TABLE `estadia` (
   `TOTAL` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `estadia`
+--
+
+INSERT INTO `estadia` (`ID_ESTADIA`, `PATENTE`, `ID_USUARIO`, `ID_PRECIO`, `INGRESO`, `EGRESO`, `TOTAL`) VALUES
+(55, 'KK981OK', 4, 2, '2019-11-24 17:29:52', '2019-11-24 17:30:44', 100),
+(56, 'KK981OK', 4, 2, '2019-11-24 17:30:58', '2019-11-24 17:31:04', 100),
+(58, 'KK981OK', 4, 2, '2019-11-24 17:47:57', '2019-11-24 17:50:15', 100),
+(59, 'KK981OK', 4, 2, '2019-11-24 17:51:52', '2019-11-24 17:52:01', 100),
+(60, 'KK981OK', 4, 1, '2019-11-24 18:07:04', '2019-11-24 18:07:16', 0),
+(62, 'KK981OK', 4, 1, '2019-11-24 18:15:25', '2019-11-24 18:15:45', 0),
+(63, 'KK981OK', 4, 2, '2019-11-24 18:16:15', '2019-11-24 18:18:28', 100),
+(64, 'KK981OK', 4, 2, '2019-11-24 18:18:35', '2019-11-24 18:18:49', 100),
+(65, 'KK981OK', 4, 1, '2019-11-24 18:19:47', '2019-11-24 18:19:49', 0),
+(66, 'UH891KM', 4, 2, '2019-11-24 19:30:41', '2019-11-24 19:31:13', 100),
+(67, 'BU777JA', 4, 2, '2019-11-25 01:18:10', '2019-11-25 01:18:19', 100),
+(68, 'BU777JA', 4, 2, '2019-11-25 03:39:54', '2019-11-25 03:40:48', 100),
+(69, 'KK981OK', 4, 1, '2019-11-25 03:43:25', '2019-11-25 03:43:29', 0),
+(70, 'UH891KM', 4, 1, '2019-11-25 03:43:59', '2019-11-25 03:44:10', 0),
+(71, 'KI810JU', 4, 2, '2019-11-25 03:45:36', '2019-11-25 03:45:48', 100);
+
 -- --------------------------------------------------------
 
 --
@@ -71,6 +95,15 @@ CREATE TABLE `historialpagos` (
   `ID_PRECIO` bigint(20) NOT NULL,
   `FECHA_PAGO` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `historialpagos`
+--
+
+INSERT INTO `historialpagos` (`ID_PAGOMENSUAL`, `PATENTE`, `ID_PRECIO`, `FECHA_PAGO`) VALUES
+(10, 'KK981OK', 3, '2019-11-25 01:18:39'),
+(11, 'UH891KM', 3, '2018-11-25 02:00:07'),
+(12, 'UH891KM', 3, '2019-11-25 02:36:42');
 
 -- --------------------------------------------------------
 
@@ -88,7 +121,7 @@ CREATE TABLE `lugares` (
 --
 
 INSERT INTO `lugares` (`ID`, `CANTIDAD`) VALUES
-(1, 48);
+(1, 50);
 
 -- --------------------------------------------------------
 
@@ -225,7 +258,7 @@ CREATE TABLE `usuarios` (
   `ID` bigint(20) NOT NULL,
   `NOMBRE` varchar(30) NOT NULL,
   `ESTADO` int(11) NOT NULL,
-  `USUARIO` varchar(10) NOT NULL,
+  `USUARIO` varchar(30) NOT NULL,
   `PASSWORD` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -235,7 +268,8 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`ID_USUARIO`, `ID`, `NOMBRE`, `ESTADO`, `USUARIO`, `PASSWORD`) VALUES
 (1, 1, 'Gabriel Pereyra', 1, 'admin', 'admin'),
-(4, 2, 'Edgar Tonie', 1, 'cajero', 'cajero1234');
+(4, 2, 'Edgar Tonie', 1, 'cajero', 'cajero1234'),
+(5, 2, 'Nelson Sepúlveda', 1, 'elchetodelciber', 'elchetodelciber');
 
 --
 -- Índices para tablas volcadas
@@ -318,13 +352,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `estadia`
 --
 ALTER TABLE `estadia`
-  MODIFY `ID_ESTADIA` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `ID_ESTADIA` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT de la tabla `historialpagos`
 --
 ALTER TABLE `historialpagos`
-  MODIFY `ID_PAGOMENSUAL` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID_PAGOMENSUAL` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `lugares`
@@ -366,7 +400,7 @@ ALTER TABLE `tipo`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `ID_USUARIO` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID_USUARIO` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas
