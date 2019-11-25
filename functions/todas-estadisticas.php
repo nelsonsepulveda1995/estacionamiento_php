@@ -8,22 +8,55 @@
             include __DIR__ . '/../includes/connect.php';
 
             //GANACIA POR DIA
-            $sql = "SELECT LEFT(`FECHA`,10) AS FECHA , SUM(`TOTAL POR DIA`) AS `TOTAL POR DIA` FROM ( SELECT LEFT(`INGRESO`,10) AS FECHA , SUM(`TOTAL`) AS 'TOTAL POR DIA' FROM `estadia` GROUP BY LEFT(`INGRESO`,10) UNION ALL SELECT LEFT(`FECHA_PAGO`,10), precio.PRECIO FROM historialpagos INNER JOIN precio ON historialpagos.ID_PRECIO = precio.ID_PRECIO ) T GROUP BY LEFT(`FECHA`,10)";
-            $stmt = $pdo->prepare($sql);
+            $stmt = prom_ganancia();
+            $stmt->bindValue(':lim', 10);
             $stmt->execute();
             $pordia = $stmt->fetchAll();
+
+            //PROMEDIO DE GANANCIA POR DIA
+            $stmt = prom_ganancia();
+            $stmt->bindValue(':lim', 10);
+            $stmt->execute();
+            $lengthDia = $stmt->rowCount();
+            $totalGanDia = 0;
+            while ($promedioDia = $stmt->fetch()) {
+                $totalGanDia += $promedioDia['TOTAL'];
+            }
+            $totalGanDia = round($totalGanDia/$lengthDia);
                 
             //GANANCIA POR MES
-            $sql = "SELECT LEFT(`FECHA`,7) AS FECHA , SUM(`TOTAL POR MES`) AS `TOTAL POR MES` FROM ( SELECT LEFT(`INGRESO`,7) AS FECHA , SUM(`TOTAL`) AS 'TOTAL POR MES' FROM `estadia` GROUP BY LEFT(`INGRESO`,7) UNION ALL SELECT LEFT(`FECHA_PAGO`,7), precio.PRECIO FROM historialpagos INNER JOIN precio ON historialpagos.ID_PRECIO = precio.ID_PRECIO ) T GROUP BY LEFT(`FECHA`,7)";
-            $stmt = $pdo->prepare($sql);
+            $stmt = prom_ganancia();
+            $stmt->bindValue(':lim', 7);
             $stmt->execute();
             $pormes = $stmt->fetchAll();
+
+            //PROMEDIO DE GANANCIA POR MES
+            $stmt = prom_ganancia();
+            $stmt->bindValue(':lim', 7);
+            $stmt->execute();
+            $lengthMes = $stmt->rowCount();
+            $totalGanMes = 0;
+            while ($promedioMes = $stmt->fetch()) {
+                $totalGanMes += $promedioMes['TOTAL'];
+            }
+            $totalGanMes = round($totalGanMes/$lengthMes);
                 
             //GANANCIA POR AÑO
-            $sql = "SELECT LEFT(`FECHA`,4) AS FECHA , SUM(`TOTAL POR AÑO`) AS `TOTAL POR AÑO` FROM ( SELECT LEFT(`INGRESO`,4) AS FECHA , SUM(`TOTAL`) AS 'TOTAL POR AÑO' FROM `estadia` GROUP BY LEFT(`INGRESO`,4) UNION ALL SELECT LEFT(`FECHA_PAGO`,4), precio.PRECIO FROM historialpagos INNER JOIN precio ON historialpagos.ID_PRECIO = precio.ID_PRECIO ) T GROUP BY LEFT(`FECHA`,4)";
-            $stmt = $pdo->prepare($sql);
+            $stmt = prom_ganancia();
+            $stmt->bindValue(':lim', 4);
             $stmt->execute();
             $foryear = $stmt->fetchAll();
+
+            //PROMEDIO DE GANANCIA POR AÑO
+            $stmt = prom_ganancia();
+            $stmt->bindValue(':lim', 4);
+            $stmt->execute();
+            $lengthYear = $stmt->rowCount();
+            $totalGanYear = 0;
+            while ($promedioYear = $stmt->fetch()) {
+                $totalGanYear += $promedioYear['TOTAL'];
+            }
+            $totalGanYear = round($totalGanYear/$lengthYear);
 
             //GANANCIAS TOTALES
             $sql = "SELECT LEFT(`FECHA`,4) AS FECHA , SUM(`TOTAL POR AÑO`) AS `TOTAL` FROM ( SELECT LEFT(`INGRESO`,4) AS FECHA , SUM(`TOTAL`) AS 'TOTAL POR AÑO' FROM `estadia` GROUP BY LEFT(`INGRESO`,4) UNION ALL SELECT LEFT(`FECHA_PAGO`,4), precio.PRECIO FROM historialpagos INNER JOIN precio ON historialpagos.ID_PRECIO = precio.ID_PRECIO ) T GROUP BY LEFT(`FECHA`,4)";
@@ -41,31 +74,45 @@
             $lugares_disponibles = $stmt->fetchAll();
 
             //TIPOS DE CLIENTES
-            $sql = "SELECT `tipo`.`DESCRIPCION`,SUM( cliente.`ID`) AS CANTIDAD FROM `cliente` LEFT JOIN `tipo` ON `cliente`.`ID` = `tipo`.`ID`GROUP BY cliente.ID;";
+            $sql = "SELECT `tipo`.`DESCRIPCION`,COUNT( cliente.`ID`) AS CANTIDAD FROM `cliente` LEFT JOIN `tipo` ON `cliente`.`ID` = `tipo`.`ID`GROUP BY cliente.ID";
             $stmt = $pdo->query($sql);
             $stmt->execute();
             $cliente = $stmt->fetchAll();
+
+            //TOTAL CLIENTES
+            $sql = "SELECT COUNT(*) AS TOTAL FROM `cliente`";
+            $stmt = $pdo->query($sql);
+            $stmt->execute();
+            $cantCliente = $stmt->fetch();
             
             //CANTIDAD DE CLIENTES POR DIA
-            estadisticas_dia();
+            $stmt = prom_clientes();
+            $stmt->bindValue(':lim', 10);
+            $stmt->execute();
             $length = $stmt->rowCount();
             $clientes_por_dia = $stmt->fetchAll();
 
             //PROMEDIO DE CLIENTES POR DIA
-            estadisticas_dia();
+            $stmt = prom_clientes();
+            $stmt->bindValue(':lim', 10);
+            $stmt->execute();
             $length = $stmt->rowCount();
             $totalDia = 0;
             while ($promedio = $stmt->fetch()) {
                 $totalDia += $promedio['TOTAL'];
             }
             $totalDia = floor($totalDia/$length);
-
+            
             //CANTIDAD DE CLIENTES POR MES
-            estadisticas_mes();
+            $stmt = prom_clientes();
+            $stmt->bindValue(':lim', 7);
+            $stmt->execute();
             $clientes_por_mes = $stmt->fetchAll();
 
             //PROMEDIO DE CLIENTES POR MES
-            estadisticas_mes();
+            $stmt = prom_clientes();
+            $stmt->bindValue(':lim', 7);
+            $stmt->execute();
             $length = $stmt->rowCount();
             $totalMes = 0;
             while ($promedio = $stmt->fetch()) {
@@ -74,11 +121,15 @@
             $totalMes = floor($totalMes/$length);
 
             //CANTIDAD DE CLIENTES POR AÑO
-            estadisticas_año();
+            $stmt = prom_clientes();
+            $stmt->bindValue(':lim', 4);
+            $stmt->execute();
             $clientes_por_year = $stmt->fetchAll();
 
             //PROMEDIO DE CLIENTES POR AÑO
-            estadisticas_año();
+            $stmt = prom_clientes();
+            $stmt->bindValue(':lim', 4);
+            $stmt->execute();
             $length = $stmt->rowCount();
             $totalYear = 0;
             while ($promedio = $stmt->fetch()) {

@@ -19,23 +19,15 @@
         }
     }
 
-    function estadisticas_dia(){
+    function prom_clientes(){
         include __DIR__ . '/../includes/connect.php';
-        $sql = "SELECT LEFT(INGRESO,10) AS FECHA, COUNT(`ID_ESTADIA`) AS TOTAL FROM `estadia` GROUP BY LEFT(`INGRESO`,10);";
-        $stmt = $pdo->query($sql);
-        $stmt->execute();
-    }
-
-    function estadisticas_mes(){
-        include __DIR__ . '/../includes/connect.php';
-        $sql = "SELECT LEFT(INGRESO,7) AS FECHA, COUNT(`ID_ESTADIA`) AS TOTAL FROM `estadia` GROUP BY LEFT(`INGRESO`,7);";
-        $stmt = $pdo->query($sql);
-        $stmt->execute();
+        $sql = "SELECT LEFT(`FECHA`,:lim) AS FECHA, SUM(`CANTIDAD DE CLIENTES`) AS `TOTAL`, COUNT(*) OVER () AS `ROWCOUNT` FROM (SELECT LEFT(`INGRESO`,:lim) AS FECHA , COUNT(`ID_ESTADIA`) AS 'CANTIDAD DE CLIENTES' FROM `estadia` GROUP BY LEFT(`INGRESO`,:lim) UNION ALL SELECT LEFT(`FECHA_PAGO`,:lim), COUNT(`ID_PAGOMENSUAL`) FROM `historialpagos` GROUP BY LEFT(`FECHA_PAGO`,:lim)) T GROUP BY LEFT(`FECHA`,:lim)";
+        $stmt = $pdo->prepare($sql);
+        return $stmt;
     }   
-
-    function estadisticas_año(){
+    function prom_ganancia(){
         include __DIR__ . '/../includes/connect.php';
-        $sql = "SELECT LEFT(INGRESO,4) AS FECHA, COUNT(`ID_ESTADIA`) AS TOTAL FROM `estadia` GROUP BY LEFT(`INGRESO`,4);";
-        $stmt = $pdo->query($sql);
-        $stmt->execute();
+        $sql = "SELECT LEFT(`FECHA`,:lim) AS FECHA , SUM(`CANTIDAD TOTAL`) AS `TOTAL` , COUNT(*) OVER () AS `ROWCOUNT` FROM ( SELECT LEFT(`INGRESO`,:lim) AS FECHA , SUM(`TOTAL`) AS 'CANTIDAD TOTAL' FROM `estadia` GROUP BY LEFT(`INGRESO`,:lim) UNION ALL SELECT LEFT(`FECHA_PAGO`,:lim), precio.PRECIO FROM historialpagos INNER JOIN precio ON historialpagos.ID_PRECIO = precio.ID_PRECIO ) T GROUP BY LEFT(`FECHA`,:lim)";
+        $stmt = $pdo->prepare($sql);
+        return $stmt;
     }

@@ -45,12 +45,18 @@
                                 </td>
                         
                                 <td>
-                                    <?=htmlspecialchars(("$" .$pordias['TOTAL POR DIA']), ENT_QUOTES, 'UTF-8')?>
+                                    <?=htmlspecialchars(("$" .$pordias['TOTAL']), ENT_QUOTES, 'UTF-8')?>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
                         </tbody>
                         <tfoot>
+                                <tr>
+                                    <td>PROMEDIO: </td>
+                                <td>
+                                    <?=htmlspecialchars("$" .$totalGanDia, ENT_QUOTES, 'UTF-8')?>
+                                </td>
+                                </tr>
                             <tr>
                                 <th colspan="7" class="ts-pager">
                                     <div class="form-inline">
@@ -94,12 +100,18 @@
                                 </td>
                         
                                 <td>
-                                    <?=htmlspecialchars(("$" .$pormeses['TOTAL POR MES']), ENT_QUOTES, 'UTF-8')?>
+                                    <?=htmlspecialchars(("$" .$pormeses['TOTAL']), ENT_QUOTES, 'UTF-8')?>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
                         </tbody>
                         <tfoot>
+                                <tr>
+                                    <td>PROMEDIO: </td>
+                                <td>
+                                    <?=htmlspecialchars("$" .$totalGanMes, ENT_QUOTES, 'UTF-8')?>
+                                </td>
+                                </tr>
                             <tr>
                                 <th colspan="7" class="ts-pager">
                                     <div class="form-inline">
@@ -142,12 +154,18 @@
                                     <?=htmlspecialchars($foryears['FECHA'], ENT_QUOTES, 'UTF-8')?>
                                 </td>
                                 <td>
-                                    <?=htmlspecialchars("$" .$foryears['TOTAL POR AÑO'], ENT_QUOTES, 'UTF-8')?>
+                                    <?=htmlspecialchars("$" .$foryears['TOTAL'], ENT_QUOTES, 'UTF-8')?>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
                         </tbody>
                         <tfoot>
+                            <tr>
+                                <td>PROMEDIO: </td>
+                                <td>
+                                    <?=htmlspecialchars("$" .$totalGanYear, ENT_QUOTES, 'UTF-8')?>
+                                </td>
+                            </tr>
                             <tr>
                                 <th colspan="7" class="ts-pager">
                                     <div class="form-inline">
@@ -178,35 +196,29 @@
                 <div class="table-responsive">
                     <table class="table table-hover table-striped">
                         <thead class="thead-dark">
+                            <th class="sorter-false filter-false">Ganancias Totales</th>
+                        </thead>
+                        <tbody>
                             <tr>
-                                <th>Ganancias Totales</th>
-                            </tr>
-                        <?php foreach ($lugares_disponibles as $lugar): ?>
                                 <td>
                                     <?=htmlspecialchars("$" .$gananciasTotales, ENT_QUOTES, 'UTF-8')?>
                                 </td>
-                        <?php endforeach; ?>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
-            </div>  
-        </div>
-    </div>
-</div>
-
-<div class="card card-signin my-5">
-    <div class="card-body">
-        <div class="row">
+            </div> 
             <div class="col-md-6 col-lg-12 col-xs-6">
                 <h1>Clientes</h1><br>
                 <div class="table-responsive">
                     <table class="table table-hover table-striped">
                         <thead class="thead-dark">
                             <tr>
-                                <th>Tipo de Cliente</th>
+                                <th class="filter-select filter-exact" data-placeholder="Tipo de Cliente">Tipo de Cliente</th>
                                 <th>Cantidad</th>
                             </tr>
-
+                        </thead>
+                        <tbody>
                         <?php foreach ($cliente as $clientes): ?>
                             <tr>
                                 <td>
@@ -218,11 +230,19 @@
                             </tr>
                         <?php endforeach; ?>
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <td>TOTAL: </td>
+                                <td>
+                                    <?=htmlspecialchars($cantCliente['TOTAL'], ENT_QUOTES, 'UTF-8')?>
+                                </td>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
             <br>
-            <div class="col-4">
+            <div class="col-md-6 col-lg-4 col-xs-6">
                 <div class="table-responsive">
                     <table class="table table-hover table-striped">
                         <thead class="thead-dark">
@@ -254,7 +274,7 @@
                     </table>
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-md-6 col-lg-4 col-xs-6">
                 <div class="table-responsive">
                     <table class="table table-hover table-striped">
                         <thead class="thead-dark">
@@ -284,7 +304,7 @@
                     </table>
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-md-6 col-lg-4 col-xs-6">
                 <div class="table-responsive">
                     <table class="table table-hover table-striped">
                         <thead class="thead-dark">
@@ -314,21 +334,14 @@
                     </table>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-
-<div class="card card-signin my-5">
-    <div class="card-body">
-        <div class="row">
-            <div class="col-md-6 col-lg-12 col-xs-6">
+            <div class="col-12">
                 <h1>Lugares</h1><br><br>
                 <div class="table-responsive">
                     <table class="table table-hover table-striped">
                         <thead class="thead-dark">
-                            <tr>
-                                <th>Lugares libres Actualmente</th>
-                            </tr>
+                            <th class="sorter-false filter-false">Lugares libres Actualmente</th>
+                        </thead>
+                        <tbody>
                         <?php foreach ($lugares_disponibles as $lugar): ?>
                                 <td>
                                     <?=htmlspecialchars($lugar['CANTIDAD'], ENT_QUOTES, 'UTF-8')?>
@@ -343,3 +356,6 @@
 </div>
 
             
+<script>
+    activateTablesorter();
+</script>
