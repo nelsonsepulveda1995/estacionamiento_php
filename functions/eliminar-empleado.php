@@ -30,7 +30,7 @@
                     include __DIR__ . '/../functions/todos-usuarios.php';
                     $contenido = ob_get_clean();
                     print_r($contenido);
-                }else if($length==1){
+                }else if($cargo['ID']==1 && $length<=1){
                     $_SESSION['error']="No puede eliminar al único perfil de Gerente. Cree uno nuevo para poder eliminarlo.";
                     ob_start();
                     include __DIR__ . '/../functions/todos-usuarios.php';
