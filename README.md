@@ -15,7 +15,8 @@ Se necesita tener instalado:
 
 Para tener el proyecto funcionando, se debe descomprimir la carpeta en hdocs donde se instalo xampp en su maquina.
 Iniciar xammp y activar el servidor Apache  y el servidor de bases de  datos MySql.
-Una vez ejecutados todos los pasos anteriores, se debe abrir el navegador y acceder a ```localhost/estacionamiento_php/```
+ingresar a ```http://localhost/phpmyadmin/``` y crear una base  de datos  con el nombre de "phpweb" e importar el archivo sql que viene en el repositorio
+Una vez ejecutados todos los pasos anteriores, se debe abrir el navegador y acceder a ```localhost/estacionamiento_php/``` y loguarse con el usuario "admin" y pass "admin"
 
 
 ## Autores ✒️
