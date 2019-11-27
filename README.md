@@ -2,7 +2,7 @@
 proyecto para laboratorio de programacion de la universidad provincial de ezeiza.
 
 estacionamiento_php se trata de un proyecto construido en php para administrar las entradas y salidas de autos,  que 
-ademas permitemostrar reportes tanto diarios, mensuales  como anuales.
+ademas permite mostrar reportes tanto diarios, mensuales  como anuales.
 
 ### Pre-requisitos 📋
 
